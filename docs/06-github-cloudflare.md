@@ -1,12 +1,12 @@
 # 06 — GitHub, Google Sheets và Cloudflare Pages
 
-Tài liệu thao tác cho **giai đoạn triển khai**, sau khi ứng dụng và kiểm thử đã hoàn tất. Chưa có tài khoản, repository, Sheet hoặc deploy nào được tạo trong giai đoạn lập kế hoạch.
+Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng dụng, Functions, CI, kiểm thử cục bộ và repository GitHub đã có; chưa có Sheet thật hoặc deploy production.
 
 ## 1. Google Sheets
 
 1. Tạo Google Cloud project, bật Google Sheets API.
 2. Tạo service account và khóa JSON; giữ private key ngoài repository.
-3. Tạo Sheet có tab `RSVP` và hàng tiêu đề theo [kiến trúc dữ liệu](03-kien-truc.md).
+3. Tạo Sheet có tab `Phúc đáp`; dán hàng tiêu đề từ `google-sheets/rsvp-headers.csv` vào A1:J1.
 4. Chia sẻ Sheet cho email service account quyền Editor. Giữ Sheet ở chế độ riêng tư.
 5. Dùng một Sheet test cho preview và một Sheet thật cho production nếu có thể.
 6. Giữ/tạo hai tab `Nhà trai mời onl`, `Nhà gái mời onl` với A: Tên, B: Slug, C: Link thiệp. Áp dụng [công thức tự tạo link](08-link-moi-ca-nhan.md), cột D chỉ xử lý ngoại lệ. Cấu hình quyền đọc tên khách và ghi RSVP cho Function; kiểm thử Sheet thật trước khi bàn giao link.
@@ -21,10 +21,11 @@ Tài liệu thao tác cho **giai đoạn triển khai**, sau khi ứng dụng v�
 
 1. Trong Workers & Pages, tạo Pages project từ repository GitHub.
 2. Đặt production branch `main`, build command `npm run build`, output `dist`, root directory là thư mục gốc repository.
-3. Thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID` dưới dạng secret/biến chỉ dành cho Function; dùng giá trị khác cho preview và production.
+3. Thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dưới dạng Secret của Function. Thêm `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` và build variable `VITE_TURNSTILE_SITE_KEY`. Dùng Sheet/secret khác cho preview nếu có thể.
 4. Deploy; mở URL `*.pages.dev` ở `/`, `/nha-trai`, `/nha-gai`, `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, refresh trực tiếp từng trang; kiểm tra hai nút home dẫn đúng thiệp và `/api/rsvp` từ bốn route có form. Kiểm tra SPA fallback không che lỗi API.
 5. Nếu dùng domain riêng, thêm domain sau khi bản `pages.dev` đã ổn. Kiểm tra HTTPS, trang chia sẻ mạng xã hội và RSVP sau khi chuyển domain.
 6. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột C, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.
+7. Trong Security > WAF > Rate limiting rules của domain, tạo một rule cho path bắt đầu bằng `/api/` với ngưỡng thấp phù hợp lượng khách (ví dụ 10 request/phút/IP). Chọn Managed Challenge nếu gói/tài khoản đang dùng cho phép; giữ Turnstile trong form dù đã có rule.
 
 ## Bàn giao link cho QR phúc đáp đã có
 

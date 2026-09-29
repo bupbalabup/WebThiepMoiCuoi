@@ -4,7 +4,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 
 ## Trạng thái
 
-**Giai đoạn lập kế hoạch.** Thư mục đã được chia để bắt đầu lập trình; chưa có ứng dụng chạy, Google Sheet, repository GitHub hoặc bản triển khai Cloudflare. Đã cập nhật thông tin cưới vào [cấu hình nội dung](src/config/wedding.json); ảnh và lời mời riêng đang chờ chủ tiệc cung cấp.
+**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Pages Functions, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. Repository GitHub đã được kết nối; Google Sheet thật, ảnh cưới, hai QR mừng cưới và dự án Cloudflare vẫn cần chủ tiệc cung cấp hoặc đăng nhập để kết nối.
 
 ## Thông tin đã chốt
 
@@ -37,7 +37,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 
 Xem [luồng hai trang và QR](docs/07-luong-trang-va-qr.md). Chưa có URL production để gắn vào QR; chỉ bàn giao sau khi kiểm thử gửi thật thành công.
 
-## Công nghệ dự kiến
+## Công nghệ
 
 - React + Vite cho giao diện; Node.js và npm cho môi trường phát triển/build.
 - Cloudflare Pages phục vụ trang và Pages Function tại `POST /api/rsvp` xử lý biểu mẫu.
@@ -50,7 +50,7 @@ Xem [luồng hai trang và QR](docs/07-luong-trang-va-qr.md). Chưa có URL prod
 
 ```text
 web-moi-cuoi/
-├── .github/workflows/          # CI, thêm ở giai đoạn triển khai
+├── .github/workflows/ci.yml    # GitHub Actions: test và build
 ├── docs/
 │   ├── 01-yeu-cau.md           # Phạm vi, nội dung cần cung cấp
 │   ├── 02-giao-dien.md          # Hướng hình ảnh và responsive
@@ -61,7 +61,9 @@ web-moi-cuoi/
 │   ├── 07-luong-trang-va-qr.md  # Thiệp, trang phúc đáp, hộp thoại và QR
 │   └── 08-link-moi-ca-nhan.md   # Tên khách, slug và link tự động từ Sheet
 ├── google-sheets/             # Công thức slug và link cho hai tab khách mời
-├── functions/api/              # Cloudflare Pages Function nhận RSVP
+├── functions/
+│   ├── api/                    # API tra thiệp và nhận RSVP
+│   └── _lib/                   # Google OAuth, validate, Turnstile, HTTP
 ├── public/images/              # Ảnh đã tối ưu, favicon; QR gốc trong qr/
 ├── src/
 │   ├── components/             # Form RSVP dùng chung, hộp thoại QR
@@ -76,7 +78,31 @@ web-moi-cuoi/
 └── README.md
 ```
 
-Các thư mục nguồn chưa có mã chứa `.gitkeep` để giữ cấu trúc trong Git. Cấu hình nội dung đã có tại `src/config/wedding.json`; các tệp ứng dụng và cấu hình npm sẽ được thêm khi bắt đầu chặng 1 của [kế hoạch code](docs/04-ke-hoach-code.md).
+## Chạy cục bộ
+
+```bash
+npm install
+npm run dev
+npm test
+npm run build
+```
+
+Sao chép `.env.example` thành `.env.local` cho site key Turnstile của Vite. Sao chép `.dev.vars.example` thành `.dev.vars` cho Pages Functions, rồi thay bằng thông tin của Sheet thử nghiệm. Hai file thật đều đã bị Git bỏ qua.
+
+## Những dữ liệu còn phải bổ sung trước khi phát hành
+
+- Đưa tối thiểu 12 ảnh cưới đã tối ưu vào `public/images/` rồi gán `src` trong `src/config/wedding.json`.
+- Đưa QR mừng cưới Nhà trai và Nhà gái vào `public/images/qr/`, sau đó điền đúng `gift.accounts.groom` và `gift.accounts.bride`.
+- Tạo Sheet riêng tư với ba tab `Nhà trai mời onl`, `Nhà gái mời onl`, `Phúc đáp`; dán hàng tiêu đề từ `google-sheets/rsvp-headers.csv`.
+- Tạo Turnstile widget và thêm site key ở build environment, secret key ở Pages Functions.
+- Kết nối repository GitHub với Cloudflare Pages, thêm các Secret và chạy một phúc đáp thử trên production trước khi thay link QR phúc đáp.
+
+## Bảo vệ dữ liệu
+
+- Trình duyệt chỉ gọi `/api/invitation` và `/api/rsvp`; không nhận Sheet ID, private key hoặc link quản trị Sheet.
+- Function kiểm tra origin, kiểu/kích thước request, dữ liệu bắt buộc, hạn gửi và slug; Turnstile được xác minh ở server theo action và hostname.
+- Nội dung được ghi với `valueInputOption=RAW`, có bẫy bot và mã chống ghi lặp; không lưu IP/user-agent và không có API đọc danh sách RSVP.
+- `.dev.vars`, `.env.local`, file khóa và dữ liệu xuất từ Sheet bị chặn khỏi Git. Source map production được tắt.
 
 ## Tài liệu
 
@@ -88,3 +114,4 @@ Các thư mục nguồn chưa có mã chứa `.gitkeep` để giữ cấu trúc 
 - [Hướng dẫn GitHub và Cloudflare](docs/06-github-cloudflare.md)
 - [Luồng hai trang và QR](docs/07-luong-trang-va-qr.md)
 - [Công thức và link thiệp cá nhân](docs/08-link-moi-ca-nhan.md)
+- [Bảo mật, riêng tư và chống spam](docs/09-bao-mat-va-chong-spam.md)

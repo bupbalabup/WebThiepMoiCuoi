@@ -78,6 +78,7 @@ a { color: inherit; }
 .topbar > div a:hover { color: var(--wine); }
 
 .hero-section { min-height: calc(100svh - 68px); position: relative; display: grid; grid-template-columns: 1.02fr .98fr; align-items: stretch; overflow: hidden; background: linear-gradient(120deg, var(--cream) 0 54%, var(--rose-soft) 54%); }
+.hero-decoration { position: absolute; inset: 0; pointer-events: none; }
 .hero-copy { z-index: 2; align-self: center; width: min(680px, 100%); padding: clamp(54px, 8vw, 110px) clamp(22px, 6vw, 84px); text-align: center; justify-self: end; }
 .guest-name { margin: 14px auto 8px; font-family: var(--serif); color: var(--wine); font-size: clamp(1.7rem, 4vw, 3.5rem); overflow-wrap: anywhere; }
 .invite-copy { color: var(--muted); }

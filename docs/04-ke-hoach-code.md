@@ -5,10 +5,10 @@ Làm từng chặng, chốt nội dung thật trước khi đưa trang công kha
 | Chặng | Công việc | Điều kiện hoàn thành |
 | --- | --- | --- |
 | 0. Nội dung | Đã chốt thông tin cưới và luồng hai trang; bổ sung ảnh, lời mời, QR mừng cưới, tên sảnh nếu có | Không còn chỗ thay thế ở nội dung được công bố |
-| 1. Khung dự án | Tạo React/Vite, HomePage `/` chọn bên mời, route thiệp chung/cá nhân và phúc đáp riêng cho nhà trai/nhà gái, npm scripts, build, lint/test cơ bản, `src/config` | Build chạy được; năm route tĩnh và hai mẫu route cá nhân truy cập trực tiếp; hai nút home mở đúng thiệp |
-| 2A. Phúc đáp | Ưu tiên RsvpForm dùng chung với hai URL `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, nhẹ và dễ điền trên điện thoại | Mỗi link mở trực tiếp form đúng bên; dữ liệu ghi đúng bên, đầy đủ trạng thái gửi và đóng đúng hạn |
-| 2B. Thiệp | Thiệp theo bên mời, 18 slot ảnh linh hoạt, Maps, timeline, footer; Tham dự mở RsvpForm; Gửi mừng cưới mở GiftDialog đúng bên | Responsive liên tục 320–1920px; không có khung/cột rỗng; ghim đúng địa điểm; mỗi link hiện đúng QR |
-| 3. RSVP | Viết bốn câu hỏi, Pages Function, xác thực Google, validate ba trạng thái, tổng số người và nguồn quen biết, kiểm tra hạn 15/10 ở server, ghi Sheet | Gửi hợp lệ tạo đúng một hàng với đủ cột; “Mục khác” được kiểm tra; sau hạn không ghi; lỗi không hiện thành công giả |
+| 1. Khung dự án — xong | React/Vite, HomePage `/`, route thiệp chung/cá nhân và phúc đáp riêng, npm scripts, CI | Build chạy; route tĩnh và mẫu route cá nhân đã có |
+| 2A. Phúc đáp — xong phần mã | RsvpForm dùng chung với `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, nhẹ và dễ điền trên điện thoại | Đã kiểm tra UI 320/390px; chờ Sheet thật để gửi thử production |
+| 2B. Thiệp — chờ nội dung | Thiệp theo bên mời, 18 slot ảnh linh hoạt, Maps, footer; Tham dự mở form; Gửi mừng cưới mở QR đúng bên | Bố cục/Map đã có; chờ ảnh và hai QR thật |
+| 3. RSVP — xong phần mã | Bốn câu hỏi, Pages Function, Google OAuth, validate, hạn 15/10, append `RAW`, Turnstile | 13 test đang đạt; chờ credentials để tích hợp Sheet thật |
 | 4. Hoàn thiện | Tạo nhiều kích thước cho tối thiểu 12 ảnh, SEO/OG, favicon, a11y, giảm chuyển động, chống spam cơ bản | Đạt checklist; ảnh không gây nhảy bố cục và trang vẫn mượt trên thiết bị yếu |
 | 5. Xuất bản | GitHub, Cloudflare Pages, secret production, domain, kiểm tra route tĩnh/cá nhân; bàn giao link và công thức tạo thiệp từng người | Route tải/refresh được; tên lấy đúng tab; RSVP lưu đúng bên và người được mời; QR đúng bên; hai link phúc đáp cố định để gắn QR |
 
@@ -24,7 +24,7 @@ Thêm chặng thiệp cá nhân: thiết lập công thức A/B/C theo [hướng
 4. `functions/api/rsvp.*` và các hàm hỗ trợ tương thích Workers.
 5. `tests/*` tập trung vào validate và kết quả ghi Sheet giả lập; sau đó kiểm tra thực tế trên bản preview.
 
-## Quyết định cần khóa trước chặng 3
+## Dữ liệu cần khóa trước khi phát hành
 
 - Đã có cặp bên mời + slug để liên kết phản hồi với khách được mời. Chính sách gửi lại/sửa RSVP vẫn cần chốt; slug không tự bảo đảm một lần gửi duy nhất.
 - Đã chốt tổng số người tính cả người trả lời, không giới hạn tối đa; hạn RSVP hết ngày 15/10/2026 giờ Việt Nam, không cần hỏi lại.

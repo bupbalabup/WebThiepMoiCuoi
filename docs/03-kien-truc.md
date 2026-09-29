@@ -28,13 +28,13 @@ Node.js phục vụ cài gói, chạy Vite, build và kiểm thử cục bộ. K
 - `gift.accounts.groom` và `gift.accounts.bride` giữ các trường tài khoản/QR là `null` cho đến khi có dữ liệu thật. Bản phát hành phải có QR đúng bên nếu nút Gửi mừng cưới được bật; không dùng QR phúc đáp làm QR mừng cưới. Nút mừng cưới nằm trong thiệp; từ trang phúc đáp có thể quay về thiệp cùng bên.
 - Mừng cưới chỉ hiển thị QR, không gọi API RSVP, không lưu số tiền hoặc trạng thái giao dịch vào Sheet.
 
-## API dự kiến
+## API đã triển khai
 
-`GET /api/invitation?side=groom&slug=nguyen-van-a`: server chỉ cho phép `groom`/`bride`, ánh xạ tới tab `Nhà trai mời onl`/`Nhà gái mời onl`, đọc A:B và tìm slug chính xác, duy nhất. Không nhận tên tab hoặc range tùy ý từ client. `200` trả `{name, slug, invitationSide}` của đúng một người; `400` nếu tham số sai/dành riêng, `404` nếu không có, `409` nếu trùng slug, `503` nếu Google không phản hồi. Không trả toàn bộ danh sách khách và không biến lỗi Google thành `404`.
+`GET /api/invitation?side=groom&slug=nguyen-van-a`: server chỉ cho phép `groom`/`bride`, ánh xạ tới tab `Nhà trai mời onl`/`Nhà gái mời onl`, đọc A:B và tìm slug chính xác, duy nhất. Không nhận tên tab hoặc range tùy ý từ client. `200` trả `{name, slug, side}` của đúng một người; `400` nếu tham số sai/dành riêng, `404` nếu không có, `409` nếu trùng slug, `503` nếu Google không phản hồi. Không trả toàn bộ danh sách khách và không biến lỗi Google thành `404`.
 
 Thiệp cá nhân tra tên có dấu rồi điền trước lời mời và form. Hai trang phúc đáp chấp nhận tham số `khach` tùy chọn để dùng cùng tra cứu; không có tham số thì khách tự nhập tên. Tránh ghi đè tên đã được khách chỉnh sửa khi request tra tên trả về muộn. Link theo tên là cách cá nhân hóa, không phải cơ chế xác thực khách.
 
-`POST /api/rsvp`, `Content-Type: application/json`, giới hạn body nhỏ (ví dụ 4 KiB). Payload dự kiến:
+`POST /api/rsvp`, `Content-Type: application/json`, giới hạn body 16 KiB. Payload:
 
 ```json
 {
@@ -45,6 +45,8 @@ Thiệp cá nhân tra tên có dấu rồi điền trước lời mời và form
   "relationshipOther": "",
   "invitationSide": "groom",
   "invitationSlug": "nguyen-van-a",
+  "idempotencyKey": "uuid-do-trinh-duyet-tao",
+  "turnstileToken": "token-ngan-han",
   "website": ""
 }
 ```
@@ -61,9 +63,9 @@ Thiệp cá nhân tra tên có dấu rồi điền trước lời mời và form
 
 Dùng `src/config/wedding.json` làm nguồn chung cho giao diện và Function, tránh lệch hạn RSVP giữa hai phía. Tiệc bắt đầu `2026-10-21T11:00:00+07:00`. Hạn 15/10 được hiểu là nhận hết ngày: từ `2026-10-16T00:00:00+07:00` trở đi API trả `RSVP_CLOSED`, không gọi Google Sheets. Dùng đồng hồ phía server làm căn cứ quyết định, kể cả khi đồng hồ thiết bị khách sai hoặc form đã mở từ trước hạn.
 
-Google Maps: cấu hình có URL tìm đúng tên/địa chỉ và URL chỉ đường theo định dạng [Maps URLs](https://developers.google.com/maps/documentation/urls/get-started), không cần API key cho các liên kết này. `embedUrl` tạm để `null`, phải điền URL iframe từ Google Maps và kiểm tra ghim trước khi nghiệm thu phần địa điểm. Không coi liên kết tìm kiếm là bằng chứng đã kiểm tra ghim trực quan.
+Google Maps: cấu hình có URL tìm đúng tên/địa chỉ, URL chỉ đường và iframe theo định dạng [Maps URLs](https://developers.google.com/maps/documentation/urls/get-started), không cần API key. Đã kiểm tra iframe hiển thị ghim Trống Đồng Palace ở tọa độ Google Maps trả về; vẫn cần quét lại nút chỉ đường trên điện thoại trước ngày phát hành.
 
-## Cột Sheet dự kiến
+## Cột tab `Phúc đáp`
 
 | Cột | Nội dung |
 | --- | --- |
@@ -88,6 +90,8 @@ Tạo Google Cloud project, bật Sheets API, tạo service account và chia s�
 
 - Không để khóa, Sheet ID nhạy cảm hoặc nội dung RSVP trong `src/`, `public/`, `VITE_*`, log hoặc repository.
 - Chỉ lưu trường cần thiết; không đưa IP hoặc user-agent vào Sheet theo mặc định.
-- Giới hạn độ dài trường, chuẩn hóa khoảng trắng, chống gửi liên tiếp ở giao diện; cân nhắc Cloudflare Turnstile nếu có spam thực tế. Giới hạn tốc độ chắc chắn ở phía server cần một kho trạng thái hoặc dịch vụ phù hợp; không giả định một biến trong Function có thể giữ trạng thái ổn định.
+- Giới hạn độ dài trường, body 16 KiB, chuẩn hóa khoảng trắng, khóa nút khi đang gửi, honeypot và Cloudflare Turnstile. Function chỉ tin kết quả Siteverify thành công, đúng action `wedding_rsvp` và đúng hostname; token do Turnstile quản lý là ngắn hạn và chỉ dùng một lần.
+- Kiểm tra `Origin`/`Sec-Fetch-Site`, header dành riêng của form và chỉ nhận đúng method. Có thể thêm một WAF rate limiting rule cho đường dẫn `/api/*` trên domain production; quy tắc này bổ sung cho Turnstile.
+- `submission_id` được dò trước khi append để giảm bản ghi lặp khi request được gửi lại. Đây không phải khóa giao dịch tuyệt đối của Sheets; Turnstile và việc khóa nút vẫn là lớp chính chống spam/gửi dồn.
 - Không render HTML từ nội dung khách nhập; React hiển thị dạng text. Không có API đọc danh sách RSVP hoặc toàn bộ tab khách mời; API tra thiệp chỉ trả tên/bên/slug của một link được yêu cầu.
 - Có lời thông báo ngắn cạnh form: dữ liệu chỉ dùng để chuẩn bị tiệc và cách liên hệ để sửa/xóa phản hồi.
