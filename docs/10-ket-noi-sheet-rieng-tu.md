@@ -23,9 +23,9 @@ Có thể lấy hàng tương tự từ `google-sheets/rsvp-headers.csv`. Server
 
 Hai tab **Nhà trai mời onl**, **Nhà gái mời onl** dùng cho link thiệp cá nhân vẫn có A: Tên, B: Slug, C: Link thiệp, D: Slug cố định tùy chọn. Xem tài liệu 08 để dán công thức B2/C2.
 
-## 3. Thêm Variables and Secrets trong Cloudflare Pages
+## 3. Thêm Variables and Secrets trong Cloudflare Worker
 
-Mở project đang tự deploy từ GitHub, chọn **Settings > Variables and Secrets**, môi trường **Production**:
+Mở **Workers & Pages > wedding**. Các runtime binding dưới đây nằm tại **Settings > Variables and Secrets**:
 
 | Tên | Kiểu | Giá trị |
 | --- | --- | --- |
@@ -34,17 +34,18 @@ Mở project đang tự deploy từ GitHub, chọn **Settings > Variables and Se
 | GOOGLE_SHEET_ID | Secret | Phần nằm giữa /d/ và /edit trong URL Sheet đã gửi |
 | GOOGLE_RSVP_TAB | Text | Phúc đáp, hoặc tên chính xác của tab nhận dữ liệu đã chuẩn bị |
 | TURNSTILE_SECRET_KEY | Secret | Secret key của widget Turnstile |
-| VITE_TURNSTILE_SITE_KEY | Text/build | Site key của widget Turnstile, được phép công khai |
 | APP_ENV | Text | production |
 | ALLOWED_ORIGINS | Text | Origin website HTTPS hiện tại, không kèm đường dẫn; nhiều origin cách nhau bởi dấu phẩy |
 
+Riêng `VITE_TURNSTILE_SITE_KEY` thêm tại **Settings > Build > Build variables and secrets**. Đây là site key công khai mà Vite cần lúc chạy `npm run build`; nó không phải runtime secret.
+
 `gid=1486554695` trong link là ID một tab, **không phải** GOOGLE_SHEET_ID. Không đặt private key hoặc Sheet ID trong biến có tiền tố `VITE_`.
 
-Trong **Turnstile > Add widget**, thêm hostname Pages/domain đang dùng, chọn Managed. Dùng site key/secret thật cho production, không dùng test key trong các file ví dụ.
+Trong **Turnstile > Add widget**, thêm hostname `workers.dev` hoặc domain riêng đang dùng, chọn Managed. Dùng site key/secret thật cho production, không dùng test key trong các file ví dụ.
 
 ## 4. Redeploy và xác nhận
 
-Sau khi lưu biến, chạy lại deployment từ commit mới nhất để Vite nhận site key. Những lần sửa mã tiếp theo chỉ cần push GitHub như hiện tại.
+Sau khi lưu biến runtime, bấm **Deploy**. Sau khi thêm site key ở phần Build, chạy lại deployment từ commit mới nhất để Vite nhận giá trị. Những lần sửa mã tiếp theo chỉ cần push GitHub như hiện tại.
 
 1. Mở trang phúc đáp Nhà trai, gửi một mẫu có tên rõ là kiểm thử và kiểm tra 10 cột trong tab nhận dữ liệu.
 2. Làm tương tự với Nhà gái, kiểm tra cột H lần lượt là groom/bride.

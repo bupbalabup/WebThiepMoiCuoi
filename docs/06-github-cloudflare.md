@@ -1,6 +1,6 @@
-# 06 — GitHub, Google Sheets và Cloudflare Pages
+# 06 — GitHub, Google Sheets và Cloudflare Workers
 
-Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng dụng, Functions, CI, kiểm thử cục bộ và repository GitHub đã có; chưa có Sheet thật hoặc deploy production.
+Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng dụng, Worker API, CI, kiểm thử cục bộ, repository GitHub và Workers Builds đã có; chưa kết nối Sheet thật.
 
 ## 1. Google Sheets
 
@@ -15,21 +15,22 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 
 1. Tạo repository, thêm remote GitHub và push nhánh `main` sau khi kiểm tra `.gitignore`.
 2. Chỉ commit `.dev.vars.example`; **không commit** `.dev.vars`, key JSON, `.env.local`, file xuất RSVP.
-3. Bật bảo vệ nhánh/kiểm tra build nếu muốn. Các commit sau sẽ tự tạo build Pages khi đã kết nối.
+3. Bật bảo vệ nhánh/kiểm tra build nếu muốn. Các commit sau sẽ tự tạo Workers build khi đã kết nối.
 
-## 3. Cloudflare Pages Free
+## 3. Cloudflare Workers Free
 
-1. Trong Workers & Pages, tạo Pages project từ repository GitHub.
-2. Đặt production branch `main`, build command `npm run build`, output `dist`, root directory là thư mục gốc repository.
-3. Thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dưới dạng Secret của Function. Thêm `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` và build variable `VITE_TURNSTILE_SITE_KEY`. Dùng Sheet/secret khác cho preview nếu có thể.
-4. Deploy; mở URL `*.pages.dev` ở `/`, `/nha-trai`, `/nha-gai`, `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, refresh trực tiếp từng trang; kiểm tra hai nút home dẫn đúng thiệp và `/api/rsvp` từ bốn route có form. Kiểm tra SPA fallback không che lỗi API.
-5. Nếu dùng domain riêng, thêm domain sau khi bản `pages.dev` đã ổn. Kiểm tra HTTPS, trang chia sẻ mạng xã hội và RSVP sau khi chuyển domain.
-6. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột C, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.
-7. Trong Security > WAF > Rate limiting rules của domain, tạo một rule cho path bắt đầu bằng `/api/` với ngưỡng thấp phù hợp lượng khách (ví dụ 10 request/phút/IP). Chọn Managed Challenge nếu gói/tài khoản đang dùng cho phép; giữ Turnstile trong form dù đã có rule.
+1. Trong Workers & Pages, mở Worker `wedding` đã kết nối repository GitHub.
+2. Trong **Settings > Build**, đặt production branch `main`, build command `npm run build`, deploy command `npx wrangler deploy`, root directory là thư mục gốc repository.
+3. Trong **Settings > Build > Build variables and secrets**, thêm `VITE_TURNSTILE_SITE_KEY`. Biến này chỉ phục vụ Vite lúc build.
+4. Trong **Settings > Variables and Secrets**, thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dạng Secret; thêm `GOOGLE_RSVP_TAB=Phúc đáp`, `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` dạng Text. Dùng Sheet/secret khác cho preview nếu có thể.
+5. Deploy; mở URL `*.workers.dev` ở `/`, `/nha-trai`, `/nha-gai`, `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, refresh trực tiếp từng trang; kiểm tra hai nút home dẫn đúng thiệp và `/api/rsvp` từ các route có form. Entry tại `worker/index.js` chuyển `/api/*` vào API trước khi SPA fallback chạy.
+6. Nếu dùng domain riêng, thêm domain sau khi bản `workers.dev` đã ổn. Cập nhật `ALLOWED_ORIGINS` và hostname Turnstile khi chuyển domain.
+7. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột C, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.
+8. Trong Security > WAF > Rate limiting rules của domain, tạo một rule cho path bắt đầu bằng `/api/` với ngưỡng thấp phù hợp lượng khách (ví dụ 10 request/phút/IP). Chọn Managed Challenge nếu gói/tài khoản đang dùng cho phép; giữ Turnstile trong form dù đã có rule.
 
 ## Bàn giao link cho QR phúc đáp đã có
 
-1. Xác định tên miền production sẽ giữ ổn định (domain riêng hoặc tên dự án `pages.dev`).
+1. Xác định tên miền production sẽ giữ ổn định (domain riêng hoặc tên Worker `workers.dev`).
 2. Ghi origin thực tế vào cấu hình; hai URL có dạng `https://TEN-MIEN-THAT/nha-trai/phuc-dap` và `https://TEN-MIEN-THAT/nha-gai/phuc-dap`. Đây là mẫu định dạng, chưa phải link đã deploy.
 3. Chỉ bàn giao hai URL sau khi mỗi trang phúc đáp ghi đúng bên vào Sheet production và kiểm tra trên điện thoại. Chủ tiệc gắn link nhà trai cho QR phúc đáp nhà trai, link nhà gái cho QR phúc đáp nhà gái.
 4. Quét từng QR thật sau khi cập nhật đích và giữ nguyên cả hai đường dẫn qua các bản phát hành. Nếu đổi domain sau này, phải duy trì chuyển hướng từ URL cũ trước khi gỡ domain.
@@ -37,18 +38,18 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 
 ## 4. Chạy thử cục bộ ở giai đoạn code
 
-`npm run dev` phục vụ giao diện Vite. Để kiểm tra Pages Function thực tế, build rồi chạy `npx wrangler pages dev dist` với `.dev.vars` ở máy cá nhân và Sheet test. Không dùng khóa production khi kiểm thử local.
+`npm run dev` chỉ phục vụ giao diện Vite. Để kiểm tra Worker và API thực tế, chạy `npm run build`, sau đó `npx wrangler dev` với `.dev.vars` ở máy cá nhân và Sheet test. Không dùng khóa production khi kiểm thử local.
 
 ## Giới hạn và chi phí cần theo dõi
 
-Cloudflare Pages Free hiện có giới hạn build theo tháng; Pages Functions dùng hạn mức request của Workers Free. Sheets API có quota theo phút. Quy mô thiệp cưới cá nhân thường nhỏ, nhưng không coi đây là cam kết miễn phí vĩnh viễn: kiểm tra lại trang giá/quota trước khi phát hành và quan sát lỗi `429` khi có nhiều RSVP cùng lúc.
+Cloudflare Workers Free có hạn mức build/request; Sheets API có quota theo phút. Quy mô thiệp cưới cá nhân thường nhỏ, nhưng không coi đây là cam kết miễn phí vĩnh viễn: kiểm tra lại trang giá/quota trước khi phát hành và quan sát lỗi `429` khi có nhiều RSVP cùng lúc.
 
 ## Tài liệu chính thức
 
-- [Cloudflare Pages cho React](https://developers.cloudflare.com/pages/framework-guides/deploy-a-react-site/)
-- [Cloudflare Pages Functions và routing](https://developers.cloudflare.com/pages/functions/)
-- [Cloudflare Pages Functions local development](https://developers.cloudflare.com/pages/functions/local-development/)
-- [Cloudflare Pages limits](https://developers.cloudflare.com/pages/platform/limits/)
+- [Cloudflare Workers Builds](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/)
+- [Workers Static Assets cho SPA](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
+- [Workers Variables and Secrets](https://developers.cloudflare.com/workers/configuration/environment-variables/)
+- [Workers limits](https://developers.cloudflare.com/workers/platform/limits/)
 - [Google service account và chia sẻ Sheet](https://developers.google.com/workspace/guides/create-credentials)
 - [Google Sheets append API](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/append)
 - [Google Sheets API quotas](https://developers.google.com/workspace/sheets/api/limits)

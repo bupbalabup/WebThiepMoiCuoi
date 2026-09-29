@@ -4,7 +4,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 
 ## Trạng thái
 
-**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Pages Functions, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. GitHub đã kết nối Cloudflare để tự deploy khi push. Giao diện đã chỉnh theo thiệp in: A & A, không icon, đúng thứ tự tên và lịch trình từng bên. Google Sheet thật chưa ghi được vì chưa có service account/Secret; xem [hướng dẫn kết nối Sheet riêng tư](docs/10-ket-noi-sheet-rieng-tu.md). Ảnh cưới và hai QR mừng cưới vẫn cần bổ sung.
+**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Cloudflare Worker API, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. GitHub đã kết nối Cloudflare Workers Builds để tự deploy khi push. Giao diện đã chỉnh theo thiệp in: A & A, không icon, đúng thứ tự tên và lịch trình từng bên. Google Sheet thật chưa ghi được vì chưa có service account/Secret; xem [hướng dẫn kết nối Sheet riêng tư](docs/10-ket-noi-sheet-rieng-tu.md). Ảnh cưới và hai QR mừng cưới vẫn cần bổ sung.
 
 ## Thông tin đã chốt
 
@@ -40,11 +40,11 @@ Xem [luồng hai trang và QR](docs/07-luong-trang-va-qr.md). Chưa có URL prod
 ## Công nghệ
 
 - React + Vite cho giao diện; Node.js và npm cho môi trường phát triển/build.
-- Cloudflare Pages phục vụ trang và Pages Function tại `POST /api/rsvp` xử lý biểu mẫu.
+- Cloudflare Worker phục vụ frontend trong `dist` và API tại `POST /api/rsvp` xử lý biểu mẫu.
 - Google Sheets API lưu RSVP; tài khoản dịch vụ Google chỉ được cấp quyền với một Sheet.
-- GitHub lưu mã nguồn và kích hoạt Cloudflare Pages build khi push.
+- GitHub lưu mã nguồn và kích hoạt Cloudflare Workers build khi push.
 
-> Không đưa khóa Google vào React, biến `VITE_*`, GitHub, hoặc file được publish. Mã Function chạy trên Cloudflare Workers runtime, không phải một tiến trình Node.js thường trực.
+> Không đưa khóa Google vào React, biến `VITE_*`, GitHub, hoặc file được publish. API chạy trên Cloudflare Workers runtime, không phải một tiến trình Node.js thường trực.
 
 ## Cấu trúc dự án
 
@@ -64,6 +64,7 @@ web-moi-cuoi/
 ├── functions/
 │   ├── api/                    # API tra thiệp và nhận RSVP
 │   └── _lib/                   # Google OAuth, validate, Turnstile, HTTP
+├── worker/index.js             # Entry Worker chuyển /api/* vào API và phục vụ assets
 ├── public/images/              # Ảnh đã tối ưu, favicon; QR gốc trong qr/
 ├── src/
 │   ├── components/             # Form RSVP dùng chung, hộp thoại QR
@@ -87,7 +88,72 @@ npm test
 npm run build
 ```
 
-Sao chép `.env.example` thành `.env.local` cho site key Turnstile của Vite. Sao chép `.dev.vars.example` thành `.dev.vars` cho Pages Functions, rồi thay bằng thông tin của Sheet thử nghiệm. Hai file thật đều đã bị Git bỏ qua.
+Sao chép `.env.example` thành `.env.local` cho site key Turnstile của Vite. Sao chép `.dev.vars.example` thành `.dev.vars` cho Worker khi chạy local, rồi thay bằng thông tin của Sheet thử nghiệm. Hai file thật đều đã bị Git bỏ qua.
+
+## Điền biến môi trường ở đâu?
+
+Không gom tất cả khóa vào một file `.env`. Dự án có hai môi trường khác nhau:
+
+| Nơi điền | Biến | Mục đích |
+| --- | --- | --- |
+| `.env.local` trên máy | `VITE_TURNSTILE_SITE_KEY` | Vite đưa site key công khai vào frontend |
+| `.dev.vars` trên máy | `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `GOOGLE_RSVP_TAB`, `TURNSTILE_SECRET_KEY`, `APP_ENV`, `ALLOWED_ORIGINS` | Worker local đọc; file này không được commit |
+| Cloudflare **Settings > Build > Build variables and secrets** | `VITE_TURNSTILE_SITE_KEY` | Có mặt khi lệnh `npm run build` chạy |
+| Cloudflare **Settings > Variables and Secrets** | Các biến runtime còn lại | Worker production đọc khi khách tra thiệp hoặc gửi phúc đáp |
+
+### 1. Cấu hình trên máy
+
+```powershell
+Copy-Item .env.example .env.local
+Copy-Item .dev.vars.example .dev.vars
+```
+
+Trong `.env.local`, chỉ điền:
+
+```dotenv
+VITE_TURNSTILE_SITE_KEY=site-key-lay-tu-cloudflare-turnstile
+```
+
+Trong `.dev.vars`, điền theo mẫu `.dev.vars.example`. Có thể giữ `APP_ENV=development` và hai localhost trong `ALLOWED_ORIGINS`. Private key có thể giữ dạng một dòng với `\n`; mã server sẽ đổi thành xuống dòng trước khi sử dụng.
+
+### 2. Lấy giá trị Google
+
+1. Trong Google Cloud Console, bật **Google Sheets API** và tạo một service account.
+2. Tạo key loại JSON cho service account và tải file về máy; không đưa file JSON vào repository.
+3. `GOOGLE_CLIENT_EMAIL`: lấy từ trường `client_email` trong JSON.
+4. `GOOGLE_PRIVATE_KEY`: lấy nguyên trường `private_key`, gồm cả `BEGIN PRIVATE KEY` và `END PRIVATE KEY`.
+5. `GOOGLE_SHEET_ID`: lấy phần nằm giữa `/d/` và `/edit` trong URL Google Sheet. Không dùng số `gid`.
+6. Chia sẻ chính Sheet đó cho `client_email` với quyền **Editor**, còn quyền truy cập chung vẫn để **Restricted**.
+7. Tạo tab `Phúc đáp`, rồi dán hàng tiêu đề trong `google-sheets/rsvp-headers.csv` vào A1:J1.
+
+### 3. Lấy Turnstile key
+
+Trong Cloudflare Dashboard, mở **Turnstile**, tạo widget kiểu Managed cho hostname production:
+
+- Site key → `VITE_TURNSTILE_SITE_KEY`; site key được phép xuất hiện ở frontend.
+- Secret key → `TURNSTILE_SECRET_KEY`; luôn lưu dưới dạng Secret.
+
+### 4. Điền trên Cloudflare Worker `wedding`
+
+Vào **Workers & Pages > wedding**:
+
+1. Mở **Settings > Build > Build variables and secrets**, thêm `VITE_TURNSTILE_SITE_KEY` dạng biến build. Sau khi đổi biến này phải chạy lại deployment vì Vite đóng giá trị vào bản build.
+2. Mở **Settings > Variables and Secrets > Add** và thêm các biến runtime dưới đây.
+3. Bấm **Deploy** để tạo version mới có các binding vừa thêm.
+
+| Tên | Loại trên Cloudflare | Giá trị |
+| --- | --- | --- |
+| `GOOGLE_CLIENT_EMAIL` | Secret | `client_email` trong JSON |
+| `GOOGLE_PRIVATE_KEY` | Secret | Toàn bộ `private_key` trong JSON |
+| `GOOGLE_SHEET_ID` | Secret | ID của spreadsheet |
+| `TURNSTILE_SECRET_KEY` | Secret | Secret key của Turnstile |
+| `GOOGLE_RSVP_TAB` | Text | `Phúc đáp` |
+| `APP_ENV` | Text | `production` |
+| `ALLOWED_ORIGINS` | Text | Origin HTTPS thật, ví dụ `https://wedding.example.workers.dev`; không có dấu `/` cuối |
+
+`VITE_TURNSTILE_SITE_KEY` cần nằm ở phần **Build**. Các khóa Google và `TURNSTILE_SECRET_KEY` cần nằm ở phần **Variables and Secrets** của Worker; build variable không tự trở thành runtime binding.
+
+Sau khi cấu hình xong, push hoặc retry deployment rồi thử cả `/nha-trai/phuc-dap` và `/nha-gai/phuc-dap`. Không gửi private key vào chat hoặc commit Git.
 
 ## Những dữ liệu còn phải bổ sung trước khi phát hành
 

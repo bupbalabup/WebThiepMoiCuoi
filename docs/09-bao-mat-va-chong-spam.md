@@ -21,12 +21,12 @@ Google Sheet luôn để riêng tư. Trình duyệt không gọi Google API và 
 
 | Tên | Nơi đặt | Có xuất hiện trong React? |
 | --- | --- | --- |
-| `GOOGLE_CLIENT_EMAIL` | Cloudflare Pages Secret | Không |
-| `GOOGLE_PRIVATE_KEY` | Cloudflare Pages Secret | Không |
-| `GOOGLE_SHEET_ID` | Cloudflare Pages Secret | Không |
-| `TURNSTILE_SECRET_KEY` | Cloudflare Pages Secret | Không |
-| `APP_ENV=production` | Pages environment variable | Không |
-| `ALLOWED_ORIGINS` | Pages environment variable | Không |
+| `GOOGLE_CLIENT_EMAIL` | Cloudflare Worker Secret | Không |
+| `GOOGLE_PRIVATE_KEY` | Cloudflare Worker Secret | Không |
+| `GOOGLE_SHEET_ID` | Cloudflare Worker Secret | Không |
+| `TURNSTILE_SECRET_KEY` | Cloudflare Worker Secret | Không |
+| `APP_ENV=production` | Worker runtime variable | Không |
+| `ALLOWED_ORIGINS` | Worker runtime variable | Không |
 | `VITE_TURNSTILE_SITE_KEY` | Build environment variable | Có, site key được phép công khai |
 
 Không đặt bốn Secret đầu trong biến `VITE_*`, GitHub Actions log, mã nguồn, ảnh QR, query string hoặc file trong `public/`. Khi copy private key vào Cloudflare, giữ đủ dòng BEGIN/END và ký tự xuống dòng.
