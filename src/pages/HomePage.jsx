@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="home-orb orb-two" aria-hidden="true" />
       <section className="home-card">
         <span className="eyebrow">Save the date · 21.10.2026</span>
-        <div className="home-monogram" aria-hidden="true">A<span>&</span>A</div>
+        <div className="home-monogram" aria-hidden="true">T<span>&</span>N</div>
         <h1><span>{wedding.couple.groom}</span><i>&</i><span>{wedding.couple.bride}</span></h1>
         <p className="home-time">11:00 · Thứ Tư, ngày 21 tháng 10 năm 2026</p>
         <div className="floral-divider" aria-hidden="true"><span />♡<span /></div>
