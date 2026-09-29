@@ -4,6 +4,17 @@ import { verifyTurnstile } from "../_lib/turnstile.js";
 import { validateRsvp } from "../_lib/validation.js";
 
 export const RSVP_HEADERS = ["submitted_at", "name", "attendance", "guest_count", "relationship", "relationship_other", "submission_id", "invitation_side", "invitation_slug", "invited_name"];
+export const RSVP_TAB_NAMES = Object.freeze({
+  groom: "Nhà trai",
+  bride: "Nhà gái",
+});
+
+function rsvpTabName(env, invitationSide) {
+  const configured = invitationSide === "groom"
+    ? env.GOOGLE_GROOM_RSVP_TAB
+    : env.GOOGLE_BRIDE_RSVP_TAB;
+  return configured || RSVP_TAB_NAMES[invitationSide];
+}
 
 async function handlePost({ request, env }) {
   if (!isSameSiteRequest(request, env.ALLOWED_ORIGINS || "")) {
@@ -43,7 +54,7 @@ async function handlePost({ request, env }) {
 
   try {
     const data = validation.value;
-    const tab = (env.GOOGLE_RSVP_TAB || "Phúc đáp").replace(/'/g, "''");
+    const tab = rsvpTabName(env, data.invitationSide).replace(/'/g, "''");
     const headers = await readSheetRows(env, `'${tab}'!A1:J1`);
     if (!RSVP_HEADERS.every((header, index) => headers[0]?.[index] === header)) {
       throw new Error("RSVP_SHEET_HEADERS_MISMATCH");

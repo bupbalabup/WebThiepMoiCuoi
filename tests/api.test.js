@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { onRequest as invitationRequest } from "../functions/api/invitation.js";
-import { onRequest as rsvpRequest, RSVP_HEADERS } from "../functions/api/rsvp.js";
+import { onRequest as rsvpRequest, RSVP_HEADERS, RSVP_TAB_NAMES } from "../functions/api/rsvp.js";
 
 function bytesToBase64(bytes) {
   let value = "";
@@ -101,6 +101,7 @@ test("RSVP API verifies and appends values as a raw row", async () => {
     });
     assert.equal(response.status, 201);
     assert.match(appended.url, /valueInputOption=RAW/);
+    assert.match(appended.url, /Nh%C3%A0%20trai/);
     assert.deepEqual(appended.body.values[0].slice(1), [
       "Nguyễn Văn A", "attending", 3, "friend", "", "123e4567-e89b-12d3-a456-426614174000", "groom", "nguyen-van-a", "Nguyễn Văn A",
     ]);
@@ -146,10 +147,12 @@ test("RSVP API refuses to write into a tab with unrelated headers", async () => 
   const originalNow = Date.now;
   const originalError = console.error;
   let writes = 0;
+  const sheetRequests = [];
   globalThis.fetch = async (url, init = {}) => {
     const target = String(url);
     if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "test-access-token", expires_in: 3600 });
     if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true, hostname: "wedding.example", action: "wedding_rsvp" });
+    if (target.includes("sheets.googleapis.com")) sheetRequests.push(target);
     if (init.method === "POST") writes++;
     return Response.json({ values: [["Tên", "Slug", "Link thiệp"]] });
   };
@@ -166,10 +169,15 @@ test("RSVP API refuses to write into a tab with unrelated headers", async () => 
     });
     assert.equal(response.status, 503);
     assert.equal(writes, 0);
+    assert.ok(sheetRequests.some((url) => url.includes("Nh%C3%A0%20g%C3%A1i")));
     assert.equal((await response.json()).code, "RSVP_SERVICE_UNAVAILABLE");
   } finally {
     globalThis.fetch = originalFetch;
     Date.now = originalNow;
     console.error = originalError;
   }
+});
+
+test("RSVP tabs are separated from online invitation-list tabs", () => {
+  assert.deepEqual(RSVP_TAB_NAMES, { groom: "Nhà trai", bride: "Nhà gái" });
 });

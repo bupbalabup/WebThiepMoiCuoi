@@ -6,10 +6,11 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 
 1. Tạo Google Cloud project, bật Google Sheets API.
 2. Tạo service account và khóa JSON; giữ private key ngoài repository.
-3. Tạo Sheet có tab `Phúc đáp`; dán hàng tiêu đề từ `google-sheets/rsvp-headers.csv` vào A1:J1.
-4. Chia sẻ Sheet cho email service account quyền Editor. Giữ Sheet ở chế độ riêng tư.
-5. Dùng một Sheet test cho preview và một Sheet thật cho production nếu có thể.
-6. Giữ/tạo hai tab `Nhà trai mời onl`, `Nhà gái mời onl` với A: Tên, B: Slug, C: Link thiệp. Áp dụng [công thức tự tạo link](08-link-moi-ca-nhan.md), cột D chỉ xử lý ngoại lệ. Cấu hình quyền đọc tên khách và ghi RSVP cho Function; kiểm thử Sheet thật trước khi bàn giao link.
+3. Trong hai tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề từ `google-sheets/rsvp-headers.tsv` vào A1:J1.
+4. Trong tab `Tổng hợp số lượng`, dán `google-sheets/tong-hop-so-luong.formulas.tsv` vào A1 để tổng tự cập nhật từ hai bên.
+5. Chia sẻ Sheet cho email service account quyền Editor. Giữ Sheet ở chế độ riêng tư.
+6. Dùng một Sheet test cho preview và một Sheet thật cho production nếu có thể.
+7. Giữ/tạo hai tab `Nhà trai mời onl`, `Nhà gái mời onl` với A: Tên, B: Slug, C: Link thiệp. Áp dụng [công thức tự tạo link](08-link-moi-ca-nhan.md), cột D chỉ xử lý ngoại lệ. Cấu hình quyền đọc tên khách và ghi RSVP cho Worker; kiểm thử Sheet thật trước khi bàn giao link.
 
 ## 2. GitHub
 
@@ -22,7 +23,7 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 1. Trong Workers & Pages, mở Worker `wedding` đã kết nối repository GitHub.
 2. Trong **Settings > Build**, đặt production branch `main`, build command `npm run build`, deploy command `npx wrangler deploy`, root directory là thư mục gốc repository.
 3. Trong **Settings > Build > Build variables and secrets**, thêm `VITE_TURNSTILE_SITE_KEY`. Biến này chỉ phục vụ Vite lúc build.
-4. Trong **Settings > Variables and Secrets**, thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dạng Secret; thêm `GOOGLE_RSVP_TAB=Phúc đáp`, `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` dạng Text. Dùng Sheet/secret khác cho preview nếu có thể.
+4. Trong **Settings > Variables and Secrets**, thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dạng Secret; thêm `GOOGLE_GROOM_RSVP_TAB=Nhà trai`, `GOOGLE_BRIDE_RSVP_TAB=Nhà gái`, `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` dạng Text. Dùng Sheet/secret khác cho preview nếu có thể.
 5. Deploy; mở URL `*.workers.dev` ở `/`, `/nha-trai`, `/nha-gai`, `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, refresh trực tiếp từng trang; kiểm tra hai nút home dẫn đúng thiệp và `/api/rsvp` từ các route có form. Entry tại `worker/index.js` chuyển `/api/*` vào API trước khi SPA fallback chạy.
 6. Nếu dùng domain riêng, thêm domain sau khi bản `workers.dev` đã ổn. Cập nhật `ALLOWED_ORIGINS` và hostname Turnstile khi chuyển domain.
 7. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột C, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.

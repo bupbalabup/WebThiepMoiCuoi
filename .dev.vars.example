@@ -2,7 +2,8 @@
 GOOGLE_CLIENT_EMAIL=service-account@example-project.iam.gserviceaccount.com
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nREPLACE_WITH_LOCAL_TEST_KEY\n-----END PRIVATE KEY-----\n"
 GOOGLE_SHEET_ID=replace-with-test-sheet-id
-GOOGLE_RSVP_TAB="Phúc đáp"
+GOOGLE_GROOM_RSVP_TAB="Nhà trai"
+GOOGLE_BRIDE_RSVP_TAB="Nhà gái"
 TURNSTILE_SECRET_KEY=replace-with-turnstile-secret-key
 APP_ENV=development
 ALLOWED_ORIGINS=http://localhost:8788,http://localhost:5173

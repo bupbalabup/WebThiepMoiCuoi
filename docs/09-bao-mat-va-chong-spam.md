@@ -25,6 +25,8 @@ Google Sheet luôn để riêng tư. Trình duyệt không gọi Google API và 
 | `GOOGLE_PRIVATE_KEY` | Cloudflare Worker Secret | Không |
 | `GOOGLE_SHEET_ID` | Cloudflare Worker Secret | Không |
 | `TURNSTILE_SECRET_KEY` | Cloudflare Worker Secret | Không |
+| `GOOGLE_GROOM_RSVP_TAB=Nhà trai` | Worker runtime variable | Không |
+| `GOOGLE_BRIDE_RSVP_TAB=Nhà gái` | Worker runtime variable | Không |
 | `APP_ENV=production` | Worker runtime variable | Không |
 | `ALLOWED_ORIGINS` | Worker runtime variable | Không |
 | `VITE_TURNSTILE_SITE_KEY` | Build environment variable | Có, site key được phép công khai |

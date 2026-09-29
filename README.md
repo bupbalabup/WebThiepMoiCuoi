@@ -1,6 +1,6 @@
 # Thiệp cưới Tuấn Anh & Ngọc Anh
 
-Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, ưu tiên điện thoại nhưng vẫn đẹp trên máy tính. Trang home `/` cho khách chọn Nhà trai hoặc Nhà gái để mở thiệp tương ứng tại `/nha-trai`, `/nha-gai`. Phúc đáp có hai link riêng `/nha-trai/phuc-dap` và `/nha-gai/phuc-dap`. Khách cũng có thể mở form phúc đáp ngay trong từng thiệp; mọi cách gửi đều ghi vào cùng Google Sheets và phân loại đúng bên mời.
+Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, ưu tiên điện thoại nhưng vẫn đẹp trên máy tính. Trang home `/` cho khách chọn Nhà trai hoặc Nhà gái để mở thiệp tương ứng tại `/nha-trai`, `/nha-gai`. Phúc đáp có hai link riêng `/nha-trai/phuc-dap` và `/nha-gai/phuc-dap`. Khách cũng có thể mở form phúc đáp ngay trong từng thiệp; dữ liệu được ghi vào tab `Nhà trai` hoặc `Nhà gái` theo link mời.
 
 ## Trạng thái
 
@@ -97,7 +97,7 @@ Không gom tất cả khóa vào một file `.env`. Dự án có hai môi trư�
 | Nơi điền | Biến | Mục đích |
 | --- | --- | --- |
 | `.env.local` trên máy | `VITE_TURNSTILE_SITE_KEY` | Vite đưa site key công khai vào frontend |
-| `.dev.vars` trên máy | `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `GOOGLE_RSVP_TAB`, `TURNSTILE_SECRET_KEY`, `APP_ENV`, `ALLOWED_ORIGINS` | Worker local đọc; file này không được commit |
+| `.dev.vars` trên máy | `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `GOOGLE_GROOM_RSVP_TAB`, `GOOGLE_BRIDE_RSVP_TAB`, `TURNSTILE_SECRET_KEY`, `APP_ENV`, `ALLOWED_ORIGINS` | Worker local đọc; file này không được commit |
 | Cloudflare **Settings > Build > Build variables and secrets** | `VITE_TURNSTILE_SITE_KEY` | Có mặt khi lệnh `npm run build` chạy |
 | Cloudflare **Settings > Variables and Secrets** | Các biến runtime còn lại | Worker production đọc khi khách tra thiệp hoặc gửi phúc đáp |
 
@@ -124,7 +124,8 @@ Trong `.dev.vars`, điền theo mẫu `.dev.vars.example`. Có thể giữ `APP_
 4. `GOOGLE_PRIVATE_KEY`: lấy nguyên trường `private_key`, gồm cả `BEGIN PRIVATE KEY` và `END PRIVATE KEY`.
 5. `GOOGLE_SHEET_ID`: lấy phần nằm giữa `/d/` và `/edit` trong URL Google Sheet. Không dùng số `gid`.
 6. Chia sẻ chính Sheet đó cho `client_email` với quyền **Editor**, còn quyền truy cập chung vẫn để **Restricted**.
-7. Tạo tab `Phúc đáp`, rồi dán hàng tiêu đề trong `google-sheets/rsvp-headers.csv` vào A1:J1.
+7. Trong cả tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề trong `google-sheets/rsvp-headers.tsv` vào A1:J1.
+8. Trong tab `Tổng hợp số lượng`, dán toàn bộ `google-sheets/tong-hop-so-luong.formulas.tsv` vào A1. Công thức tự cộng hai bên.
 
 ### 3. Lấy Turnstile key
 
@@ -147,7 +148,8 @@ Vào **Workers & Pages > wedding**:
 | `GOOGLE_PRIVATE_KEY` | Secret | Toàn bộ `private_key` trong JSON |
 | `GOOGLE_SHEET_ID` | Secret | ID của spreadsheet |
 | `TURNSTILE_SECRET_KEY` | Secret | Secret key của Turnstile |
-| `GOOGLE_RSVP_TAB` | Text | `Phúc đáp` |
+| `GOOGLE_GROOM_RSVP_TAB` | Text | `Nhà trai` |
+| `GOOGLE_BRIDE_RSVP_TAB` | Text | `Nhà gái` |
 | `APP_ENV` | Text | `production` |
 | `ALLOWED_ORIGINS` | Text | Origin HTTPS thật, ví dụ `https://wedding.example.workers.dev`; không có dấu `/` cuối |
 
@@ -159,7 +161,7 @@ Sau khi cấu hình xong, push hoặc retry deployment rồi thử cả `/nha-tr
 
 - Đưa tối thiểu 12 ảnh cưới đã tối ưu vào `public/images/` rồi gán `src` trong `src/config/wedding.json`.
 - Đưa QR mừng cưới Nhà trai và Nhà gái vào `public/images/qr/`, sau đó điền đúng `gift.accounts.groom` và `gift.accounts.bride`.
-- Tạo Sheet riêng tư với ba tab `Nhà trai mời onl`, `Nhà gái mời onl`, `Phúc đáp`; dán hàng tiêu đề từ `google-sheets/rsvp-headers.csv`.
+- Giữ năm tab: `Nhà trai`, `Nhà gái`, `Tổng hợp số lượng`, `Nhà trai mời onl`, `Nhà gái mời onl`. Hai tab đầu nhận RSVP, tab tổng hợp dùng công thức, hai tab `mời onl` chỉ giữ Tên/Slug/Link thiệp.
 - Tạo Turnstile widget và thêm site key ở build environment, secret key ở Pages Functions.
 - Cloudflare đã tự deploy từ GitHub; thêm các Secret theo tài liệu 10, redeploy và chạy một phúc đáp thử trên production trước khi thay link QR phúc đáp.
 

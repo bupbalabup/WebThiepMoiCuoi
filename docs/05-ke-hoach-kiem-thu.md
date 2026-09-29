@@ -22,6 +22,8 @@
 | Tương tác | Chạm, chuột, Tab/Shift+Tab, Enter, focus, nút mở chỉ đường Google Maps |
 | Điều hướng | Vào trực tiếp/refresh năm route tĩnh và hai mẫu route cá nhân; home chọn đúng thiệp; route lạ không tự chọn bên; phúc đáp không bị nhận nhầm thành slug |
 | Phúc đáp theo bên | QR nhà trai đến `/nha-trai/phuc-dap`, QR nhà gái đến `/nha-gai/phuc-dap`; đúng nhãn trang và link quay về thiệp; mở hai tab hoặc chuyển bên không lẫn `invitationSide` khi gửi |
+| Tab nhận phúc đáp | `groom` chỉ append vào `Nhà trai`; `bride` chỉ append vào `Nhà gái`; hai tab `mời onl` chỉ được đọc để tra tên/slug |
+| Tổng hợp số lượng | Công thức tại `Tổng hợp số lượng` cộng đúng Nhà trai + Nhà gái; `attending` cộng `guest_count`, `considering` tách riêng, `declined` không tăng số người tham dự |
 | Thiệp cá nhân | Mở/refresh cả hai route `:slug`, hiển thị tên có dấu và prefill form; tên dài xuống dòng; `?khach=` giữ tên khi chuyển sang trang phúc đáp; tra cứu trả muộn không đè tên đang sửa |
 | Công thức Sheet | Thêm/sửa tên ở A tự sinh B/C; dấu đ, Unicode tổ hợp, tên trùng, slug dành riêng, thiếu domain; D giữ link khi sửa tên; không làm hỏng ô công thức gốc |
 | Chọn bên tại home | Chọn Nhà trai rồi quay lại home chọn Nhà gái và ngược lại; đúng thiệp/QR từng lượt; home không tự chuyển theo lần chọn trước; dùng được bằng cảm ứng và bàn phím |

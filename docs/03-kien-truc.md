@@ -65,7 +65,7 @@ Dùng `src/config/wedding.json` làm nguồn chung cho giao diện và Function,
 
 Google Maps: cấu hình có URL tìm đúng tên/địa chỉ, URL chỉ đường và iframe theo định dạng [Maps URLs](https://developers.google.com/maps/documentation/urls/get-started), không cần API key. Đã kiểm tra iframe hiển thị ghim Trống Đồng Palace ở tọa độ Google Maps trả về; vẫn cần quét lại nút chỉ đường trên điện thoại trước ngày phát hành.
 
-## Cột tab `Phúc đáp`
+## Cột hai tab phúc đáp `Nhà trai` và `Nhà gái`
 
 | Cột | Nội dung |
 | --- | --- |
@@ -84,7 +84,7 @@ Google Maps: cấu hình có URL tìm đúng tên/địa chỉ, URL chỉ đư�
 
 ## Kết nối Google an toàn
 
-Tạo Google Cloud project, bật Sheets API, tạo service account và chia sẻ đúng một Sheet cho email service account với quyền Editor. Pages Function lấy token từ Google bằng thông tin tài khoản dịch vụ và gọi `spreadsheets.values.append` với `valueInputOption=RAW` để nội dung khách nhập không bị Google Sheets diễn giải thành công thức. Cấu hình bí mật trong Cloudflare Pages gồm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`; chỉ Function đọc được. File `.dev.vars` dùng local và bị Git bỏ qua.
+Tạo Google Cloud project, bật Sheets API, tạo service account và chia sẻ đúng một Sheet cho email service account với quyền Editor. Cloudflare Worker lấy token từ Google bằng thông tin tài khoản dịch vụ và gọi `spreadsheets.values.append` với `valueInputOption=RAW` để nội dung khách nhập không bị Google Sheets diễn giải thành công thức. Các secret gồm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`; chỉ Worker đọc được. File `.dev.vars` dùng local và bị Git bỏ qua.
 
 ## Quy tắc bảo vệ dữ liệu
 

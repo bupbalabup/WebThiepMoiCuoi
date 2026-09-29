@@ -8,7 +8,7 @@ Làm từng chặng, chốt nội dung thật trước khi đưa trang công kha
 | 1. Khung dự án — xong | React/Vite, HomePage `/`, route thiệp chung/cá nhân và phúc đáp riêng, npm scripts, CI | Build chạy; route tĩnh và mẫu route cá nhân đã có |
 | 2A. Phúc đáp — xong phần mã | RsvpForm dùng chung với `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, nhẹ và dễ điền trên điện thoại | Đã kiểm tra UI 320/390px; chờ Sheet thật để gửi thử production |
 | 2B. Thiệp — chờ nội dung | Thiệp theo bên mời, 18 slot ảnh linh hoạt, Maps, footer; Tham dự mở form; Gửi mừng cưới mở QR đúng bên | Bố cục/Map đã có; chờ ảnh và hai QR thật |
-| 3. RSVP — xong phần mã | Bốn câu hỏi, Pages Function, Google OAuth, validate, hạn 15/10, append `RAW`, Turnstile | 18 test đang đạt; chờ credentials để tích hợp Sheet thật |
+| 3. RSVP — xong phần mã | Bốn câu hỏi, Worker API, Google OAuth, validate, hạn 15/10, append `RAW`, Turnstile | 22 test đang đạt; Nhà trai/Nhà gái ghi tab riêng, chờ credentials để tích hợp Sheet thật |
 | 4. Hoàn thiện | Tạo nhiều kích thước cho tối thiểu 12 ảnh, SEO/OG, favicon, a11y, giảm chuyển động, chống spam cơ bản | Đạt checklist; ảnh không gây nhảy bố cục và trang vẫn mượt trên thiết bị yếu |
 | 5. Xuất bản | GitHub, Cloudflare Pages, secret production, domain, kiểm tra route tĩnh/cá nhân; bàn giao link và công thức tạo thiệp từng người | Route tải/refresh được; tên lấy đúng tab; RSVP lưu đúng bên và người được mời; QR đúng bên; hai link phúc đáp cố định để gắn QR |
 
