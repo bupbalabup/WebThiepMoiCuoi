@@ -3,7 +3,7 @@ import { isSameSiteRequest, json, publicError, readSmallJson } from "../_lib/htt
 import { verifyTurnstile } from "../_lib/turnstile.js";
 import { validateRsvp } from "../_lib/validation.js";
 
-const RSVP_TAB = "Phúc đáp";
+export const RSVP_HEADERS = ["submitted_at", "name", "attendance", "guest_count", "relationship", "relationship_other", "submission_id", "invitation_side", "invitation_slug", "invited_name"];
 
 async function handlePost({ request, env }) {
   if (!isSameSiteRequest(request, env.ALLOWED_ORIGINS || "")) {
@@ -21,7 +21,7 @@ async function handlePost({ request, env }) {
     return publicError(status, error.message, status === 413 ? "Dữ liệu gửi lên quá lớn." : "Dữ liệu gửi lên không hợp lệ.");
   }
 
-  if (typeof input.website === "string" && input.website.trim()) {
+  if (typeof input?.website === "string" && input.website.trim()) {
     return json({ ok: true, message: "Phúc đáp đã được ghi nhận." }, { status: 201 });
   }
 
@@ -43,7 +43,12 @@ async function handlePost({ request, env }) {
 
   try {
     const data = validation.value;
-    const idRows = await readSheetRows(env, `'${RSVP_TAB}'!G2:G`);
+    const tab = (env.GOOGLE_RSVP_TAB || "Phúc đáp").replace(/'/g, "''");
+    const headers = await readSheetRows(env, `'${tab}'!A1:J1`);
+    if (!RSVP_HEADERS.every((header, index) => headers[0]?.[index] === header)) {
+      throw new Error("RSVP_SHEET_HEADERS_MISMATCH");
+    }
+    const idRows = await readSheetRows(env, `'${tab}'!G2:G`);
     if (idRows.some((row) => String(row[0] || "") === data.idempotencyKey)) {
       return json({ ok: true, message: "Phúc đáp đã được ghi nhận." });
     }
@@ -60,7 +65,7 @@ async function handlePost({ request, env }) {
       if (!invitedName) return publicError(400, "INVITATION_NOT_FOUND", "Link thiệp cá nhân không hợp lệ.");
     }
 
-    await appendSheetRow(env, `'${RSVP_TAB}'!A:J`, [
+    await appendSheetRow(env, `'${tab}'!A:J`, [
       new Date().toISOString(),
       data.name,
       data.attendance,

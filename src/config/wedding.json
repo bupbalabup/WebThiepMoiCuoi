@@ -1,7 +1,9 @@
 {
   "couple": {
     "groom": "Tuấn Anh",
-    "bride": "Ngọc Anh"
+    "bride": "Ngọc Anh",
+    "groomFullName": "Lương Tuấn Anh",
+    "brideFullName": "Đặng Ngọc Anh"
   },
   "locale": "vi-VN",
   "timeZone": "Asia/Ho_Chi_Minh",
@@ -29,7 +31,9 @@
       "fixedSlug": "D"
     },
     "firstDataRow": 2,
-    "reservedSlugs": ["phuc-dap"],
+    "reservedSlugs": [
+      "phuc-dap"
+    ],
     "lookupEndpoint": "/api/invitation",
     "prefillName": true,
     "allowNameEdit": true,
@@ -38,13 +42,32 @@
   "event": {
     "startsAt": "2026-10-21T11:00:00+07:00",
     "venueName": "Trống Đồng Palace",
-    "address": "Tòa nhà Hancorp Plaza, 72 Trần Đăng Ninh, Hà Nội",
-    "hall": null,
+    "address": "Tòa nhà Hancorp Plaza, số 72 Trần Đăng Ninh, Nghĩa Đô, Hà Nội",
+    "hall": "Sảnh Sapphire 1, tầng 3",
     "maps": {
       "query": "Trống Đồng Palace, Hancorp Plaza, 72 Trần Đăng Ninh, Hà Nội",
       "searchUrl": "https://www.google.com/maps/search/?api=1&query=Tr%E1%BB%91ng%20%C4%90%E1%BB%93ng%20Palace%2C%20Hancorp%20Plaza%2C%2072%20Tr%E1%BA%A7n%20%C4%90%C4%83ng%20Ninh%2C%20H%C3%A0%20N%E1%BB%99i",
       "directionsUrl": "https://www.google.com/maps/dir/?api=1&destination=Tr%E1%BB%91ng%20%C4%90%E1%BB%93ng%20Palace%2C%20Hancorp%20Plaza%2C%2072%20Tr%E1%BA%A7n%20%C4%90%C4%83ng%20Ninh%2C%20H%C3%A0%20N%E1%BB%99i",
       "embedUrl": "https://www.google.com/maps?q=Tr%E1%BB%91ng%20%C4%90%E1%BB%93ng%20Palace%2C%20Hancorp%20Plaza%2C%2072%20Tr%E1%BA%A7n%20%C4%90%C4%83ng%20Ninh%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+    },
+    "timeline": [
+      {
+        "time": "11:00",
+        "title": "Đón khách"
+      },
+      {
+        "time": "11:30",
+        "title": "Lễ thành hôn"
+      },
+      {
+        "time": "11:45",
+        "title": "Khai tiệc"
+      }
+    ],
+    "homeCeremony": {
+      "time": "06:30",
+      "address": "Số 64 ngõ 94 Ngọc Khánh, Giảng Võ, Hà Nội",
+      "lunarDate": "Tức ngày 12.09 năm Bính Ngọ"
     }
   },
   "rsvp": {
@@ -60,15 +83,30 @@
         "label": "Bạn có tham dự tiệc cưới của chúng mình không?",
         "required": true,
         "options": [
-          { "value": "attending", "label": "Có mình sẽ tham gia" },
-          { "value": "considering", "label": "Mình đang cân nhắc" },
-          { "value": "declined", "label": "Tiếc quá mình không tham gia được rồi" }
+          {
+            "value": "attending",
+            "label": "Có mình sẽ tham gia"
+          },
+          {
+            "value": "considering",
+            "label": "Mình đang cân nhắc"
+          },
+          {
+            "value": "declined",
+            "label": "Tiếc quá mình không tham gia được rồi"
+          }
         ]
       },
       "guestCount": {
         "label": "Bạn sẽ tham dự cùng bao nhiêu người (tính cả bạn nhé)?",
-        "requiredWhen": ["attending", "considering"],
-        "presetOptions": [1, 2],
+        "requiredWhen": [
+          "attending",
+          "considering"
+        ],
+        "presetOptions": [
+          1,
+          2
+        ],
         "allowOther": true,
         "minimum": 1,
         "maximum": null,
@@ -78,11 +116,26 @@
         "label": "Bạn biết cô dâu/chú rể từ đâu?",
         "required": true,
         "options": [
-          { "value": "family", "label": "Gia đình/người thân" },
-          { "value": "friend", "label": "Bạn bè" },
-          { "value": "coworker", "label": "Đồng nghiệp" },
-          { "value": "mutual_friend", "label": "Bạn chung" },
-          { "value": "other", "label": "Mục khác" }
+          {
+            "value": "family",
+            "label": "Gia đình/người thân"
+          },
+          {
+            "value": "friend",
+            "label": "Bạn bè"
+          },
+          {
+            "value": "coworker",
+            "label": "Đồng nghiệp"
+          },
+          {
+            "value": "mutual_friend",
+            "label": "Bạn chung"
+          },
+          {
+            "value": "other",
+            "label": "Mục khác"
+          }
         ],
         "otherTextRequired": true
       }
@@ -113,28 +166,140 @@
   "gallery": {
     "minimumImagesForLaunch": 12,
     "slots": [
-      { "id": "hero", "role": "hero", "aspectRatio": "4/5", "priority": true, "src": null },
-      { "id": "welcome-left", "role": "welcome", "aspectRatio": "3/4", "priority": false, "src": null },
-      { "id": "welcome-right", "role": "welcome", "aspectRatio": "3/4", "priority": false, "src": null },
-      { "id": "story-01", "role": "story", "aspectRatio": "4/5", "priority": false, "src": null },
-      { "id": "story-02", "role": "story", "aspectRatio": "1/1", "priority": false, "src": null },
-      { "id": "story-03", "role": "story", "aspectRatio": "3/2", "priority": false, "src": null },
-      { "id": "story-04", "role": "story", "aspectRatio": "4/5", "priority": false, "src": null },
-      { "id": "highlight-01", "role": "highlight", "aspectRatio": "16/9", "priority": false, "src": null },
-      { "id": "highlight-02", "role": "highlight", "aspectRatio": "3/2", "priority": false, "src": null },
-      { "id": "highlight-03", "role": "highlight", "aspectRatio": "3/2", "priority": false, "src": null },
-      { "id": "album-01", "role": "album", "aspectRatio": "4/5", "priority": false, "src": null },
-      { "id": "album-02", "role": "album", "aspectRatio": "1/1", "priority": false, "src": null },
-      { "id": "album-03", "role": "album", "aspectRatio": "3/4", "priority": false, "src": null },
-      { "id": "album-04", "role": "album", "aspectRatio": "3/2", "priority": false, "src": null },
-      { "id": "album-05", "role": "album", "aspectRatio": "4/5", "priority": false, "src": null },
-      { "id": "album-06", "role": "album", "aspectRatio": "1/1", "priority": false, "src": null },
-      { "id": "album-07", "role": "album", "aspectRatio": "3/2", "priority": false, "src": null },
-      { "id": "closing", "role": "closing", "aspectRatio": "16/9", "priority": false, "src": null }
+      {
+        "id": "hero",
+        "role": "hero",
+        "aspectRatio": "4/5",
+        "priority": true,
+        "src": null
+      },
+      {
+        "id": "welcome-left",
+        "role": "welcome",
+        "aspectRatio": "3/4",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "welcome-right",
+        "role": "welcome",
+        "aspectRatio": "3/4",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "story-01",
+        "role": "story",
+        "aspectRatio": "4/5",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "story-02",
+        "role": "story",
+        "aspectRatio": "1/1",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "story-03",
+        "role": "story",
+        "aspectRatio": "3/2",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "story-04",
+        "role": "story",
+        "aspectRatio": "4/5",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "highlight-01",
+        "role": "highlight",
+        "aspectRatio": "16/9",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "highlight-02",
+        "role": "highlight",
+        "aspectRatio": "3/2",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "highlight-03",
+        "role": "highlight",
+        "aspectRatio": "3/2",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-01",
+        "role": "album",
+        "aspectRatio": "4/5",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-02",
+        "role": "album",
+        "aspectRatio": "1/1",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-03",
+        "role": "album",
+        "aspectRatio": "3/4",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-04",
+        "role": "album",
+        "aspectRatio": "3/2",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-05",
+        "role": "album",
+        "aspectRatio": "4/5",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-06",
+        "role": "album",
+        "aspectRatio": "1/1",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "album-07",
+        "role": "album",
+        "aspectRatio": "3/2",
+        "priority": false,
+        "src": null
+      },
+      {
+        "id": "closing",
+        "role": "closing",
+        "aspectRatio": "16/9",
+        "priority": false,
+        "src": null
+      }
     ]
   },
   "theme": {
-    "palette": ["kem", "hồng", "đỏ rượu"],
+    "palette": [
+      "kem",
+      "hồng",
+      "đỏ rượu"
+    ],
     "colors": {
       "page": "#FFF8F0",
       "surface": "#FFFDF9",
@@ -149,5 +314,17 @@
     },
     "contentMaxWidth": 1280,
     "readingMaxWidth": 720
+  },
+  "families": {
+    "groom": {
+      "label": "Nhà trai",
+      "father": "Ông Lương Đức Thắng",
+      "mother": "Bà Vũ Uyên Chi"
+    },
+    "bride": {
+      "label": "Nhà gái",
+      "father": "Ông Đặng Văn Huệ",
+      "mother": "Bà Nguyễn Thị Ban"
+    }
   }
 }

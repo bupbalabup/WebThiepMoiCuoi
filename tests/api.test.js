@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { onRequest as invitationRequest } from "../functions/api/invitation.js";
-import { onRequest as rsvpRequest } from "../functions/api/rsvp.js";
+import { onRequest as rsvpRequest, RSVP_HEADERS } from "../functions/api/rsvp.js";
 
 function bytesToBase64(bytes) {
   let value = "";
@@ -22,7 +22,8 @@ async function createPrivateKeyPem() {
 
 function env(privateKey) {
   return {
-    APP_ENV: "development",
+    APP_ENV: "production",
+    TURNSTILE_SECRET_KEY: "fake-secret-for-tests",
     GOOGLE_CLIENT_EMAIL: "wedding-test@example.iam.gserviceaccount.com",
     GOOGLE_PRIVATE_KEY: privateKey,
     GOOGLE_SHEET_ID: "private-sheet-id",
@@ -58,7 +59,7 @@ test("invitation API returns one matching name without exposing the sheet", asyn
   }
 });
 
-test("RSVP API verifies, deduplicates and appends values as a raw row", async () => {
+test("RSVP API verifies and appends values as a raw row", async () => {
   const privateKey = await createPrivateKeyPem();
   const originalFetch = globalThis.fetch;
   const originalNow = Date.now;
@@ -66,7 +67,10 @@ test("RSVP API verifies, deduplicates and appends values as a raw row", async ()
   globalThis.fetch = async (url, init = {}) => {
     const target = String(url);
     if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "test-access-token", expires_in: 3600 });
+    if (target.includes("challenges.cloudflare.com")) return Response.json({success:true,hostname:"wedding.example",action:"wedding_rsvp"});
+    if (target.includes("A1%3AJ1")) return Response.json({values:[RSVP_HEADERS]});
     if (init.method === "POST") {
+      assert.match(target, /:append\?/);
       appended = { url: target, body: JSON.parse(init.body) };
       return Response.json({ updates: { updatedRows: 1 } });
     }
@@ -89,7 +93,7 @@ test("RSVP API verifies, deduplicates and appends values as a raw row", async ()
           invitationSide: "groom",
           invitationSlug: "nguyen-van-a",
           idempotencyKey: "123e4567-e89b-12d3-a456-426614174000",
-          turnstileToken: "development-bypass",
+          turnstileToken: "mock-verified-token",
           website: "",
         }),
       }),
@@ -134,4 +138,38 @@ test("API rejects cross-site form posts", async () => {
     env: {},
   });
   assert.equal(response.status, 403);
+});
+
+test("RSVP API refuses to write into a tab with unrelated headers", async () => {
+  const privateKey = await createPrivateKeyPem();
+  const originalFetch = globalThis.fetch;
+  const originalNow = Date.now;
+  const originalError = console.error;
+  let writes = 0;
+  globalThis.fetch = async (url, init = {}) => {
+    const target = String(url);
+    if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "test-access-token", expires_in: 3600 });
+    if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true, hostname: "wedding.example", action: "wedding_rsvp" });
+    if (init.method === "POST") writes++;
+    return Response.json({ values: [["Tên", "Slug", "Link thiệp"]] });
+  };
+  Date.now = () => Date.parse("2026-09-29T12:00:00+07:00");
+  console.error = () => {};
+  try {
+    const response = await rsvpRequest({
+      request: request("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Requested-With": "wedding-invitation" },
+        body: JSON.stringify({ name: "Khách thử", attendance: "attending", guestCount: 1, relationship: "friend", invitationSide: "bride", idempotencyKey: "123e4567-e89b-12d3-a456-426614174001", turnstileToken: "mock-verified-token" }),
+      }),
+      env: env(privateKey),
+    });
+    assert.equal(response.status, 503);
+    assert.equal(writes, 0);
+    assert.equal((await response.json()).code, "RSVP_SERVICE_UNAVAILABLE");
+  } finally {
+    globalThis.fetch = originalFetch;
+    Date.now = originalNow;
+    console.error = originalError;
+  }
 });

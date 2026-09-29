@@ -14,6 +14,8 @@
     "pages:dev": "npm run build && wrangler pages dev dist"
   },
   "dependencies": {
+    "@fontsource/be-vietnam-pro": "^5.3.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

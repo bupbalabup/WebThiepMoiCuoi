@@ -8,7 +8,7 @@ Làm từng chặng, chốt nội dung thật trước khi đưa trang công kha
 | 1. Khung dự án — xong | React/Vite, HomePage `/`, route thiệp chung/cá nhân và phúc đáp riêng, npm scripts, CI | Build chạy; route tĩnh và mẫu route cá nhân đã có |
 | 2A. Phúc đáp — xong phần mã | RsvpForm dùng chung với `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, nhẹ và dễ điền trên điện thoại | Đã kiểm tra UI 320/390px; chờ Sheet thật để gửi thử production |
 | 2B. Thiệp — chờ nội dung | Thiệp theo bên mời, 18 slot ảnh linh hoạt, Maps, footer; Tham dự mở form; Gửi mừng cưới mở QR đúng bên | Bố cục/Map đã có; chờ ảnh và hai QR thật |
-| 3. RSVP — xong phần mã | Bốn câu hỏi, Pages Function, Google OAuth, validate, hạn 15/10, append `RAW`, Turnstile | 13 test đang đạt; chờ credentials để tích hợp Sheet thật |
+| 3. RSVP — xong phần mã | Bốn câu hỏi, Pages Function, Google OAuth, validate, hạn 15/10, append `RAW`, Turnstile | 18 test đang đạt; chờ credentials để tích hợp Sheet thật |
 | 4. Hoàn thiện | Tạo nhiều kích thước cho tối thiểu 12 ảnh, SEO/OG, favicon, a11y, giảm chuyển động, chống spam cơ bản | Đạt checklist; ảnh không gây nhảy bố cục và trang vẫn mượt trên thiết bị yếu |
 | 5. Xuất bản | GitHub, Cloudflare Pages, secret production, domain, kiểm tra route tĩnh/cá nhân; bàn giao link và công thức tạo thiệp từng người | Route tải/refresh được; tên lấy đúng tab; RSVP lưu đúng bên và người được mời; QR đúng bên; hai link phúc đáp cố định để gắn QR |
 
@@ -28,5 +28,12 @@ Thêm chặng thiệp cá nhân: thiết lập công thức A/B/C theo [hướng
 
 - Đã có cặp bên mời + slug để liên kết phản hồi với khách được mời. Chính sách gửi lại/sửa RSVP vẫn cần chốt; slug không tự bảo đảm một lần gửi duy nhất.
 - Đã chốt tổng số người tính cả người trả lời, không giới hạn tối đa; hạn RSVP hết ngày 15/10/2026 giờ Việt Nam, không cần hỏi lại.
-- Có cần phân biệt lễ cưới và tiệc cưới, hoặc nhiều buổi/địa điểm không?
+- Đã chốt theo thiệp in: tiệc tại Sapphire 1 lúc 11:00, lễ 11:30, khai tiệc 11:45; riêng thiệp Nhà trai có lễ tại tư gia lúc 06:30.
 - Lời chúc có được hiển thị công khai không? Mặc định là không.
+
+## Cập nhật giao diện và tích hợp 29/09/2026
+
+- Dọn các khối lặp, bỏ icon, monogram A & A; font tiếng Việt phục vụ từ website.
+- Cập nhật tên đầy đủ, hai gia đình, sảnh, địa chỉ và lịch trình theo thiệp in.
+- Sửa endpoint append Google Sheets; chặn bypass Turnstile ngoài localhost development; kiểm tra hàng tiêu đề trước khi ghi.
+- Đã có hướng dẫn 10 cho Sheet riêng tư. Chưa nghiệm thu gửi thật vì chủ tiệc chưa thiết lập Google service account và Secret trên Cloudflare.

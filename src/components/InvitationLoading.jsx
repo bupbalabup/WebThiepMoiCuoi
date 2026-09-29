@@ -1,7 +1,7 @@
 import React from "react";
 
 export function InvitationLoading() {
-  return <div className="invite-state" role="status"><span className="spinner" aria-hidden="true" />Đang chuẩn bị thiệp dành riêng cho bạn…</div>;
+  return <div className="invite-state" role="status">Đang chuẩn bị thiệp dành riêng cho bạn…</div>;
 }
 
 export function InvitationError({ error }) {

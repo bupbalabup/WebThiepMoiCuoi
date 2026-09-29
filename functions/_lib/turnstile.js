@@ -1,8 +1,9 @@
 const VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 export async function verifyTurnstile(env, token, remoteIp, expectedHostname) {
-  const isProduction = env.APP_ENV === "production";
-  if (!isProduction && token === "development-bypass") return true;
+  const localHost = ["localhost", "127.0.0.1", "[::1]"].includes(expectedHostname);
+  if (env.APP_ENV === "development" && localHost && token === "development-bypass") return true;
+  if (token === "development-bypass") return false;
   if (!env.TURNSTILE_SECRET_KEY || typeof token !== "string" || !token) return false;
 
   const payload = new FormData();

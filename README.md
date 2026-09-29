@@ -4,13 +4,13 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 
 ## Trạng thái
 
-**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Pages Functions, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. Repository GitHub đã được kết nối; Google Sheet thật, ảnh cưới, hai QR mừng cưới và dự án Cloudflare vẫn cần chủ tiệc cung cấp hoặc đăng nhập để kết nối.
+**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Pages Functions, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. GitHub đã kết nối Cloudflare để tự deploy khi push. Giao diện đã chỉnh theo thiệp in: A & A, không icon, đúng thứ tự tên và lịch trình từng bên. Google Sheet thật chưa ghi được vì chưa có service account/Secret; xem [hướng dẫn kết nối Sheet riêng tư](docs/10-ket-noi-sheet-rieng-tu.md). Ảnh cưới và hai QR mừng cưới vẫn cần bổ sung.
 
 ## Thông tin đã chốt
 
 - Chú rể: **Tuấn Anh**. Cô dâu: **Ngọc Anh**.
 - Tiệc cưới: **11:00 ngày 21/10/2026**, giờ Việt Nam.
-- Địa điểm: **Trống Đồng Palace — Tòa nhà Hancorp Plaza, 72 Trần Đăng Ninh, Hà Nội**.
+- Địa điểm: **Trống Đồng Palace — Sảnh Sapphire 1, tầng 3, Tòa nhà Hancorp Plaza, 72 Trần Đăng Ninh, Nghĩa Đô, Hà Nội**.
 - Website phải có Google Maps với ghim địa điểm và nút mở chỉ đường.
 - RSVP gồm tên khách, trạng thái **tham gia / đang cân nhắc / không tham gia**, tổng số người tham dự tính cả khách và mối quan hệ với cô dâu/chú rể.
 - Số người: chọn nhanh 1 hoặc 2; “Mục khác” cho nhập số nguyên từ 1 trở lên, không đặt giới hạn tối đa. Nếu không tham gia, hệ thống lưu 0.
@@ -95,7 +95,7 @@ Sao chép `.env.example` thành `.env.local` cho site key Turnstile của Vite. 
 - Đưa QR mừng cưới Nhà trai và Nhà gái vào `public/images/qr/`, sau đó điền đúng `gift.accounts.groom` và `gift.accounts.bride`.
 - Tạo Sheet riêng tư với ba tab `Nhà trai mời onl`, `Nhà gái mời onl`, `Phúc đáp`; dán hàng tiêu đề từ `google-sheets/rsvp-headers.csv`.
 - Tạo Turnstile widget và thêm site key ở build environment, secret key ở Pages Functions.
-- Kết nối repository GitHub với Cloudflare Pages, thêm các Secret và chạy một phúc đáp thử trên production trước khi thay link QR phúc đáp.
+- Cloudflare đã tự deploy từ GitHub; thêm các Secret theo tài liệu 10, redeploy và chạy một phúc đáp thử trên production trước khi thay link QR phúc đáp.
 
 ## Bảo vệ dữ liệu
 
@@ -115,3 +115,5 @@ Sao chép `.env.example` thành `.env.local` cho site key Turnstile của Vite. 
 - [Luồng hai trang và QR](docs/07-luong-trang-va-qr.md)
 - [Công thức và link thiệp cá nhân](docs/08-link-moi-ca-nhan.md)
 - [Bảo mật, riêng tư và chống spam](docs/09-bao-mat-va-chong-spam.md)
+
+- [Kết nối Sheet riêng tư đang dùng](docs/10-ket-noi-sheet-rieng-tu.md)

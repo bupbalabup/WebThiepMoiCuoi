@@ -24,7 +24,9 @@ export function matchRoute(pathname) {
     if (path === config.path) return { page: "invitation", side, slug: null };
     if (path === config.rsvpPath) return { page: "rsvp", side, slug: null };
     if (path.startsWith(`${config.path}/`)) {
-      const slug = decodeURIComponent(path.slice(config.path.length + 1));
+      let slug;
+      try { slug = decodeURIComponent(path.slice(config.path.length + 1)); }
+      catch { return { page: "not-found" }; }
       if (/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) && slug !== "phuc-dap") {
         return { page: "invitation", side, slug };
       }

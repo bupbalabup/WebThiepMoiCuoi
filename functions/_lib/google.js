@@ -94,7 +94,7 @@ export async function readSheetRows(env, range) {
 }
 
 export async function appendSheetRow(env, range, values) {
-  const suffix = "?valueInputOption=RAW&insertDataOption=INSERT_ROWS";
+  const suffix = ":append?valueInputOption=RAW&insertDataOption=INSERT_ROWS";
   return sheetsRequest(env, sheetsUrl(env, range, suffix), {
     method: "POST",
     headers: { "Content-Type": "application/json" },

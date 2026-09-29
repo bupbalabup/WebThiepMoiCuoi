@@ -44,8 +44,8 @@ export default function Modal({ title, open, onClose, children, className = "" }
       <section ref={dialogRef} className={`modal-card ${className}`} role="dialog" aria-modal="true" aria-labelledby={titleId}>
         <header className="modal-header">
           <h2 id={titleId}>{title}</h2>
-          <button ref={closeRef} type="button" className="icon-button" onClick={onClose} aria-label="Đóng cửa sổ">
-            <span aria-hidden="true">×</span>
+          <button ref={closeRef} type="button" className="close-button" onClick={onClose} aria-label="Đóng cửa sổ">
+            Đóng
           </button>
         </header>
         <div className="modal-content">{children}</div>
