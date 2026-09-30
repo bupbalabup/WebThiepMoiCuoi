@@ -131,7 +131,11 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         <span className="rsvp-watermark">CẢM ƠN BẠN</span>
         <strong className="success-heading">{message}</strong>
         <p className="success-paragraph">
-          Sự hiện diện của bạn là niềm vinh hạnh to lớn của hai gia đình chúng tôi. Hẹn gặp bạn tại buổi tiệc vào 11:00 ngày 21.10.2026!
+          {values.attendance === "declined"
+            ? "Cảm ơn bạn đã dành thời gian phúc đáp. Chúng mình trân trọng tình cảm của bạn và hy vọng sớm gặp lại!"
+            : values.attendance === "considering"
+              ? "Chúng mình đã ghi nhận bạn đang cân nhắc. Bạn hãy liên hệ hai gia đình khi chốt được lịch nhé!"
+              : "Hẹn gặp bạn tại buổi tiệc vào 11:00 ngày 21.10.2026. Sự hiện diện của bạn là niềm vui của hai gia đình!"}
         </p>
         <span className="signature-couple">Tuấn Anh & Ngọc Anh</span>
       </div>
