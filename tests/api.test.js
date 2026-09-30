@@ -104,7 +104,7 @@ test("RSVP API verifies and appends values as a raw row", async () => {
     assert.match(appended.url, /insertDataOption=OVERWRITE/);
     assert.match(appended.url, /Nh%C3%A0%20trai/);
     assert.deepEqual(appended.body.values[0].slice(1), [
-      "Nguyễn Văn A", "attending", 3, "friend", "", "123e4567-e89b-12d3-a456-426614174000", "groom", "nguyen-van-a", "Nguyễn Văn A",
+      "Nguyễn Văn A", "Có tham dự", 3, "Bạn bè", "", "123e4567-e89b-12d3-a456-426614174000", "Nhà trai", "nguyen-van-a", "Nguyễn Văn A",
     ]);
   } finally {
     globalThis.fetch = originalFetch;

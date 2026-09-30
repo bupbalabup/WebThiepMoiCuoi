@@ -4,7 +4,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 
 ## Trạng thái
 
-**Đã có bản ứng dụng chạy được.** Giao diện React, các route thiệp/phúc đáp, tra tên khách theo slug, Cloudflare Worker API, Google Sheets API, Turnstile và kiểm thử tự động đã được viết. `npm test` và `npm run build` đang đạt. GitHub đã kết nối Cloudflare Workers Builds để tự deploy khi push. Giao diện đã chỉnh theo thiệp in: A & A, không icon, đúng thứ tự tên và lịch trình từng bên. Google Sheet thật chưa ghi được vì chưa có service account/Secret; xem [hướng dẫn kết nối Sheet riêng tư](docs/10-ket-noi-sheet-rieng-tu.md). Ảnh cưới và hai QR mừng cưới vẫn cần bổ sung.
+**Đã có bản ứng dụng chạy được.** Thiệp có giao diện kem–nâu lấy cảm hứng từ mẫu Minimalism, sử dụng 18 ảnh cưới đã tối ưu. Phúc đáp và lời chúc được ghi riêng theo Nhà trai/Nhà gái, tiêu đề và nội dung Sheet bằng tiếng Việt. Thời gian gửi hiển thị `dd/MM/yyyy HH:mm:ss` theo giờ Việt Nam và vẫn sắp xếp được theo ngày. GitHub đã kết nối Cloudflare Workers Builds để tự triển khai khi đẩy mã. Hai QR mừng cưới còn chờ ảnh và thông tin tài khoản của chủ tiệc.
 
 ## Thông tin đã chốt
 
@@ -15,7 +15,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 - RSVP gồm tên khách, trạng thái **tham gia / đang cân nhắc / không tham gia**, tổng số người tham dự tính cả khách và mối quan hệ với cô dâu/chú rể.
 - Số người: chọn nhanh 1 hoặc 2; “Mục khác” cho nhập số nguyên từ 1 trở lên, không đặt giới hạn tối đa. Nếu không tham gia, hệ thống lưu 0.
 - Hạn RSVP: **hết ngày 15/10/2026**, giờ Việt Nam.
-- Tông màu: kem, hồng, đỏ rượu.
+- Tông màu hiện tại: kem, nâu ấm; nút hành động dùng nâu đậm.
 - Bố cục responsive từ 320px đến màn hình lớn, không có khung ảnh rỗng hoặc vùng trống vô nghĩa. Thiệp có 18 vị trí ảnh linh hoạt và yêu cầu tối thiểu 12 ảnh thật trước khi phát hành.
 - Trên thiệp, nút **Tham dự** mở form phúc đáp tại chỗ; nút **Gửi mừng cưới** chỉ mở QR của bên tương ứng với link thiệp.
 - Chủ tiệc đã tạo QR dẫn đến trang phúc đáp. Khi deploy xong, bàn giao hai URL production cố định `/nha-trai/phuc-dap` và `/nha-gai/phuc-dap` để chủ tiệc gắn đúng link cho QR của từng bên.
@@ -35,7 +35,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 | Tham dự trên thiệp | Mở form trong hộp thoại, giữ khách ở trang thiệp |
 | Gửi mừng cưới trên thiệp | Mở đúng một QR theo link, không hiển thị cả hai QR hoặc bộ chọn người nhận |
 
-Xem [luồng hai trang và QR](docs/07-luong-trang-va-qr.md). Chưa có URL production để gắn vào QR; chỉ bàn giao sau khi kiểm thử gửi thật thành công.
+Xem [luồng hai trang và QR](docs/07-luong-trang-va-qr.md). Website: https://wedding.tanawedding.workers.dev.
 
 ## Công nghệ
 
@@ -185,3 +185,7 @@ Sau khi cấu hình xong, push hoặc retry deployment rồi thử cả `/nha-tr
 - [Bảo mật, riêng tư và chống spam](docs/09-bao-mat-va-chong-spam.md)
 
 - [Kết nối Sheet riêng tư đang dùng](docs/10-ket-noi-sheet-rieng-tu.md)
+
+## Lời chúc và dữ liệu tiếng Việt
+
+Xem [hướng dẫn dữ liệu và lời chúc](docs/12-du-lieu-tieng-viet-va-loi-chuc.md). Hai tab lời chúc là `Lời chúc nhà trai` và `Lời chúc nhà gái`. Khách gửi lời chúc tại mục Sổ lưu bút trong thiệp; lời chúc chỉ gửi riêng đến hai gia đình, không có API công khai danh sách. Không cần thêm biến môi trường mới.

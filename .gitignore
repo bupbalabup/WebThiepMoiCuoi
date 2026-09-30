@@ -13,4 +13,6 @@ credentials.json
 *service-account*.json
 .DS_Store
 Thumbs.db
-
+public/images/anhcuoi/*.JPG
+!public/images/anhcuoi/*-800.jpg
+!public/images/anhcuoi/*-1600.jpg

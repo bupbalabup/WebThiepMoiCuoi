@@ -6,6 +6,7 @@ import "@fontsource/cormorant-garamond/400-italic.css";
 import "@fontsource/be-vietnam-pro/400.css";
 import "@fontsource/be-vietnam-pro/600.css";
 import "./styles/index.css";
+import "./styles/minimal.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

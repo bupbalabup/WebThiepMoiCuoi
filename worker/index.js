@@ -1,5 +1,6 @@
 import { onRequest as invitationRequest } from "../functions/api/invitation.js";
 import { onRequest as rsvpRequest } from "../functions/api/rsvp.js";
+import { onRequest as wishRequest } from "../functions/api/wishes.js";
 
 const API_NOT_FOUND = JSON.stringify({
   ok: false,
@@ -18,6 +19,7 @@ export default {
     if (pathname === "/api/rsvp") {
       return rsvpRequest({ request, env });
     }
+    if (pathname === "/api/wishes") return wishRequest({ request, env });
 
     if (pathname.startsWith("/api/")) {
       return new Response(API_NOT_FOUND, {

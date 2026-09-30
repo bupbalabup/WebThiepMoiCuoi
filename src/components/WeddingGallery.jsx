@@ -3,7 +3,7 @@ import wedding from "../config/wedding.json";
 import Modal from "./Modal.jsx";
 
 export default function WeddingGallery() {
-  const photos = wedding.gallery.slots.filter((photo) => photo.src && photo.id !== "hero");
+  const photos = wedding.gallery.slots.filter((photo) => photo.src);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   useEffect(() => {
@@ -25,11 +25,10 @@ export default function WeddingGallery() {
   const currentPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
 
   return (
-    <section className="section gallery-section" aria-labelledby="gallery-title">
-      <div className="section-heading">
-
-        <h2 id="gallery-title">Khoảnh khắc hạnh phúc</h2>
-        <p className="section-subtext">Những bức hình ghi lại hành trình tình yêu của chúng mình</p>
+    <section className="gallery-stationery-section" aria-labelledby="gallery-title">
+      <div className="section-header-minimal">
+        <span className="script-title">Khoảnh khắc</span>
+        <h2 id="gallery-title" className="sub-title-caps">ALBUM ẢNH CƯỚI</h2>
       </div>
 
       <div className={`gallery-grid count-${Math.min(photos.length, 18)}`}>
@@ -47,6 +46,9 @@ export default function WeddingGallery() {
               loading={photo.priority ? "eager" : "lazy"}
               decoding="async"
             />
+            <div className="gallery-hover-overlay">
+              <span className="gallery-zoom-text">XEM ẢNH</span>
+            </div>
           </button>
         ))}
       </div>
@@ -69,7 +71,7 @@ export default function WeddingGallery() {
             </button>
             <img
               className="lightbox-image"
-              src={currentPhoto.src}
+              src={currentPhoto.fullSrc || currentPhoto.src}
               alt={currentPhoto.alt || "Ảnh cưới Tuấn Anh và Ngọc Anh"}
             />
             <button

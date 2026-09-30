@@ -1,6 +1,6 @@
 async function parseResponse(response) {
   const body = await response.json().catch(() => ({}));
-  if (!response.ok) {
+  if (!response.ok || body.ok !== true) {
     const error = new Error(body.message || "Có lỗi xảy ra. Vui lòng thử lại.");
     error.code = body.code || "REQUEST_FAILED";
     error.status = response.status;
@@ -32,4 +32,13 @@ export async function submitRsvp(payload, signal) {
     signal,
   });
   return parseResponse(response);
+}
+
+export async function submitWish(payload) {
+  return parseResponse(await fetch("/api/wishes", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json", "X-Requested-With": "wedding-invitation" },
+    credentials: "same-origin",
+    body: JSON.stringify(payload),
+  }));
 }

@@ -10,12 +10,60 @@ export default function RsvpPage({ side }) {
   const safeSlug = slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) && slug !== "phuc-dap" ? slug : null;
   const invite = useInvitation(side, safeSlug);
   const config = SIDE_CONFIG[side];
+
   if (safeSlug && invite.status === "loading") return <InvitationLoading />;
   if (safeSlug && invite.status === "error") return <InvitationError error={invite.error} />;
-  const names = side === "bride" ? [wedding.couple.bride, wedding.couple.groom] : [wedding.couple.groom, wedding.couple.bride];
-  return <main className="rsvp-page">
-    <header className="rsvp-topbar"><a className="topbar-brand" href="/">A <i>&</i> A</a><a className="text-link" href={config.path + (safeSlug ? "/" + safeSlug : "")}>Xem thiệp mời</a></header>
-    <section className="rsvp-intro"><p className="eyebrow">Phúc đáp {config.label}</p><h1>{names[0]} <i>&</i> {names[1]}</h1>{invite.invitation?.name && <p>Thân gửi {invite.invitation.name}</p>}<p>11:00 · 21.10.2026</p><p>{wedding.event.hall} · {wedding.event.venueName}</p></section>
-    <section className="rsvp-card"><RsvpForm side={side} invitedName={invite.invitation?.name || ""} invitationSlug={safeSlug} /></section>
-  </main>;
+
+  return (
+    <main className={`rsvp-standalone-page side-${side}`}>
+      <header className="rsvp-page-header">
+        <a className="rsvp-nav-brand" href="/">
+          {wedding.couple.groomFullName} &amp; {wedding.couple.brideFullName}
+        </a>
+        <a className="rsvp-back-link" href={safeSlug ? `${config.path}/${safeSlug}` : config.path}>
+          XEM THIỆP MỜI {config.label.toUpperCase()}
+        </a>
+      </header>
+
+      <section className="rsvp-hero-card">
+        <span className="rsvp-super-title">PHÚC ĐÁP</span>
+        <h1 className="rsvp-main-heading">
+          {wedding.couple.groom} &amp; {wedding.couple.bride}
+        </h1>
+
+        {invite.invitation?.name ? (
+          <div className="rsvp-guest-tag">
+            <span className="tag-prefix">Kính gửi:</span>
+            <strong className="tag-name">{invite.invitation.name}</strong>
+          </div>
+        ) : (
+          <p className="rsvp-card-sub">
+            Trân trọng kính mời quý khách xác nhận thông tin tham dự tiệc cưới cùng chúng mình.
+          </p>
+        )}
+
+        <div className="rsvp-meta-info">
+          <span>11:00 — 21.10.2026</span>
+          <span className="meta-sep">|</span>
+          <span>{wedding.event.venueName}</span>
+          <span className="meta-sep">|</span>
+          <span>{wedding.event.hall}</span>
+        </div>
+      </section>
+
+      <div className="rsvp-card-container">
+        <RsvpForm
+          side={side}
+          invitedName={invite.invitation?.name || ""}
+          invitationSlug={safeSlug}
+        />
+      </div>
+
+      <div className="rsvp-footer-action">
+        <a className="button button-outline" href={safeSlug ? `${config.path}/${safeSlug}` : config.path}>
+          QUAY LẠI THIỆP MỜI {config.label.toUpperCase()}
+        </a>
+      </div>
+    </main>
+  );
 }

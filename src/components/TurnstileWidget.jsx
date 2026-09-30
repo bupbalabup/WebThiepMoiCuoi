@@ -22,7 +22,7 @@ function loadTurnstile() {
   });
 }
 
-export default function TurnstileWidget({ onToken, resetKey }) {
+export default function TurnstileWidget({ onToken, resetKey, action = "wedding_rsvp" }) {
   const containerRef = useRef(null);
   const widgetIdRef = useRef(null);
   const [widgetSize, setWidgetSize] = useState(null);
@@ -63,7 +63,8 @@ export default function TurnstileWidget({ onToken, resetKey }) {
       if (!active || !containerRef.current) return;
       widgetIdRef.current = turnstile.render(containerRef.current, {
         sitekey: siteKey,
-        action: "wedding_rsvp",
+        action,
+        language: "vi",
         theme: "light",
         size: widgetSize,
         callback: (token) => { if (active) onToken(token); },
@@ -79,7 +80,7 @@ export default function TurnstileWidget({ onToken, resetKey }) {
         widgetIdRef.current = null;
       }
     };
-  }, [siteKey, onToken, resetKey, widgetSize]);
+  }, [siteKey, onToken, resetKey, widgetSize, action]);
 
   if (!siteKey && !import.meta.env.DEV) {
     return <p className="form-notice error">Biểu mẫu chống spam chưa được cấu hình. Vui lòng quay lại sau.</p>;

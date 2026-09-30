@@ -4,9 +4,9 @@ import { isRsvpClosed } from "../lib/date.js";
 import TurnstileWidget from "./TurnstileWidget.jsx";
 
 const ATTENDANCE = [
-  { value: "attending", label: "Có mình sẽ tham gia", desc: "Hẹn gặp bạn trong ngày vui!" },
-  { value: "considering", label: "Mình đang cân nhắc", desc: "Sẽ báo lại trước ngày 15.10" },
-  { value: "declined", label: "Tiếc quá mình không tham gia được rồi", desc: "Gửi lời chúc phúc từ xa" },
+  { value: "attending", label: "Có, mình sẽ tham dự", sub: "Hẹn gặp bạn trong ngày vui" },
+  { value: "considering", label: "Đang cân nhắc sắp xếp", sub: "Sẽ xác nhận trước hết ngày 15.10" },
+  { value: "declined", label: "Tiếc quá, mình không tham gia được", sub: "Gửi lời chúc phúc từ xa" },
 ];
 
 const RELATIONSHIPS = [
@@ -14,7 +14,7 @@ const RELATIONSHIPS = [
   { value: "friend", label: "Bạn bè" },
   { value: "coworker", label: "Đồng nghiệp" },
   { value: "mutual_friend", label: "Bạn chung của cả hai" },
-  { value: "other", label: "Mục khác" },
+  { value: "other", label: "Mối quan hệ khác" },
 ];
 
 function validate(values) {
@@ -70,15 +70,14 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
 
   async function onSubmit(event) {
     event.preventDefault();
-    if (status === "submitting") return;
     const nextErrors = validate(values);
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
-      setMessage("Vui lòng kiểm tra lại các câu trả lời được đánh dấu bên dưới.");
+      setMessage("Vui lòng kiểm tra lại các câu trả lời được đánh dấu.");
       return;
     }
     if (!turnstileToken) {
-      setMessage("Vui lòng hoàn tất bước xác minh chống spam.");
+      setMessage("Vui lòng hoàn tất bước xác minh bảo mật.");
       return;
     }
 
@@ -116,66 +115,68 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
 
   if (closed) {
     return (
-      <div className="closed-card">
-        <strong>Đã kết thúc thời gian nhận phúc đáp</strong>
-        <p>Cảm ơn tình cảm của bạn. Nếu cần thay đổi hoặc thông báo gấp, xin vui lòng liên hệ trực tiếp cùng cô dâu, chú rể hoặc gia đình.</p>
+      <div className="rsvp-stationery-closed">
+        <span className="rsvp-watermark">PHÚC ĐÁP</span>
+        <strong className="closed-title">ĐÃ KẾT THÚC THỜI GIAN PHÚC ĐÁP</strong>
+        <p className="closed-desc">
+          Cảm ơn bạn đã quan tâm. Xin vui lòng liên hệ trực tiếp với gia đình nếu cần thay đổi hoặc cập nhật thông tin.
+        </p>
       </div>
     );
   }
 
   if (status === "success") {
     return (
-      <div className="success-card" role="status">
-        <strong className="success-title">{message}</strong>
-        <p className="success-desc">
-          Chúng mình đã nhận được câu trả lời của bạn và sẽ chuẩn bị theo thông tin đã gửi.
+      <div className="rsvp-stationery-success" role="status">
+        <span className="rsvp-watermark">CẢM ƠN BẠN</span>
+        <strong className="success-heading">{message}</strong>
+        <p className="success-paragraph">
+          Sự hiện diện của bạn là niềm vinh hạnh to lớn của hai gia đình chúng tôi. Hẹn gặp bạn tại buổi tiệc vào 11:00 ngày 21.10.2026!
         </p>
-        <div className="success-ribbon">
-          <span>Tuấn Anh & Ngọc Anh trân trọng cảm ơn!</span>
-        </div>
+        <span className="signature-couple">Tuấn Anh & Ngọc Anh</span>
       </div>
     );
   }
 
   return (
-    <form className={`rsvp-form ${compact ? "compact" : ""}`} onSubmit={onSubmit} noValidate>
-      <div className="deadline-banner">
-        <p>Vui lòng gửi phúc đáp chậm nhất ngày <strong>15.10.2026</strong> để chúng mình chu đáo đón tiếp bạn nhé!</p>
+    <form className={`rsvp-stationery-form ${compact ? "compact" : ""}`} onSubmit={onSubmit} noValidate>
+      <div className="rsvp-form-header">
+        <span className="rsvp-watermark" aria-hidden="true">PHÚC ĐÁP</span>
+        <p className="rsvp-notice-text">
+          Vui lòng phúc đáp số lượng khách mời sẽ tham dự để gia đình sắp xếp đón tiếp chu đáo nhất!
+        </p>
+        <span className="rsvp-deadline-badge">HẠN PHÚC ĐÁP: HẾT NGÀY 15.10.2026</span>
       </div>
 
       {/* Field 1: Name */}
-      <div className="form-field">
-        <label htmlFor="rsvp-name" className="field-label">
-          <span className="field-num">1</span>
-          <span>Tên anh/chị/bạn là gì? <strong className="req-star">*</strong></span>
+      <div className="rsvp-field">
+        <label htmlFor="rsvp-name" className="rsvp-label">
+          1. Tên anh/chị/bạn là gì? <span className="req">*</span>
         </label>
-        <div className="input-wrap">
-          <input
-            id="rsvp-name"
-            type="text"
-            className="input-text"
-            value={values.name}
-            onChange={(event) => update("name", event.target.value)}
-            placeholder="Ví dụ: Nguyễn Văn A"
-            autoComplete="name"
-            maxLength="120"
-            aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? "name-error" : undefined}
-          />
-        </div>
+        <input
+          id="rsvp-name"
+          type="text"
+          className="rsvp-input-text"
+          value={values.name}
+          onChange={(event) => update("name", event.target.value)}
+          placeholder="Nhập họ và tên..."
+          autoComplete="name"
+          maxLength="120"
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "name-error" : undefined}
+        />
         {errors.name && <span id="name-error" className="field-error">{errors.name}</span>}
       </div>
 
       {/* Field 2: Attendance */}
-      <fieldset className="form-field choice-group">
-        <legend className="field-label">
-          <span className="field-num">2</span>
-          <span>Bạn có tham dự tiệc cưới của chúng mình không? <strong className="req-star">*</strong></span>
+      <fieldset className="rsvp-field">
+        <legend className="rsvp-label">
+          2. Bạn có tham dự tiệc cưới của chúng mình không? <span className="req">*</span>
         </legend>
-        <div className="choices-stack">
+        <div className="rsvp-options-vertical">
           {ATTENDANCE.map((item) => (
             <label
-              className={`choice-card ${values.attendance === item.value ? "is-selected" : ""}`}
+              className={`rsvp-radio-card ${values.attendance === item.value ? "checked" : ""}`}
               key={item.value}
             >
               <input
@@ -185,9 +186,9 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
                 checked={values.attendance === item.value}
                 onChange={() => update("attendance", item.value)}
               />
-              <div className="choice-text">
-                <span className="choice-main">{item.label}</span>
-                <span className="choice-hint">{item.desc}</span>
+              <div className="radio-text-col">
+                <span className="option-title">{item.label}</span>
+                <span className="option-sub">{item.sub}</span>
               </div>
             </label>
           ))}
@@ -197,19 +198,18 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
 
       {/* Field 3: Guest count */}
       {values.attendance !== "declined" && (
-        <fieldset className="form-field choice-group">
-          <legend className="field-label">
-            <span className="field-num">3</span>
-            <span>Bạn sẽ tham dự cùng bao nhiêu người (tính cả bạn nhé)? <strong className="req-star">*</strong></span>
+        <fieldset className="rsvp-field">
+          <legend className="rsvp-label">
+            3. Bạn sẽ tham dự cùng bao nhiêu người (tính cả bạn nhé)? <span className="req">*</span>
           </legend>
-          <div className="count-choices-grid">
+          <div className="rsvp-options-grid-three">
             {[
               { val: "1", title: "1 người", sub: "Đi một mình" },
-              { val: "2", title: "2 người", sub: "Tính cả bạn" },
-              { val: "other", title: "Mục khác", sub: "Đi theo nhóm" },
+              { val: "2", title: "2 người", sub: "Đi cùng người thân" },
+              { val: "other", title: "Số khác", sub: "Đi theo nhóm" },
             ].map((item) => (
               <label
-                className={`choice-card count-card ${values.guestChoice === item.val ? "is-selected" : ""}`}
+                className={`rsvp-radio-card count-style ${values.guestChoice === item.val ? "checked" : ""}`}
                 key={item.val}
               >
                 <input
@@ -219,22 +219,22 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
                   checked={values.guestChoice === item.val}
                   onChange={() => update("guestChoice", item.val)}
                 />
-                <span className="count-title">{item.title}</span>
-                <span className="count-sub">{item.sub}</span>
+                <span className="count-number">{item.title}</span>
+                <span className="count-desc">{item.sub}</span>
               </label>
             ))}
           </div>
 
           {values.guestChoice === "other" && (
-            <div className="other-count-input-wrap">
-              <label htmlFor="rsvp-guest-other" className="subfield-label">Nhập tổng số người tham dự:</label>
+            <div className="other-input-block">
+              <label htmlFor="rsvp-guest-other" className="sub-label">Nhập tổng số người tham dự:</label>
               <input
                 id="rsvp-guest-other"
                 type="number"
                 inputMode="numeric"
                 min="1"
                 step="1"
-                className="input-text"
+                className="rsvp-input-text"
                 value={values.guestOther}
                 onChange={(event) => update("guestOther", event.target.value)}
                 placeholder="Ví dụ: 3"
@@ -247,15 +247,14 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
       )}
 
       {/* Field 4: Relationship */}
-      <fieldset className="form-field choice-group">
-        <legend className="field-label">
-          <span className="field-num">4</span>
-          <span>Bạn biết cô dâu / chú rể từ đâu? <strong className="req-star">*</strong></span>
+      <fieldset className="rsvp-field">
+        <legend className="rsvp-label">
+          4. Bạn biết cô dâu/chú rể từ đâu? <span className="req">*</span>
         </legend>
-        <div className="relationship-modern-grid">
+        <div className="rsvp-options-grid-two">
           {RELATIONSHIPS.map((item) => (
             <label
-              className={`choice-card rel-card ${values.relationship === item.value ? "is-selected" : ""}`}
+              className={`rsvp-radio-card ${values.relationship === item.value ? "checked" : ""}`}
               key={item.value}
             >
               <input
@@ -265,18 +264,18 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
                 checked={values.relationship === item.value}
                 onChange={() => update("relationship", item.value)}
               />
-              <span className="choice-main">{item.label}</span>
+              <span className="option-title">{item.label}</span>
             </label>
           ))}
         </div>
         {values.relationship === "other" && (
-          <div className="other-rel-input-wrap">
+          <div className="other-input-block">
             <input
               type="text"
-              className="input-text"
+              className="rsvp-input-text"
               value={values.relationshipOther}
-              aria-label="Mối quan hệ khác" onChange={(event) => update("relationshipOther", event.target.value)}
-              placeholder="Vui lòng cho chúng mình biết mối quan hệ..."
+              onChange={(event) => update("relationshipOther", event.target.value)}
+              placeholder="Vui lòng cho chúng mình biết thêm..."
               maxLength="120"
             />
           </div>
@@ -285,7 +284,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         {errors.relationshipOther && <span className="field-error">{errors.relationshipOther}</span>}
       </fieldset>
 
-      {/* Honeypot for spam bot detection */}
+      {/* Honeypot for spam bots */}
       <div className="honeypot" aria-hidden="true">
         <label>
           Website
@@ -298,27 +297,20 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         </label>
       </div>
 
-      {/* Turnstile captcha widget */}
       <TurnstileWidget onToken={onToken} resetKey={turnstileResetKey} />
 
       {message && <p className="form-notice error" role="alert">{message}</p>}
 
       <button
-        className="button button-primary submit-button"
+        className="button button-primary rsvp-submit-btn"
         type="submit"
         disabled={status === "submitting" || (!turnstileToken && !import.meta.env.DEV)}
       >
-        {status === "submitting" ? (
-          <span className="btn-loading-wrap">
-            Đang gửi xác nhận…
-          </span>
-        ) : (
-          <span>Gửi phúc đáp</span>
-        )}
+        {status === "submitting" ? "ĐANG GỬI XÁC NHẬN..." : "GỬI PHÚC ĐÁP"}
       </button>
 
-      <p className="privacy-note">
-        Thông tin chỉ dùng để chuẩn bị tiệc cưới và không hiển thị công khai.
+      <p className="rsvp-privacy-note">
+        Thông tin phản hồi được dùng để gia đình chuẩn bị đón tiếp chu đáo nhất.
       </p>
     </form>
   );

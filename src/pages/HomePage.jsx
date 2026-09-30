@@ -1,20 +1,5 @@
 import React from "react";
 import wedding from "../config/wedding.json";
-
 export default function HomePage() {
-  return <main className="home-page">
-    <section className="home-card">
-      <p className="eyebrow">The wedding of</p>
-      <div className="monogram">A <i>&</i> A</div>
-      <h1>{wedding.couple.groom} <i>&</i> {wedding.couple.bride}</h1>
-      <p className="home-date">21 . 10 . 2026</p>
-      <div className="home-selection">
-        <h2>Bạn là khách của bên nào?</h2>
-        <div className="side-picker">
-          <a href="/nha-trai" className="side-choice groom-choice"><span>Nhà trai</span><strong>{wedding.couple.groomFullName}</strong><small>Mở thiệp mời</small></a>
-          <a href="/nha-gai" className="side-choice bride-choice"><span>Nhà gái</span><strong>{wedding.couple.brideFullName}</strong><small>Mở thiệp mời</small></a>
-        </div>
-      </div>
-    </section>
-  </main>;
+  return <main className="wedding-home"><section className="home-paper"><div className="home-portrait"><img src="/images/anhcuoi/TOM02721-800.jpg" alt="Ảnh cưới Tuấn Anh và Ngọc Anh" width="533" height="800" fetchPriority="high"/></div><div className="home-invitation"><span className="cover-monogram">A &amp; A</span><p className="eyebrow">TRÂN TRỌNG KÍNH MỜI</p><h1>{wedding.couple.groom}<span>&amp;</span>{wedding.couple.bride}</h1><p className="cover-date">11:00 · 21 tháng 10, 2026</p><p>{wedding.event.venueName}</p><p className="home-selection-prompt">Bạn là khách của gia đình nào?</p><div className="home-selection-buttons"><a className="button button-primary" href="/nha-trai">Khách của Nhà trai</a><a className="button button-outline" href="/nha-gai">Khách của Nhà gái</a></div></div></section></main>;
 }

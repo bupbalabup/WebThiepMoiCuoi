@@ -1,7 +1,8 @@
 Hạng mục	Nhà trai	Nhà gái	Tổng
-Tổng người xác nhận tham gia	=SUMIF('Nhà trai'!C2:C;"attending";'Nhà trai'!D2:D)+SUMIF('Nhà trai'!C2:C;"accepted";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"attending";'Nhà gái'!D2:D)+SUMIF('Nhà gái'!C2:C;"accepted";'Nhà gái'!D2:D)	=SUM(B2:C2)
+Tổng người xác nhận tham gia	=SUMIF('Nhà trai'!C2:C;"attending";'Nhà trai'!D2:D)+SUMIF('Nhà trai'!C2:C;"Có tham dự";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"attending";'Nhà gái'!D2:D)+SUMIF('Nhà gái'!C2:C;"Có tham dự";'Nhà gái'!D2:D)	=SUM(B2:C2)
 Tổng lượt phúc đáp	=COUNTIF('Nhà trai'!B2:B;"<>")	=COUNTIF('Nhà gái'!B2:B;"<>")	=SUM(B3:C3)
-Lượt xác nhận tham gia	=COUNTIF('Nhà trai'!C2:C;"attending")+COUNTIF('Nhà trai'!C2:C;"accepted")	=COUNTIF('Nhà gái'!C2:C;"attending")+COUNTIF('Nhà gái'!C2:C;"accepted")	=SUM(B4:C4)
-Số người đang cân nhắc	=SUMIF('Nhà trai'!C2:C;"considering";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"considering";'Nhà gái'!D2:D)	=SUM(B5:C5)
-Lượt đang cân nhắc	=COUNTIF('Nhà trai'!C2:C;"considering")	=COUNTIF('Nhà gái'!C2:C;"considering")	=SUM(B6:C6)
-Lượt không tham gia	=COUNTIF('Nhà trai'!C2:C;"declined")	=COUNTIF('Nhà gái'!C2:C;"declined")	=SUM(B7:C7)
+Lượt xác nhận tham gia	=COUNTIF('Nhà trai'!C2:C;"attending")+COUNTIF('Nhà trai'!C2:C;"Có tham dự")	=COUNTIF('Nhà gái'!C2:C;"attending")+COUNTIF('Nhà gái'!C2:C;"Có tham dự")	=SUM(B4:C4)
+Số người đang cân nhắc	=SUMIF('Nhà trai'!C2:C;"Đang cân nhắc";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"Đang cân nhắc";'Nhà gái'!D2:D)	=SUM(B5:C5)
+Lượt đang cân nhắc	=COUNTIF('Nhà trai'!C2:C;"Đang cân nhắc")	=COUNTIF('Nhà gái'!C2:C;"Đang cân nhắc")	=SUM(B6:C6)
+Lượt không tham gia	=COUNTIF('Nhà trai'!C2:C;"Không tham dự")	=COUNTIF('Nhà gái'!C2:C;"Không tham dự")	=SUM(B7:C7)
+Tổng lời chúc	=COUNTIF('Lời chúc nhà trai'!B2:B;"<>")	=COUNTIF('Lời chúc nhà gái'!B2:B;"<>")	=SUM(B8:C8)

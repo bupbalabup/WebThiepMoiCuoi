@@ -11,10 +11,11 @@ Giữ **General access / Quyền truy cập chung: Restricted / Bị hạn chế
 
 ## 2. Chuẩn bị các tab nhận dữ liệu
 
-Giữ đúng năm tab như trong ảnh:
+Giữ các tab sau:
 
 - `Nhà trai`: chỉ nhận phúc đáp từ link Nhà trai.
 - `Nhà gái`: chỉ nhận phúc đáp từ link Nhà gái.
+- `Lời chúc nhà trai`, `Lời chúc nhà gái`: nhận lời chúc riêng từng bên.
 - `Tổng hợp số lượng`: công thức tổng hợp hai tab phúc đáp.
 - `Nhà trai mời onl`: Tên, Slug, Link thiệp Nhà trai.
 - `Nhà gái mời onl`: Tên, Slug, Link thiệp Nhà gái.
@@ -22,19 +23,19 @@ Giữ đúng năm tab như trong ảnh:
 Dán hàng sau vào A1 của **cả `Nhà trai` và `Nhà gái`** (các giá trị phân tách bằng tab, tương ứng A:J):
 
 ```text
-submitted_at	name	attendance	guest_count	relationship	relationship_other	submission_id	invitation_side	invitation_slug	invited_name
+Thời gian gửi	Họ và tên	Phúc đáp	Tổng số người	Mối quan hệ	Thông tin khác	Mã phúc đáp	Bên mời	Đường dẫn khách mời	Tên được mời
 ```
 
 Lấy hàng này từ `google-sheets/rsvp-headers.tsv`. Server yêu cầu đủ 10 tiêu đề theo đúng thứ tự ở tab đích; nếu sai sẽ từ chối ghi để tránh trộn dữ liệu.
 
 Trong `Tổng hợp số lượng`, dán toàn bộ `google-sheets/tong-hop-so-luong.formulas.tsv` vào A1. Bảng gồm:
 
-- Tổng người xác nhận tham gia: cộng `guest_count` của các dòng `attending` từ hai bên.
+- Tổng người xác nhận tham gia: cộng cột Tổng số người của các dòng Có tham dự từ hai bên.
 - Tổng lượt phúc đáp và lượt xác nhận tham gia.
 - Số người/lượt đang cân nhắc.
 - Lượt không tham gia.
 
-Cột `Tổng` luôn bằng `Nhà trai + Nhà gái`. Các dòng `declined` được server lưu `guest_count=0`, nên không làm tăng tổng người tham dự.
+Cột `Tổng` luôn bằng `Nhà trai + Nhà gái`. Các dòng Không tham dự được server lưu Tổng số người bằng 0, nên không làm tăng tổng người tham dự.
 
 Hai tab **Nhà trai mời onl**, **Nhà gái mời onl** dùng cho link thiệp cá nhân vẫn có A: Tên, B: Slug, C: Link thiệp, D: Slug cố định tùy chọn. Xem tài liệu 08 để dán công thức B2/C2.
 
@@ -64,11 +65,13 @@ Trong **Turnstile > Add widget**, thêm hostname `workers.dev` hoặc domain ri�
 Sau khi lưu biến runtime, bấm **Deploy**. Sau khi thêm site key ở phần Build, chạy lại deployment từ commit mới nhất để Vite nhận giá trị. Những lần sửa mã tiếp theo chỉ cần push GitHub như hiện tại.
 
 1. Mở trang phúc đáp Nhà trai, gửi một mẫu có tên rõ là kiểm thử và kiểm tra dòng mới chỉ xuất hiện trong tab `Nhà trai`.
-2. Làm tương tự với Nhà gái, kiểm tra dòng mới chỉ xuất hiện trong tab `Nhà gái`; cột H lần lượt là groom/bride.
+2. Làm tương tự với Nhà gái, kiểm tra dòng mới chỉ xuất hiện trong tab `Nhà gái`; cột H lần lượt là Nhà trai/Nhà gái.
 3. Kiểm tra `Tổng hợp số lượng`: cột D bằng cột B cộng cột C.
 4. Mở link cá nhân của mỗi bên, kiểm tra đúng tên gốc và cột I/J sau khi gửi.
 5. Nếu lỗi, xem Functions log chỉ để nhận mã lỗi; không dán khóa/token vào log hoặc chat.
 
-Hiện mã đã có kiểm thử giả lập Google API; chưa xác nhận ghi thật vì chưa có service account và Secret production. Cấu hình Sheet riêng được lưu cục bộ trong file bị Git bỏ qua; không xuất đường dẫn quản trị Sheet trong frontend.
+Các kết quả kiểm thử cụ thể được ghi trong tài liệu kiểm thử. Khóa bí mật chỉ đặt trong Cloudflare; không xuất đường dẫn quản trị Sheet trong giao diện.
 
 Tham khảo: [Google service accounts](https://developers.google.com/identity/protocols/oauth2/service-account), [Sheets append](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/append), [Cloudflare Variables and Secrets](https://developers.cloudflare.com/workers/configuration/environment-variables/), [Turnstile validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/).
+
+Đặt định dạng cột A của bốn tab nhận dữ liệu là `dd/MM/yyyy HH:mm:ss`. Tiêu đề lời chúc lấy từ `google-sheets/wish-headers.tsv`. Xem tài liệu 12 để biết thứ tự cột và quy tắc lưu.

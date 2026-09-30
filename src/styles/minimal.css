@@ -1,0 +1,795 @@
+:root {
+  --font-script:'Cormorant Garamond',Georgia,serif;
+  --font-hand:var(--font-script);
+  --font-heading:var(--font-script);
+  --font-upright:var(--font-script);
+  --si-accent:#79654f;
+  --si-ink-soft:#756b61;
+  --si-bg:#fbf8f1;
+  --si-bg-outer:#eeebe5
+}
+
+body {
+  overflow-x:visible
+}
+h1,h2,h3,p,figure {
+  margin-top:0
+}
+button,a,input,textarea {
+  touch-action:manipulation
+}
+button {
+  cursor:pointer
+}
+.button {
+  letter-spacing:.07em;
+  text-transform:none;
+  font-size:.86rem;
+  border-radius:2px
+}
+.button-primary {
+  background:#69533f;
+  border-color:#69533f
+}
+.button-primary:hover {
+  background:#4c3b2d
+}
+.button-outline {
+  border-color:#8c7965;
+  color:#584431;
+  background:transparent
+}
+.eyebrow {
+  font-size:.7rem;
+  letter-spacing:.21em;
+  color:#75614d;
+  line-height:1.8;
+  font-weight:600
+}
+.minimal-wedding {
+  background:#eeebe5
+}
+.wedding-canvas {
+  max-width:920px;
+  margin:auto;
+  background:#fbf8f1;
+  box-shadow:0 0 60px #55412c0a
+}
+.wedding-nav {
+  position:sticky;
+  top:0;
+  z-index:20;
+  min-height:62px;
+  background:#fbf8f1f5;
+  border-bottom:1px solid #b5a48d55;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px max(20px,calc((100vw - 860px)/2));
+  gap:16px
+}
+.nav-monogram {
+  font:italic 28px var(--font-serif);
+  white-space:nowrap
+}
+.wedding-nav>div {
+  display:flex;
+  gap:24px;
+  align-items:center;
+  font-size:12px
+}
+.wedding-nav button {
+  background:#69533f;
+  color:white;
+  border:0;
+  padding:10px 16px;
+  border-radius:2px
+}
+.wedding-hero {
+  text-align:center;
+  padding:64px 32px 48px;
+  background:radial-gradient(ellipse at 15% 5%,#e4d8c444,transparent 50%)
+}
+.wedding-hero h1,.cover-paper h1,.home-invitation h1 {
+  font:italic clamp(42px,6vw,68px)/1.03 var(--font-serif);
+  color:#594b3e;
+  margin:18px 0
+}
+.wedding-hero h1 span,.cover-paper h1 span,.home-invitation h1 span {
+  display:block;
+  font-size:.48em;
+  margin:10px 0
+}
+.hero-date {
+  letter-spacing:.3em;
+  font-size:13px;
+  margin:24px 0 34px
+}
+.hero-photo {
+  max-width:580px;
+  margin:0 auto;
+  padding:12px;
+  border:1px solid #ae9678
+}
+.hero-photo img {
+  width:100%;
+  height:auto;
+  aspect-ratio:2/3;
+  object-fit:cover
+}
+.hero-photo figcaption {
+  font:italic 21px/1.5 var(--font-serif);
+  padding:18px 8px 6px
+}
+.paper-section {
+  text-align:center;
+  padding:64px 54px;
+  border-top:1px solid #b5a48d55;
+  scroll-margin-top:70px
+}
+.paper-section h2,.wedding-closing h2 {
+  font:italic clamp(36px,5vw,52px)/1.15 var(--font-serif);
+  color:#594b3e;
+  margin-bottom:24px
+}
+.paper-section h3 {
+  font:600 25px var(--font-serif);
+  margin:24px 0 12px
+}
+.paper-section p {
+  font-size:14px
+}
+.ceremony-section {
+  margin:20px 28px 0;
+  border:1px solid #b5a48d88;
+  outline:1px solid #b5a48d55;
+  outline-offset:-8px;
+  background:#fffdf744
+}
+.family-ceremony-section {
+  padding:0;
+  background:transparent
+}
+.parents-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  padding:20px 0;
+  margin:0
+}
+.family-col {
+  min-width:0
+}
+.family-heading {
+  font-size:11px;
+  letter-spacing:.15em;
+  color:#69533f
+}
+.parent-line {
+  margin:6px 0;
+  font-size:13px!important
+}
+.home-ceremony-card {
+  border-top:1px solid #b5a48d55;
+  margin:20px 0;
+  padding:24px 0;
+  background:transparent
+}
+.ceremony-tag {
+  font-size:11px;
+  letter-spacing:.1em
+}
+.ceremony-time {
+  margin:10px 0
+}
+.ceremony-announcement {
+  margin:28px 0
+}
+.couple-full-names {
+  font-size:40px!important
+}
+.couple-full-names span {
+  display:block;
+  font-size:26px;
+  padding:8px
+}
+.gallery-stationery-section {
+  padding:64px 28px;
+  background:transparent
+}
+.section-header-minimal {
+  text-align:center;
+  margin-bottom:30px
+}
+.script-title {
+  font-style:italic;
+  font-size:42px
+}
+.gallery-grid {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important
+}
+.gallery-item {
+  grid-column:auto!important;
+  grid-row:auto!important;
+  aspect-ratio:2/3!important;
+  padding:0;
+  border:0;
+  background:#e4d8c4;
+  overflow:hidden;
+  border-radius:0
+}
+.gallery-item img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .4s
+}
+.gallery-item:hover img {
+  transform:scale(1.03)
+}
+.gallery-hover-overlay {
+  background:#46332255
+}
+.reception-date {
+  padding:20px 0;
+  margin:0 auto 24px;
+  max-width:380px;
+  border-top:1px solid #b5a48d77;
+  border-bottom:1px solid #b5a48d77
+}
+.reception-date strong {
+  font:28px var(--font-serif)
+}
+.reception-date>span {
+  display:block;
+  font:90px/1 var(--font-serif);
+  color:#69533f
+}
+.reception-date p {
+  letter-spacing:.15em;
+  font-size:11px;
+  margin:10px 0
+}
+.reception-date small {
+  font-size:11px
+}
+.wedding-timeline {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-block:1px solid #b5a48d55;
+  margin:28px 0
+}
+.wedding-timeline>div {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:22px 8px
+}
+.wedding-timeline>div+div {
+  border-left:1px solid #b5a48d55
+}
+.wedding-timeline strong {
+  font:28px var(--font-serif);
+  color:#69533f
+}
+.wedding-timeline span {
+  font-size:12px
+}
+.save-date-stationery-card {
+  padding:0;
+  margin:28px auto;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  max-width:380px
+}
+.calendar-box {
+  padding:0;
+  border:0;
+  background:transparent
+}
+.calendar-button-group {
+  flex-wrap:wrap;
+  gap:8px
+}
+.cal-action-btn {
+  font-size:11px;
+  letter-spacing:0;
+  padding:12px;
+  flex:1;
+  white-space:normal;
+  min-height:44px
+}
+.is-wedding-day {
+  background:#69533f!important;
+  color:#fff!important;
+  border-radius:50%
+}
+.is-wedding-day::after,.is-wedding-day::before {
+  display:none!important
+}
+.deadline-note {
+  font-size:12px!important;
+  margin:16px 0 0;
+  color:#75614d
+}
+.location-section {
+  background:#f1eadd88
+}
+.wedding-map {
+  margin:24px 0
+}
+.wedding-map iframe {
+  width:100%;
+  height:340px;
+  border:0;
+  display:block
+}
+.wedding-countdown {
+  text-align:center;
+  padding:40px 24px
+}
+.countdown-stationery-wrap {
+  padding:0;
+  background:transparent;
+  border:0
+}
+.countdown-stationery-wrap>.sub-title-caps {
+  display:none
+}
+.countdown-minimal-grid {
+  max-width:460px;
+  margin:20px auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px
+}
+.countdown-minimal-card {
+  padding:12px 4px;
+  background:none;
+  border:1px solid #b5a48d77
+}
+.cd-val {
+  font:40px var(--font-serif)
+}
+.cd-lbl {
+  font-size:10px
+}
+.wish-section {
+  background:#f1eadd66
+}
+.wish-form {
+  max-width:560px;
+  margin:auto;
+  text-align:left;
+  display:grid;
+  gap:18px
+}
+.wish-form label {
+  display:grid;
+  gap:8px;
+  font-size:13px;
+  font-weight:600
+}
+.wish-form input,.wish-form textarea {
+  width:100%;
+  border:1px solid #b5a48d;
+  background:#fffdf9;
+  padding:13px;
+  font-size:16px;
+  color:#4a4039;
+  border-radius:2px
+}
+.wish-form textarea {
+  resize:vertical;
+  min-height:150px
+}
+.wish-form small {
+  font-size:11px;
+  font-weight:400;
+  color:#756b61
+}
+.wish-success {
+  padding:24px;
+  border:1px solid #b5a48d;
+  background:#fffdf9
+}
+.wish-success blockquote {
+  font:italic 24px/1.5 var(--font-serif);
+  overflow-wrap:anywhere;
+  margin:20px 0
+}
+.wedding-gift p {
+  max-width:520px;
+  margin:0 auto 24px
+}
+.wedding-closing {
+  text-align:center;
+  padding:0 0 48px
+}
+.wedding-closing img {
+  width:100%;
+  max-height:500px;
+  object-fit:cover;
+  margin:0 0 36px
+}
+.wedding-closing p {
+  font-size:13px;
+  padding:0 20px
+}
+.wedding-closing>span {
+  font:italic 28px var(--font-serif)
+}
+.wedding-mobile-actions {
+  display:none
+}
+.invitation-cover {
+  position:fixed;
+  inset:0;
+  z-index:80;
+  background:#e8e1d5;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  overflow:auto
+}
+.cover-paper {
+  width:min(500px,100%);
+  background:#fbf8f1;
+  border:1px solid #b5a48d;
+  padding:40px 24px;
+  text-align:center;
+  outline:1px solid #b5a48d88;
+  outline-offset:-12px;
+  box-shadow:0 20px 60px #55412c18
+}
+.cover-monogram {
+  font:italic 42px var(--font-serif);
+  color:#75614d
+}
+.cover-paper .eyebrow {
+  margin:24px 0 14px
+}
+.cover-date {
+  font-size:12px;
+  letter-spacing:.1em;
+  margin:24px 0
+}
+.cover-guest {
+  font:25px var(--font-serif);
+  margin:24px auto;
+  overflow-wrap:anywhere
+}
+.wedding-home {
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:40px 24px;
+  background:#eeebe5
+}
+.home-paper {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  max-width:1000px;
+  width:100%;
+  background:#fbf8f1;
+  box-shadow:0 20px 60px #55412c12;
+  border:1px solid #b5a48d55
+}
+.home-portrait img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  min-height:640px
+}
+.home-invitation {
+  padding:44px 28px;
+  text-align:center;
+  align-self:center
+}
+.home-invitation h1 {
+  font-size:54px
+}
+.home-invitation>p {
+  font-size:13px
+}
+.home-selection-prompt {
+  margin-top:32px
+}
+.home-selection-buttons {
+  display:grid;
+  gap:12px;
+  max-width:300px;
+  margin:20px auto
+}
+.rsvp-watermark {
+  font-size:30px!important;
+  letter-spacing:.08em!important;
+  color:#79654f!important;
+  opacity:1!important
+}
+.rsvp-super-title {
+  letter-spacing:.15em;
+  font-size:13px
+}
+.rsvp-stationery-form {
+  background:#fbf8f1;
+  border-color:#b5a48d
+}
+.rsvp-standalone-page {
+  background:#eeebe5
+}
+.rsvp-radio-card.checked {
+  border-color:#69533f;
+  background:#ede4d7
+}
+.rsvp-input-text:focus {
+  border-color:#69533f
+}
+.rsvp-page-header {
+  gap:20px;
+  flex-wrap:wrap
+}
+.rsvp-back-link {
+  letter-spacing:.03em
+}
+.modal-overlay {
+  padding:16px
+}
+.modal-dialog {
+  max-height:calc(100dvh - 32px);
+  overflow:auto
+}
+.photo-modal {
+  width:min(1000px,100%)
+}
+.lightbox-wrapper {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:12px;
+  padding:0
+}
+.lightbox-image {
+  max-height:70vh;
+  object-fit:contain;
+  margin:auto
+}
+.lightbox-nav-btn {
+  position:static;
+  transform:none;
+  min-width:44px;
+  font-size:11px;
+  padding:12px 8px;
+  background:#69533f;
+  color:white
+}
+.gift-quote {
+  overflow-wrap:anywhere
+}
+a,button {
+  transition:background-color .2s,color .2s
+}
+.wedding-canvas>div[id],.wish-section {
+  scroll-margin-top:70px
+}
+
+@media(min-width:1500px) {
+  .wedding-canvas {
+  max-width:1000px
+}
+.wedding-hero {
+  padding-top:80px
+}
+.paper-section {
+  padding-inline:80px
+}
+
+}
+
+@media(max-width:760px) {
+  .wedding-nav {
+  padding:12px 18px
+}
+.wedding-nav>div {
+  gap:16px
+}
+.wedding-nav>div>a {
+  display:none
+}
+.wedding-hero {
+  padding:40px 24px
+}
+.paper-section {
+  padding:44px 24px
+}
+.ceremony-section {
+  margin:12px 16px 0;
+  padding:40px 20px
+}
+.gallery-stationery-section {
+  padding:44px 16px
+}
+.gallery-grid {
+  grid-template-columns:repeat(2,minmax(0,1fr))!important
+}
+.home-paper {
+  max-width:550px;
+  grid-template-columns:1fr
+}
+.home-portrait img {
+  min-height:0;
+  max-height:380px;
+  aspect-ratio:4/3;
+  object-position:center 40%
+}
+.home-invitation {
+  padding:32px 20px
+}
+.wedding-home {
+  padding:20px 16px
+}
+.home-invitation h1 {
+  font-size:48px
+}
+.wedding-mobile-actions {
+  display:grid;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:30;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  background:#fbf8ff;
+  border-top:1px solid #b5a48d;
+  padding-bottom:env(safe-area-inset-bottom)
+}
+.wedding-mobile-actions>* {
+  border:0;
+  background:#fbf8f1;
+  font-size:12px;
+  padding:16px 4px;
+  text-align:center;
+  color:#594431
+}
+.wedding-mobile-actions>*+* {
+  border-left:1px solid #b5a48d55
+}
+.minimal-wedding {
+  padding-bottom:54px
+}
+.wedding-map iframe {
+  height:280px
+}
+.lightbox-wrapper {
+  grid-template-columns:1fr 1fr
+}
+.lightbox-image {
+  grid-row:1;
+  grid-column:1/-1;
+  max-height:62vh
+}
+.lightbox-nav-btn {
+  grid-row:2
+}
+.modal-overlay {
+  padding:8px
+}
+.modal-dialog {
+  max-height:calc(100dvh - 16px)
+}
+.rsvp-options-grid-three {
+  gap:6px
+}
+.rsvp-radio-card .option-title {
+  font-size:13px
+}
+.rsvp-radio-card .option-sub {
+  font-size:11px
+}
+.rsvp-deadline-badge {
+  letter-spacing:.03em
+}
+.couple-full-names {
+  font-size:34px!important
+}
+
+}
+
+@media(max-width:380px) {
+  .parents-grid {
+  gap:10px
+}
+.parent-line {
+  font-size:11px!important
+}
+.paper-section {
+  padding-inline:18px
+}
+.ceremony-section {
+  padding-inline:16px
+}
+.wedding-timeline span {
+  font-size:10px
+}
+.wedding-hero h1 {
+  font-size:43px
+}
+.eyebrow {
+  letter-spacing:.15em
+}
+.cover-paper {
+  padding:28px 18px
+}
+.cover-paper h1 {
+  font-size:42px
+}
+.cover-paper .eyebrow {
+  margin-top:16px
+}
+.countdown-minimal-grid {
+  gap:7px
+}
+.cd-val {
+  font-size:32px
+}
+.rsvp-options-grid-three {
+  grid-template-columns:1fr
+}
+.rsvp-meta-info {
+  font-size:11px
+}
+.home-invitation h1 {
+  font-size:42px
+}
+.button {
+  padding-inline:16px
+}
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+  scroll-behavior:auto
+}
+*,*::before,*::after {
+  animation:none!important;
+  transition:none!important
+}
+
+}
+
+.wish-form label {
+  display:flex;
+  gap:6px;
+  align-items:baseline
+}
+.modal-backdrop {
+  padding:16px
+}
+.modal-card {
+  max-height:calc(100dvh - 32px);
+  overflow:auto
+}
+.modal-card.photo-modal {
+  max-width:1000px;
+  width:100%
+}
+.modal-card.photo-modal .modal-content {
+  padding:16px
+}
+.invitation-cover~div[inert] {
+  visibility:hidden
+}
+@media(max-width:760px) {
+  .modal-backdrop {
+  padding:8px
+}
+.modal-card {
+  max-height:calc(100dvh - 16px)
+}
+
+}
+

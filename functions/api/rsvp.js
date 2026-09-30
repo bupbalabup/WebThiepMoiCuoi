@@ -2,8 +2,9 @@ import { appendSheetRow, readSheetRows } from "../_lib/google.js";
 import { isSameSiteRequest, json, publicError, readSmallJson } from "../_lib/http.js";
 import { verifyTurnstile } from "../_lib/turnstile.js";
 import { validateRsvp } from "../_lib/validation.js";
+import { RSVP_HEADERS_VI, RSVP_HEADERS_LEGACY, ATTENDANCE_LABELS, RELATIONSHIP_LABELS, SIDE_LABELS, vietnamSheetDate, hasHeaders } from "../_lib/sheet-data.js";
 
-export const RSVP_HEADERS = ["submitted_at", "name", "attendance", "guest_count", "relationship", "relationship_other", "submission_id", "invitation_side", "invitation_slug", "invited_name"];
+export const RSVP_HEADERS = RSVP_HEADERS_VI;
 export const RSVP_TAB_NAMES = Object.freeze({
   groom: "Nhà trai",
   bride: "Nhà gái",
@@ -56,7 +57,7 @@ async function handlePost({ request, env }) {
     const data = validation.value;
     const tab = rsvpTabName(env, data.invitationSide).replace(/'/g, "''");
     const headers = await readSheetRows(env, `'${tab}'!A1:J1`);
-    if (!RSVP_HEADERS.every((header, index) => headers[0]?.[index] === header)) {
+    if (!hasHeaders(headers[0], RSVP_HEADERS) && !hasHeaders(headers[0], RSVP_HEADERS_LEGACY)) {
       throw new Error("RSVP_SHEET_HEADERS_MISMATCH");
     }
     const idRows = await readSheetRows(env, `'${tab}'!G2:G`);
@@ -77,14 +78,14 @@ async function handlePost({ request, env }) {
     }
 
     await appendSheetRow(env, `'${tab}'!A:J`, [
-      new Date().toISOString(),
+      vietnamSheetDate(),
       data.name,
-      data.attendance,
+      ATTENDANCE_LABELS[data.attendance],
       data.guestCount,
-      data.relationship,
+      RELATIONSHIP_LABELS[data.relationship],
       data.relationshipOther,
       data.idempotencyKey,
-      data.invitationSide,
+      SIDE_LABELS[data.invitationSide],
       data.invitationSlug,
       invitedName,
     ]);
