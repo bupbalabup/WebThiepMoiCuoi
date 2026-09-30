@@ -94,7 +94,9 @@ export async function readSheetRows(env, range) {
 }
 
 export async function appendSheetRow(env, range, values) {
-  const suffix = ":append?valueInputOption=RAW&insertDataOption=INSERT_ROWS";
+  // OVERWRITE appends into the next free row without inserting a new row into
+  // the sheet. INSERT_ROWS shifts summary formulas that start at row 2.
+  const suffix = ":append?valueInputOption=RAW&insertDataOption=OVERWRITE";
   return sheetsRequest(env, sheetsUrl(env, range, suffix), {
     method: "POST",
     headers: { "Content-Type": "application/json" },

@@ -9,17 +9,16 @@ Giữ đúng tên hai tab: **Nhà trai mời onl** và **Nhà gái mời onl**. 
 | A | Tên | Chủ tiệc nhập tên đầy đủ có dấu |
 | B | Slug | Công thức tự bỏ dấu, viết thường, thay khoảng trắng bằng dấu gạch ngang |
 | C | Link thiệp | Công thức ghép tên miền, bên mời và slug |
-| D | Slug cố định (tùy chọn) | Chỉ dùng để xử lý tên trùng hoặc giữ link đã gửi khi sửa tên |
+| D | Đã mời | Checkbox để chủ tiệc đánh dấu đã gửi thiệp |
 
-Cột A/B/C theo bố cục chủ tiệc đã chọn. D là trường ngoại lệ, bình thường để trống. Chưa có quyền truy cập Sheet thực tế nên bộ công thức hiện được chuẩn bị trong dự án, chưa được dán vào tài khoản Google.
+Cột A/B/C theo bố cục chủ tiệc đã chọn. Cột D là checkbox quản lý việc gửi thiệp.
 
 ## Cài công thức một lần
 
-1. Tạo một tab `Cấu hình`: A1 ghi `Tên miền website`; B1 điền origin HTTPS sau khi deploy, ví dụ `https://thiep-cuoi.example.com`. Đây chỉ là ví dụ, không phải link đã phát hành. B1 không chứa `/nha-trai`, `/nha-gai` hoặc tham số truy vấn.
-2. Trong cả hai tab khách mời, dán toàn bộ [công thức slug](../google-sheets/slug.formula.txt) vào **B2**.
-3. Trong `Nhà trai mời onl`, dán [công thức link Nhà trai](../google-sheets/link-nha-trai.formula.txt) vào **C2**.
-4. Trong `Nhà gái mời onl`, dán [công thức link Nhà gái](../google-sheets/link-nha-gai.formula.txt) vào **C2**.
-5. Sau đó chỉ cần nhập tên ở cột A. Các công thức mảng tự điền xuống các hàng, không phải kéo công thức mỗi lần thêm khách. Các ô B3:B và C3:C phải trống để công thức mở rộng; nếu đã có dữ liệu/công thức, bảo toàn bản gốc và chuyển chúng trước khi áp dụng.
+1. Trong cả hai tab khách mời, dán toàn bộ [công thức slug](../google-sheets/slug.formula.txt) vào **B2**.
+2. Trong `Nhà trai mời onl`, dán [công thức link Nhà trai](../google-sheets/link-nha-trai.formula.txt) vào **C2**.
+3. Trong `Nhà gái mời onl`, dán [công thức link Nhà gái](../google-sheets/link-nha-gai.formula.txt) vào **C2**.
+4. Sau đó chỉ cần nhập tên ở cột A. Các công thức mảng tự điền xuống các hàng, không phải kéo công thức mỗi lần thêm khách. Các ô B3:B và C3:C phải trống để công thức mở rộng.
 
 Công thức dùng dấu `;` làm dấu phân cách đối số. Nếu Sheet của bạn dùng dấu `,`, đổi dấu `;` thành `,` trong ba công thức. Công thức giữ tên gốc ở A, xử lý cả chữ `đ`, dấu tiếng Việt và dấu Unicode tổ hợp. Không tự sửa tên người nhận để tạo slug.
 
@@ -31,16 +30,14 @@ Công thức dùng dấu `;` làm dấu phân cách đối số. Nếu Sheet c�
 | Nhà gái mời onl | Nguyễn Văn A | nguyen-van-a | `/nha-gai/nguyen-van-a` |
 | Nhà gái mời onl | Đặng Thị Hồng | dang-thi-hong | `/nha-gai/dang-thi-hong` |
 
-Cột C hiển thị URL đầy đủ khi `Cấu hình!B1` đã có tên miền. Khi chưa có, hiển thị “Chưa cấu hình tên miền”. Cùng slug ở hai tab khác nhau là hợp lệ vì đường dẫn có bên mời khác nhau.
+Cột C ghép URL production với slug. Cùng slug ở hai tab khác nhau là hợp lệ vì đường dẫn có bên mời khác nhau.
 
 ## Tên trùng và giữ link ổn định
 
-- Hai khách trong cùng tab có thể cùng tên, hoặc khác dấu nhưng ra cùng slug. Khi trùng, C hiển thị “Trùng slug: nhập slug riêng ở cột D”; không tạo hai link không phân biệt được người nhận.
-- Với dòng mới bị trùng, nhập ví dụ `nguyen-van-a-dong-nghiep` vào D. B dùng slug này; A vẫn giữ “Nguyễn Văn A”. Khi đó hai URL khác nhau. Không dùng số dòng để đánh số khách vì chèn/sắp xếp hàng có thể đổi link.
-- `phuc-dap` là slug dành riêng cho trang RSVP, không dùng cho tên khách. Nếu gặp, nhập slug khác vào D.
-- Sau khi gửi thiệp cho một khách, có thể sao chép giá trị B của khách đó vào D bằng **Chỉ dán giá trị** để giữ nguyên URL nếu cần chỉnh tên có dấu tại A. Công thức theo tên tự thay đổi khi tên đổi nếu D còn trống; công thức không giữ lịch sử link cũ.
-- Slug cố định chỉ chứa chữ a–z, chữ số và dấu gạch ngang giữa các từ. Công thức C thông báo slug sai định dạng thay vì xuất một link hỏng.
-- Khi sắp xếp, giữ nguyên quan hệ A và D trong từng hàng; tránh ghi đè ô gốc công thức B2/C2. Dùng chế độ lọc phù hợp và kiểm tra công thức sau khi thay đổi cấu trúc Sheet.
+- Hai khách trong cùng tab có thể cùng tên hoặc tạo cùng slug. Khi trùng, C hiển thị cảnh báo và không phát hành hai link giống nhau. Hãy bổ sung thông tin phân biệt trực tiếp vào tên, ví dụ “Nguyễn Văn A - Đồng nghiệp”.
+- `phuc-dap` là slug dành riêng cho trang RSVP. Nếu tên tạo ra slug này, hãy bổ sung thông tin phân biệt vào tên.
+- Khi sửa tên ở A, slug và link tự cập nhật. Vì vậy không sửa tên sau khi đã gửi link cho khách.
+- Khi sắp xếp, giữ nguyên hàng khách và tránh ghi đè ô gốc công thức B2/C2.
 
 ## Website điền đúng tên có dấu
 
