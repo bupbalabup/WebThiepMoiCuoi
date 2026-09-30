@@ -16,7 +16,7 @@ function calculateTimeLeft() {
   };
 }
 
-export default function CountdownTimer() {
+export default function CountdownTimer({ title = "CÙNG ĐẾM NGƯỢC THỜI GIAN" }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -38,13 +38,13 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="countdown-stationery-wrap" aria-label="Đếm ngược đến ngày cưới">
-      <span className="sub-title-caps">CÙNG ĐẾM NGƯỢC THỜI GIAN</span>
-      <div className="countdown-minimal-grid">
+    <div className="lux-countdown-wrapper" aria-label="Đếm ngược đến ngày cưới">
+      {title && <span className="lux-eyebrow">{title}</span>}
+      <div className="lux-countdown-grid">
         {units.map((unit) => (
-          <div className="countdown-minimal-card" key={unit.label}>
-            <span className="cd-val">{unit.value}</span>
-            <span className="cd-lbl">{unit.label}</span>
+          <div className="lux-countdown-unit" key={unit.label}>
+            <span className="unit-number">{unit.value}</span>
+            <span className="unit-label">{unit.label}</span>
           </div>
         ))}
       </div>

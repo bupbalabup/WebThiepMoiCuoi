@@ -28,7 +28,9 @@ export default function RsvpPage({ side }) {
       <section className="rsvp-hero-card">
         <span className="rsvp-super-title">PHÚC ĐÁP</span>
         <h1 className="rsvp-main-heading">
-          {wedding.couple.groom} &amp; {wedding.couple.bride}
+          <span className="hero-name-line">{wedding.couple.groom}</span>
+          <span className="amp">&amp;</span>
+          <span className="hero-name-line">{wedding.couple.bride}</span>
         </h1>
 
         {invite.invitation?.name ? (

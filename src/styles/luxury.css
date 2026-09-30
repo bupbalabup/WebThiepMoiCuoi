@@ -1,0 +1,2077 @@
+/* ==========================================================================
+   LUXURY EDITORIAL WEDDING DESIGN SYSTEM
+   High-end Wedding Invitation & Portal
+   Responsive: Expansive Editorial Web on Desktop | Sleek App on Mobile
+   Strictly Zero Emojis/Icons | Pure Typography & SVG Stationery Accents
+   ========================================================================== */
+
+:root {
+  /* Color Palette: Warm Minimalism (Kem sữa, Nâu trầm, Cát ấm & Vàng đồng) */
+  --lux-bg: #fcf9f5;
+  --lux-bg-alt: #f6efe6;
+  --lux-bg-warm: #f0e6d8;
+  --lux-card: #ffffff;
+  --lux-card-inner: #fdfbf7;
+  
+  --lux-espresso: #241b16;      /* Deep primary ink for headings */
+  --lux-mocha: #48392f;         /* Secondary ink */
+  --lux-body: #594c42;          /* Body text color with high legibility */
+  --lux-muted: #857568;         /* Subtitles & captions */
+  --lux-faint: #ad9e91;         /* Watermarks & light hints */
+  
+  --lux-gold: #bfa074;          /* Antique gold accent */
+  --lux-bronze: #9c7b56;        /* Warm bronze eyebrow */
+  --lux-border: #dfd4c5;        /* Primary hairline border */
+  --lux-border-soft: #ece4d8;   /* Subtle divider */
+  --lux-seal: #843a33;          /* Authentic wax seal wine/terracotta */
+  
+  /* Fonts - 100% Native Vietnamese Support Bundled Locally */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-serif-upright: 'Cormorant Upright', 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Shadows */
+  --lux-shadow-sm: 0 4px 16px rgba(36, 27, 22, 0.04);
+  --lux-shadow-md: 0 12px 32px rgba(36, 27, 22, 0.08);
+  --lux-shadow-lg: 0 24px 64px rgba(36, 27, 22, 0.12);
+  --lux-shadow-card: 0 16px 48px rgba(36, 27, 22, 0.06), 0 0 0 1px rgba(223, 212, 197, 0.5);
+}
+
+/* ==========================================================================
+   RESET & GLOBAL BASE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  background-color: var(--lux-bg);
+  color: var(--lux-body);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--lux-bg);
+  color: var(--lux-body);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, figure, blockquote {
+  margin-top: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   AMBIENT FALLING PETALS / LEAVES (NO ICONS, PURE SVG)
+   ========================================================================== */
+.ambient-petals-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.ambient-petal {
+  position: absolute;
+  top: -40px;
+  opacity: 0.75;
+  will-change: transform;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(105vh) translateX(var(--sway, 20px)) rotate(360deg) scale(1.05);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   ORNAMENTAL SVG ACCESSORIES
+   ========================================================================== */
+.lux-wax-seal {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lux-wax-seal:hover {
+  transform: scale(1.06);
+}
+
+.seal-body {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9b4a42 0%, #762f28 55%, #501d17 100%);
+  box-shadow: 0 8px 24px rgba(80, 29, 23, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-inner-svg {
+  position: absolute;
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+}
+
+.seal-monogram-text {
+  position: relative;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff6ef;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.seal-outer-ripple {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(189, 74, 66, 0.35);
+  animation: sealPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.12); opacity: 0.8; }
+}
+
+/* Corner Flourishes */
+.lux-corner-flourish {
+  position: absolute;
+  pointer-events: none;
+  color: var(--lux-gold);
+  z-index: 2;
+}
+
+.lux-corner-flourish.top-left { top: 12px; left: 12px; }
+.lux-corner-flourish.top-right { top: 12px; right: 12px; }
+.lux-corner-flourish.bottom-left { bottom: 12px; left: 12px; }
+.lux-corner-flourish.bottom-right { bottom: 12px; right: 12px; }
+
+/* Section Divider */
+.lux-section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 28px auto;
+  max-width: 320px;
+  color: var(--lux-gold);
+}
+
+.lux-section-divider .divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lux-border), transparent);
+}
+
+.lux-section-divider .divider-motif {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM
+   Fluid responsive sizing that shines on wide desktop & mobile
+   ========================================================================== */
+.lux-eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--lux-bronze);
+  margin-bottom: 10px;
+}
+
+.lux-section-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--lux-espresso);
+  margin: 0 0 12px;
+}
+
+.lux-section-subtitle {
+  font-size: 1rem;
+  color: var(--lux-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lux-card-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 600;
+  color: var(--lux-espresso);
+  margin: 0 0 8px;
+}
+
+/* Button styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 32px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.button:hover::after {
+  transform: translateX(100%);
+}
+
+.button-primary {
+  background: var(--lux-espresso);
+  color: #fff;
+  border: 1px solid var(--lux-espresso);
+  box-shadow: 0 6px 20px rgba(36, 27, 22, 0.18);
+}
+
+.button-primary:hover {
+  background: #3e3027;
+  border-color: #3e3027;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(36, 27, 22, 0.24);
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--lux-espresso);
+  border: 1px solid var(--lux-border);
+}
+
+.button-outline:hover {
+  background: var(--lux-espresso);
+  color: #fff;
+  border-color: var(--lux-espresso);
+  transform: translateY(-2px);
+}
+
+.button-gift {
+  background: var(--lux-bg-warm);
+  color: var(--lux-espresso);
+  border: 1px solid var(--lux-border);
+}
+
+.button-gift:hover {
+  background: #e6dac8;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   CINEMATIC COVER / ENVELOPE OPENING
+   ========================================================================== */
+.lux-cover-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: linear-gradient(135deg, #f2e5d5 0%, #e5d2be 50%, #d8c2ab 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lux-cover-overlay.is-opening {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.lux-cover-card {
+  position: relative;
+  width: min(540px, 94vw);
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: 0 30px 80px rgba(36, 27, 22, 0.32), 0 8px 24px rgba(36, 27, 22, 0.15);
+  padding: clamp(48px, 8vw, 76px) clamp(28px, 6vw, 56px) clamp(36px, 6vw, 48px);
+  text-align: center;
+  border-radius: 4px;
+  outline: 1px solid rgba(191, 160, 116, 0.4);
+  outline-offset: -12px;
+}
+
+.lux-cover-card .seal-top-badge {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.cover-wedding-label {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+}
+
+.cover-couple-title {
+  margin: 16px 0 10px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 500;
+  color: var(--lux-espresso);
+  line-height: 1.15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cover-couple-title .hero-name-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.cover-couple-title .amp {
+  display: block;
+  font-family: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-style: normal;
+  font-size: 0.6em;
+  color: var(--lux-gold);
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.cover-date-badge {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--lux-mocha);
+  text-transform: uppercase;
+  margin: 12px 0 24px;
+}
+
+.cover-guest-callout {
+  padding: 16px 12px;
+  background: var(--lux-bg-alt);
+  border: 1px dashed var(--lux-border);
+  margin: 20px 0 28px;
+}
+
+.cover-guest-callout .salutation {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--lux-muted);
+}
+
+.cover-guest-callout .guest-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  font-weight: 600;
+  color: var(--lux-espresso);
+  margin-top: 4px;
+}
+
+.cover-open-btn {
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR
+   Full-width sticky header with glassmorphism blur
+   ========================================================================== */
+.lux-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 68px;
+  background: rgba(252, 249, 245, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--lux-border-soft);
+  transition: all 0.3s ease;
+}
+
+.lux-navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(36, 27, 22, 0.06);
+  background: rgba(252, 249, 245, 0.98);
+}
+
+.lux-nav-container {
+  max-width: 1240px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lux-nav-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--lux-espresso);
+  letter-spacing: 0.05em;
+}
+
+.lux-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.lux-nav-menu a {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--lux-mocha);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.lux-nav-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--lux-espresso);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.lux-nav-menu a:hover {
+  color: var(--lux-espresso);
+}
+
+.lux-nav-menu a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.lux-nav-rsvp-pill {
+  padding: 8px 20px !important;
+  background: var(--lux-espresso);
+  color: #fff !important;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid var(--lux-espresso);
+  transition: all 0.2s ease;
+}
+
+.lux-nav-rsvp-pill:hover {
+  background: #3e3027;
+  transform: translateY(-1px);
+}
+
+.lux-nav-rsvp-pill::after {
+  display: none !important;
+}
+
+/* ==========================================================================
+   LAYOUT STRUCTURE (DESKTOP FULL WIDTH EDITORIAL)
+   ========================================================================== */
+.lux-wedding-suite {
+  min-height: 100vh;
+  background: var(--lux-bg);
+}
+
+.lux-section {
+  width: 100%;
+  position: relative;
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+
+.lux-section.bg-alt {
+  background-color: var(--lux-bg-alt);
+}
+
+.lux-section.bg-warm {
+  background-color: var(--lux-bg-warm);
+}
+
+.lux-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.lux-section-header {
+  text-align: center;
+  margin-bottom: clamp(36px, 6vw, 56px);
+}
+
+/* ==========================================================================
+   SECTION 1: HERO (SPLIT 2-COLUMN ON DESKTOP)
+   ========================================================================== */
+.lux-hero-section {
+  padding: clamp(40px, 6vw, 72px) 0 clamp(60px, 8vw, 90px);
+  background: radial-gradient(ellipse at 50% 20%, #fbf5eb 0%, var(--lux-bg) 70%);
+}
+
+.lux-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(36px, 6vw, 72px);
+  align-items: center;
+}
+
+.lux-hero-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.lux-hero-seal-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.hero-save-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+}
+
+.lux-hero-names {
+  margin: 0 0 14px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--lux-espresso);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lux-hero-names .hero-name-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.lux-hero-names .amp {
+  display: block;
+  font-family: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-style: normal;
+  font-size: 0.62em;
+  color: var(--lux-gold);
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.lux-hero-full-names {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--lux-muted);
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.lux-hero-full-names .hero-name-line {
+  white-space: nowrap;
+}
+
+.lux-hero-full-names .full-name-amp {
+  color: var(--lux-gold);
+}
+
+.lux-hero-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--lux-border);
+  border-bottom: 1px solid var(--lux-border);
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.hero-meta-item {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--lux-espresso);
+  letter-spacing: 0.08em;
+}
+
+.hero-meta-sep {
+  color: var(--lux-gold);
+}
+
+.lux-hero-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.8;
+  color: var(--lux-body);
+  margin: 0 0 28px;
+  border-left: 2px solid var(--lux-gold);
+  padding-left: 18px;
+}
+
+.lux-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Hero Photo Side */
+.lux-hero-photo-col {
+  position: relative;
+}
+
+.lux-hero-photo-card {
+  position: relative;
+  background: var(--lux-card);
+  padding: 14px;
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-lg);
+}
+
+.lux-hero-photo-inner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.lux-hero-photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lux-hero-photo-card:hover .lux-hero-photo-inner img {
+  transform: scale(1.04);
+}
+
+.lux-hero-caption {
+  margin-top: 12px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--lux-mocha);
+  text-align: center;
+}
+
+/* ==========================================================================
+   SECTION 2: CEREMONY & FAMILIES (STATIONERY CARD DESIGN)
+   ========================================================================== */
+.lux-ceremony-paper {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(36px, 6vw, 68px) clamp(24px, 5vw, 60px);
+  position: relative;
+  border-radius: 4px;
+}
+
+.lux-guest-banner {
+  text-align: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--lux-border-soft);
+  margin-bottom: 36px;
+}
+
+.lux-guest-badge {
+  display: inline-block;
+  padding: 6px 20px;
+  background: var(--lux-bg-alt);
+  border: 1px solid var(--lux-border);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.lux-guest-display-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 500;
+  color: var(--lux-espresso);
+  margin: 0 0 10px;
+}
+
+.lux-guest-lead {
+  font-size: 1rem;
+  color: var(--lux-body);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lux-parents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(24px, 5vw, 56px);
+  text-align: center;
+  padding: 12px 0 24px;
+}
+
+.lux-family-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 18px;
+  background: var(--lux-card-inner);
+  border: 1px solid var(--lux-border-soft);
+}
+
+.lux-family-role {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--lux-gold);
+}
+
+.lux-parent-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  color: var(--lux-espresso);
+  margin: 3px 0;
+}
+
+.lux-home-ceremony-box {
+  margin-top: 32px;
+  padding: 24px 28px;
+  background: var(--lux-bg-alt);
+  border: 1px solid var(--lux-border);
+  text-align: center;
+}
+
+.home-ceremony-tag {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.home-ceremony-main {
+  font-size: 1.05rem;
+  color: var(--lux-espresso);
+  margin: 0 0 4px;
+}
+
+.home-ceremony-addr {
+  font-size: 0.95rem;
+  color: var(--lux-body);
+  margin: 0 0 6px;
+}
+
+.home-ceremony-lunar {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--lux-bronze);
+}
+
+/* ==========================================================================
+   SECTION 3: RECEPTION & TIMELINE (SPLIT 2-COLUMN ON DESKTOP)
+   ========================================================================== */
+.lux-reception-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 54px);
+  align-items: stretch;
+}
+
+.lux-reception-card {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.lux-giant-date-block {
+  padding: 20px 0;
+  border-top: 1px solid var(--lux-border);
+  border-bottom: 1px solid var(--lux-border);
+  margin: 18px 0;
+}
+
+.giant-hour {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--lux-bronze);
+}
+
+.giant-number-21 {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--lux-espresso);
+  margin: 6px 0;
+}
+
+.giant-month-year {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--lux-mocha);
+}
+
+.giant-lunar {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--lux-muted);
+  margin-top: 4px;
+}
+
+.lux-venue-box {
+  margin: 14px 0 20px;
+}
+
+.lux-venue-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 600;
+  color: var(--lux-espresso);
+  margin: 0 0 4px;
+}
+
+.lux-venue-hall {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--lux-bronze);
+  margin: 0 0 4px;
+}
+
+.lux-venue-address {
+  font-size: 0.92rem;
+  color: var(--lux-body);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* Timeline & Countdown Column */
+.lux-timeline-card {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+.lux-reception-rsvp {
+  width: 100%;
+  text-align: center;
+  min-width: 0;
+}
+
+.lux-reception-grid > *,
+.lux-location-grid > * {
+  min-width: 0;
+}
+
+.lux-timeline-card {
+  gap: 24px;
+}
+
+.lux-reception-rsvp .button {
+  width: 100%;
+}
+
+.lux-reception-rsvp p {
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--lux-bronze);
+}
+
+.lux-timeline-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.lux-timeline-track {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  margin: 10px 0 32px;
+}
+
+.lux-timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 24px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--lux-gold) 0%, var(--lux-border) 100%);
+}
+
+.lux-timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+  background: var(--lux-card-inner);
+  border: 1px solid var(--lux-border-soft);
+  padding: 16px 20px;
+  border-radius: 2px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.lux-timeline-item:hover {
+  transform: translateX(4px);
+  border-color: var(--lux-gold);
+}
+
+.timeline-node {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--lux-card);
+  border: 1.5px solid var(--lux-gold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(191, 160, 116, 0.2);
+}
+
+.node-number {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--lux-bronze);
+}
+
+.timeline-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-hour {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--lux-bronze);
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--lux-espresso);
+}
+
+/* ==========================================================================
+   COUNTDOWN TIMER SYSTEM
+   ========================================================================== */
+.lux-countdown-wrapper {
+  text-align: center;
+  padding: 24px 16px 12px;
+  border-top: 1px solid var(--lux-border-soft);
+}
+
+.lux-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 440px;
+  margin: 14px auto 0;
+}
+
+.lux-countdown-unit {
+  background: var(--lux-bg-alt);
+  border: 1px solid var(--lux-border);
+  padding: 14px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 2px;
+}
+
+.unit-number {
+  font-family: var(--font-serif-upright);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--lux-espresso);
+  line-height: 1;
+}
+
+.unit-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--lux-bronze);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   CALENDAR SYSTEM
+   ========================================================================== */
+.save-date-stationery-card {
+  width: 100%;
+}
+
+.calendar-box {
+  background: var(--lux-card-inner);
+  border: 1px solid var(--lux-border-soft);
+  padding: 22px 18px;
+  margin: 16px 0;
+  border-radius: 2px;
+}
+
+.calendar-month-title {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--lux-espresso);
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.calendar-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calendar-row.header-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--lux-border-soft);
+}
+
+.cal-header-cell {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--lux-bronze);
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.cal-day-cell {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--lux-body);
+}
+
+.cal-day-cell.blank {
+  pointer-events: none;
+}
+
+.cal-day-cell.is-wedding-day {
+  background: var(--lux-espresso) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(36, 27, 22, 0.35);
+}
+
+.calendar-button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.cal-action-btn {
+  padding: 10px 18px;
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--lux-espresso);
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+
+.cal-action-btn:hover {
+  background: var(--lux-espresso);
+  color: #ffffff;
+  border-color: var(--lux-espresso);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   SECTION 4: ALBUM GALLERY (RESPONSIVE EDITORIAL MOSAIC)
+   ========================================================================== */
+.lux-gallery-section {
+  width: 100%;
+}
+
+.lux-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.lux-gallery-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.lux-gallery-card.is-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.card-media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--lux-bg-warm);
+}
+
+.lux-gallery-card.is-featured .card-media-wrapper {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
+.card-media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+}
+
+.lux-gallery-card:hover .card-media-wrapper img {
+  transform: scale(1.06);
+  filter: brightness(1.03);
+}
+
+.card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(36, 27, 22, 0.1) 0%, rgba(36, 27, 22, 0.6) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.lux-gallery-card:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+.card-zoom-badge {
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--lux-espresso);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.lux-gallery-card:hover .card-zoom-badge {
+  transform: translateY(0);
+}
+
+.card-index-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+
+.lux-gallery-action {
+  text-align: center;
+  margin-top: 36px;
+}
+
+/* Lightbox Modal View */
+.lux-lightbox-view {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 480px;
+}
+
+.lux-lightbox-image-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 75vh;
+}
+
+.lux-lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.lux-lightbox-nav {
+  padding: 12px 18px;
+  background: var(--lux-espresso);
+  color: #ffffff;
+  border: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.lux-lightbox-nav:hover {
+  background: #48392f;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SECTION 5: LOCATION & MAP (SPLIT 2-COLUMN ON DESKTOP)
+   ========================================================================== */
+.lux-location-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(28px, 5vw, 54px);
+  align-items: stretch;
+}
+
+.lux-location-info-card {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(32px, 5vw, 54px) clamp(22px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+.location-palace-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--lux-espresso);
+  margin: 6px 0 8px;
+}
+
+.location-hall-badge {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.location-address-full {
+  font-size: 1.05rem;
+  color: var(--lux-body);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.location-parking-note {
+  padding: 16px;
+  background: var(--lux-bg-alt);
+  border-left: 2px solid var(--lux-gold);
+  font-size: 0.92rem;
+  color: var(--lux-mocha);
+  margin-bottom: 24px;
+}
+
+.location-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lux-map-frame-box {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: 12px;
+  border-radius: 4px;
+  min-height: 400px;
+}
+
+.lux-map-frame-box iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border: none;
+}
+
+/* ==========================================================================
+   SECTION 6: WISHES & GIFT CARDS
+   ========================================================================== */
+.lux-wishes-paper {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 54px);
+  max-width: 780px;
+  margin: 0 auto;
+  border-radius: 4px;
+  position: relative;
+}
+
+.wish-form {
+  display: grid;
+  gap: 20px;
+  text-align: left;
+}
+
+.wish-form label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--lux-espresso);
+  margin-bottom: 6px;
+}
+
+.wish-form input,
+.wish-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--lux-card-inner);
+  border: 1px solid var(--lux-border);
+  font-size: 0.95rem;
+  color: var(--lux-espresso);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+.wish-form input:focus,
+.wish-form textarea:focus {
+  outline: none;
+  border-color: var(--lux-espresso);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(36, 27, 22, 0.08);
+}
+
+.wish-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.wish-form small {
+  font-size: 0.8rem;
+  color: var(--lux-muted);
+}
+
+.wish-success {
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.wish-success h3 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--lux-espresso);
+  margin-bottom: 8px;
+}
+
+.wish-success blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--lux-mocha);
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 16px;
+  background: var(--lux-bg-alt);
+  border-left: 2px solid var(--lux-gold);
+}
+
+/* Gift Section Card */
+.lux-gift-card {
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(36px, 6vw, 64px) clamp(20px, 5vw, 54px);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.gift-qr-box {
+  width: min(240px, 80%);
+  margin: 20px auto;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-sm);
+}
+
+.gift-account-details {
+  background: var(--lux-bg-alt);
+  border: 1px solid var(--lux-border-soft);
+  padding: 16px 20px;
+  margin: 20px auto;
+  max-width: 440px;
+}
+
+.gift-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--lux-border-soft);
+  font-size: 0.92rem;
+}
+
+.gift-data-row:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   SECTION 7: CLOSING & FOOTER
+   ========================================================================== */
+.lux-closing-section {
+  text-align: center;
+  padding: 0 0 60px;
+}
+
+.lux-closing-photo-wrap {
+  width: 100%;
+  max-height: 540px;
+  overflow: hidden;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.lux-closing-photo-wrap img {
+  width: 100%;
+  max-height: 540px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.lux-closing-photo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(252, 249, 245, 0.1) 0%, var(--lux-bg) 100%);
+}
+
+.lux-closing-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 500;
+  color: var(--lux-espresso);
+  margin-bottom: 10px;
+}
+
+.lux-closing-sub {
+  font-size: 1.05rem;
+  color: var(--lux-body);
+  max-width: 500px;
+  margin: 0 auto 16px;
+}
+
+.lux-closing-signature {
+  display: block;
+  font-family: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--lux-gold);
+  margin-top: 10px;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+.lux-site-footer {
+  text-align: center;
+  padding: 40px 16px 90px;
+  border-top: 1px solid var(--lux-border);
+  background: var(--lux-bg-alt);
+  font-size: 0.8rem;
+  color: var(--lux-muted);
+  letter-spacing: 0.12em;
+}
+
+/* ==========================================================================
+   MOBILE FLOATING ACTIONS BAR
+   ========================================================================== */
+.lux-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: rgba(252, 249, 245, 0.96);
+  border-top: 1px solid var(--lux-border);
+  backdrop-filter: blur(12px);
+  padding: 10px 16px max(10px, env(safe-area-inset-bottom));
+  gap: 10px;
+}
+
+.lux-mobile-bar button,
+.lux-mobile-bar a {
+  flex: 1;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.lux-mobile-bar .bar-btn-rsvp {
+  background: var(--lux-espresso);
+  color: #fff;
+  border: 1px solid var(--lux-espresso);
+}
+
+.lux-mobile-bar .bar-btn-wish {
+  background: var(--lux-bg-alt);
+  color: var(--lux-espresso);
+  border: 1px solid var(--lux-border);
+}
+
+.lux-mobile-bar .bar-btn-gift {
+  background: var(--lux-bg-warm);
+  color: var(--lux-espresso);
+  border: 1px solid var(--lux-border);
+}
+
+/* ==========================================================================
+   HOMEPAGE LUXURY PORTAL
+   ========================================================================== */
+.lux-home-portal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 60px) 20px;
+  background: radial-gradient(ellipse at 50% 30%, #f9f2e7 0%, #ede3d5 100%);
+}
+
+.lux-portal-card {
+  width: min(1080px, 100%);
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: 0 30px 80px rgba(36, 27, 22, 0.18);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+}
+
+.lux-portal-photo {
+  position: relative;
+  min-height: 560px;
+}
+
+.lux-portal-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lux-portal-content {
+  padding: clamp(36px, 5vw, 60px) clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.portal-prompt {
+  font-size: 0.92rem;
+  color: var(--lux-muted);
+  margin: 20px 0 16px;
+}
+
+.portal-btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.portal-side-btn {
+  padding: 18px 12px;
+  background: var(--lux-card-inner);
+  border: 1px solid var(--lux-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+
+.portal-side-btn:hover {
+  background: var(--lux-espresso);
+  color: #fff;
+  border-color: var(--lux-espresso);
+  transform: translateY(-2px);
+  box-shadow: var(--lux-shadow-md);
+}
+
+.portal-side-btn:hover .side-role,
+.portal-side-btn:hover .side-sub {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.portal-side-btn .side-role {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+}
+
+.portal-side-btn .side-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.portal-side-btn .side-sub {
+  font-size: 0.76rem;
+  color: var(--lux-muted);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (DESKTOP -> TABLET -> MOBILE)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .lux-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .lux-hero-text-col {
+    align-items: center;
+    text-align: center;
+  }
+  .lux-hero-text-col .lux-hero-names {
+    align-items: center;
+    text-align: center;
+  }
+  .lux-hero-full-names {
+    justify-content: center;
+  }
+  .lux-hero-meta-bar {
+    justify-content: center;
+  }
+  .lux-hero-quote {
+    border-left: none;
+    border-top: 1px solid var(--lux-gold);
+    border-bottom: 1px solid var(--lux-gold);
+    padding: 14px 0;
+  }
+  .lux-hero-actions {
+    justify-content: center;
+  }
+  .lux-hero-photo-card {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .lux-reception-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lux-location-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lux-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lux-gallery-card.is-featured {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .lux-portal-card {
+    grid-template-columns: 1fr;
+  }
+  .lux-portal-photo {
+    min-height: 340px;
+    max-height: 420px;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-reveal="left"]:not(.revealed),
+  [data-reveal="right"]:not(.revealed) {
+    transform: translateY(28px);
+  }
+  .lux-navbar {
+    height: 56px;
+  }
+  .lux-nav-container {
+    padding: 0 16px;
+  }
+  .lux-nav-menu a:not(.lux-nav-rsvp-pill) {
+    display: none;
+  }
+  .lux-parents-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .lux-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .lux-gallery-card.is-featured {
+    grid-column: span 1;
+  }
+  .portal-btn-grid {
+    grid-template-columns: 1fr;
+  }
+  .lux-mobile-bar {
+    display: flex;
+  }
+  .lux-site-footer {
+    padding-bottom: 110px;
+  }
+  .lux-lightbox-view {
+    flex-direction: column;
+  }
+  .lux-lightbox-nav {
+    width: 100%;
+  }
+  .audio-player-wrapper {
+    bottom: 72px !important;
+    right: 14px !important;
+  }
+}
+
+/* ==========================================================================
+   FLOATING AUDIO PLAYER LUXURY POLISH
+   ========================================================================== */
+.audio-player-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 95;
+}
+
+.audio-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--lux-border);
+  box-shadow: 0 4px 16px rgba(36, 27, 22, 0.1);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 40px;
+  transition: all 0.25s ease;
+}
+
+.audio-toggle-btn:hover {
+  border-color: var(--lux-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(36, 27, 22, 0.15);
+}
+
+.audio-soundwave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.audio-soundwave .bar {
+  width: 2px;
+  height: 4px;
+  background: var(--lux-gold);
+  transition: height 0.2s ease;
+  border-radius: 1px;
+}
+
+.audio-toggle-btn.is-playing .audio-soundwave .bar:nth-child(1) {
+  animation: soundWave 0.75s ease-in-out infinite alternate;
+}
+.audio-toggle-btn.is-playing .audio-soundwave .bar:nth-child(2) {
+  animation: soundWave 0.75s ease-in-out infinite 0.25s alternate;
+}
+.audio-toggle-btn.is-playing .audio-soundwave .bar:nth-child(3) {
+  animation: soundWave 0.75s ease-in-out infinite 0.5s alternate;
+}
+
+@keyframes soundWave {
+  0%   { height: 3px; }
+  100% { height: 13px; }
+}
+
+.audio-text-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--lux-espresso);
+}
+
+/* ==========================================================================
+   STANDALONE RSVP PAGE LUXURY POLISH
+   ========================================================================== */
+.rsvp-standalone-page {
+  min-height: 100vh;
+  padding: 32px 20px 80px;
+  background: radial-gradient(ellipse at 50% 20%, #fbf5eb 0%, var(--lux-bg) 80%);
+}
+
+.rsvp-page-header {
+  max-width: 780px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rsvp-nav-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--lux-espresso);
+}
+
+.rsvp-back-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lux-mocha);
+  padding: 8px 16px;
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  transition: all 0.2s ease;
+}
+
+.rsvp-back-link:hover {
+  background: var(--lux-espresso);
+  color: #fff;
+  border-color: var(--lux-espresso);
+}
+
+.rsvp-hero-card {
+  max-width: 780px;
+  margin: 0 auto 24px;
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: 36px 24px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.rsvp-super-title {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--lux-bronze);
+  text-transform: uppercase;
+}
+
+.rsvp-main-heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 500;
+  color: var(--lux-espresso);
+  margin: 8px 0 12px;
+}
+
+.rsvp-guest-tag {
+  display: inline-block;
+  padding: 6px 18px;
+  background: var(--lux-bg-alt);
+  border: 1px solid var(--lux-border);
+  margin-bottom: 14px;
+}
+
+.tag-prefix {
+  font-size: 0.85rem;
+  color: var(--lux-muted);
+  margin-right: 6px;
+}
+
+.tag-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--lux-espresso);
+}
+
+.rsvp-meta-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  color: var(--lux-muted);
+  flex-wrap: wrap;
+}
+
+.meta-sep {
+  color: var(--lux-gold);
+}
+
+.rsvp-card-container {
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--lux-card);
+  border: 1px solid var(--lux-border);
+  box-shadow: var(--lux-shadow-card);
+  padding: clamp(28px, 5vw, 48px);
+  border-radius: 4px;
+}
+
+.rsvp-footer-action {
+  max-width: 780px;
+  margin: 28px auto 0;
+  text-align: center;
+}

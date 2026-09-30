@@ -1,0 +1,740 @@
+/* ==========================================================================
+   ANIMATION SYSTEM
+   Scroll-reveal, cover opening, micro-interactions, parallax breathing
+   ========================================================================== */
+
+/* --- Keyframes --- */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes coverFadeOut {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.7; transform: scale(1.02); }
+  100% { opacity: 0; transform: scale(1.08); visibility: hidden; }
+}
+
+@keyframes coverCardOpen {
+  0%   { opacity: 1; transform: perspective(800px) rotateX(0deg) scale(1); }
+  60%  { opacity: 0.6; transform: perspective(800px) rotateX(-8deg) scale(0.96) translateY(-20px); }
+  100% { opacity: 0; transform: perspective(800px) rotateX(-12deg) scale(0.9) translateY(-40px); }
+}
+
+@keyframes heroFloatIn {
+  from { opacity: 0; transform: translateY(50px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes gentleBreath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.008); }
+}
+
+@keyframes hairlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes navSlideDown {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(105, 83, 63, 0.3); }
+  70%  { box-shadow: 0 0 0 10px rgba(105, 83, 63, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(105, 83, 63, 0); }
+}
+
+@keyframes calendarDayAppear {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes weddingDayPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(105, 83, 63, 0.4); }
+  50%      { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(105, 83, 63, 0); }
+}
+
+@keyframes fadeInBlur {
+  from { opacity: 0; filter: blur(8px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+@keyframes photoReveal {
+  from { opacity: 0; transform: scale(1.06); filter: blur(3px); }
+  to   { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes giftShimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+@keyframes progressBar {
+  0%   { transform: scaleX(0); opacity: 1; }
+  80%  { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* ==========================================================================
+   SCROLL REVEAL BASE
+   ========================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal="fade"] {
+  transform: none;
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.92);
+}
+
+[data-reveal="scale"].revealed {
+  transform: scale(1);
+}
+
+[data-reveal="left"] {
+  transform: translateX(-28px);
+}
+
+[data-reveal="left"].revealed {
+  transform: translateX(0);
+}
+
+[data-reveal="right"] {
+  transform: translateX(28px);
+}
+
+[data-reveal="right"].revealed {
+  transform: translateX(0);
+}
+
+[data-reveal="blur"] {
+  transform: none;
+  filter: blur(8px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="blur"].revealed {
+  filter: blur(0);
+}
+
+/* ==========================================================================
+   COVER / ENVELOPE OPENING ANIMATION
+   ========================================================================== */
+.invitation-cover {
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.invitation-cover.cover-opening {
+  animation: coverFadeOut 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+
+.cover-paper {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.6s ease;
+  animation: heroFloatIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.invitation-cover.cover-opening .cover-paper {
+  animation: coverCardOpen 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Staggered entrance for cover elements */
+.cover-monogram {
+  animation: revealFade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.cover-paper .eyebrow {
+  animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+}
+
+.cover-paper h1 {
+  animation: fadeInBlur 1s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+}
+
+.cover-date {
+  animation: revealUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+.cover-guest {
+  animation: revealUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
+}
+
+.cover-paper .button {
+  animation: revealScale 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1.2s both;
+}
+
+/* ==========================================================================
+   HERO SECTION ANIMATION
+   ========================================================================== */
+.wedding-hero {
+  animation: revealFade 0.8s ease 0.1s both;
+}
+
+.wedding-hero .eyebrow {
+  animation: revealUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.wedding-hero h1 {
+  animation: fadeInBlur 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.hero-date {
+  animation: revealUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+}
+
+.hero-photo {
+  animation: photoReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+.hero-photo figcaption {
+  animation: revealFade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
+}
+
+/* Subtle breathing on hero photo */
+.hero-photo img {
+  animation: gentleBreath 8s ease-in-out infinite 2s;
+}
+
+/* ==========================================================================
+   NAVIGATION ANIMATION
+   ========================================================================== */
+.wedding-nav {
+  animation: navSlideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.wedding-nav.scrolled {
+  box-shadow: 0 2px 20px rgba(42, 28, 24, 0.08);
+  background: #fbf8f1fa;
+}
+
+/* Nav link hover underline */
+.wedding-nav > div > a {
+  position: relative;
+}
+
+.wedding-nav > div > a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-nav > div > a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* ==========================================================================
+   CEREMONY SECTION DECORATIVE CORNERS
+   ========================================================================== */
+.ceremony-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.ceremony-section::before,
+.ceremony-section::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: #b5a48d66;
+  border-style: solid;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.3s;
+}
+
+.ceremony-section::before {
+  top: 14px;
+  left: 14px;
+  border-width: 1px 0 0 1px;
+}
+
+.ceremony-section::after {
+  bottom: 14px;
+  right: 14px;
+  border-width: 0 1px 1px 0;
+}
+
+.ceremony-section[data-reveal].revealed::before,
+.ceremony-section[data-reveal].revealed::after {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   COUNTDOWN TIMER
+   ========================================================================== */
+.cd-val {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.countdown-minimal-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease;
+}
+
+.countdown-minimal-card:hover {
+  transform: translateY(-2px);
+  border-color: #b5a48d;
+}
+
+/* Staggered entrance */
+.countdown-minimal-card:nth-child(1) { animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+.countdown-minimal-card:nth-child(2) { animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+.countdown-minimal-card:nth-child(3) { animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.countdown-minimal-card:nth-child(4) { animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both; }
+
+/* ==========================================================================
+   RECEPTION DATE & TIMELINE STAGGER
+   ========================================================================== */
+.reception-date > span {
+  display: inline-block;
+  animation: gentleBreath 6s ease-in-out infinite;
+}
+
+.wedding-timeline > div {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-timeline[data-reveal].revealed > div:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.1s; }
+.wedding-timeline[data-reveal].revealed > div:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.25s; }
+.wedding-timeline[data-reveal].revealed > div:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.4s; }
+
+/* ==========================================================================
+   CALENDAR DAY STAGGER
+   ========================================================================== */
+.calendar-days-grid .cal-day-cell:not(.blank) {
+  animation: calendarDayAppear 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.calendar-days-grid .cal-day-cell:nth-child(4)  { animation-delay: 0.02s; }
+.calendar-days-grid .cal-day-cell:nth-child(5)  { animation-delay: 0.04s; }
+.calendar-days-grid .cal-day-cell:nth-child(6)  { animation-delay: 0.06s; }
+.calendar-days-grid .cal-day-cell:nth-child(7)  { animation-delay: 0.08s; }
+.calendar-days-grid .cal-day-cell:nth-child(8)  { animation-delay: 0.10s; }
+.calendar-days-grid .cal-day-cell:nth-child(9)  { animation-delay: 0.12s; }
+.calendar-days-grid .cal-day-cell:nth-child(10) { animation-delay: 0.14s; }
+.calendar-days-grid .cal-day-cell:nth-child(11) { animation-delay: 0.16s; }
+.calendar-days-grid .cal-day-cell:nth-child(12) { animation-delay: 0.18s; }
+.calendar-days-grid .cal-day-cell:nth-child(13) { animation-delay: 0.20s; }
+.calendar-days-grid .cal-day-cell:nth-child(14) { animation-delay: 0.22s; }
+.calendar-days-grid .cal-day-cell:nth-child(15) { animation-delay: 0.24s; }
+.calendar-days-grid .cal-day-cell:nth-child(16) { animation-delay: 0.26s; }
+.calendar-days-grid .cal-day-cell:nth-child(17) { animation-delay: 0.28s; }
+.calendar-days-grid .cal-day-cell:nth-child(18) { animation-delay: 0.30s; }
+.calendar-days-grid .cal-day-cell:nth-child(19) { animation-delay: 0.32s; }
+.calendar-days-grid .cal-day-cell:nth-child(20) { animation-delay: 0.34s; }
+.calendar-days-grid .cal-day-cell:nth-child(21) { animation-delay: 0.36s; }
+.calendar-days-grid .cal-day-cell:nth-child(22) { animation-delay: 0.38s; }
+.calendar-days-grid .cal-day-cell:nth-child(23) { animation-delay: 0.40s; }
+.calendar-days-grid .cal-day-cell:nth-child(24) { animation-delay: 0.42s; }
+
+/* Wedding day pulsing highlight */
+.cal-day-cell.is-wedding-day {
+  animation: weddingDayPulse 2.5s ease-in-out infinite !important;
+}
+
+/* ==========================================================================
+   GALLERY HOVER ENHANCEMENTS
+   ========================================================================== */
+.gallery-item {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(42, 28, 24, 0.12);
+}
+
+.gallery-item img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.02);
+}
+
+.gallery-hover-overlay {
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  background: linear-gradient(180deg, rgba(42, 28, 24, 0.1) 0%, rgba(42, 28, 24, 0.5) 100%);
+}
+
+.gallery-zoom-text {
+  transform: translateY(8px);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item:hover .gallery-zoom-text {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   BUTTON MICRO-INTERACTIONS
+   ========================================================================== */
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.25s ease,
+              color 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.button:hover::after {
+  transform: translateX(100%);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(42, 28, 24, 0.12);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+  transition-duration: 0.1s;
+}
+
+/* Primary button idle pulse */
+.button-primary {
+  animation: pulseRing 3s ease-in-out 2s;
+}
+
+/* ==========================================================================
+   MODAL/DIALOG ANIMATION
+   ========================================================================== */
+.modal-backdrop {
+  animation: revealFade 0.25s ease both;
+}
+
+.modal-card {
+  animation: revealUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+/* ==========================================================================
+   INPUT & FORM ANIMATIONS
+   ========================================================================== */
+.rsvp-input-text,
+.wish-form input,
+.wish-form textarea {
+  transition: border-color 0.25s ease,
+              box-shadow 0.25s ease,
+              transform 0.2s ease;
+}
+
+.rsvp-input-text:focus,
+.wish-form input:focus,
+.wish-form textarea:focus {
+  box-shadow: 0 0 0 3px rgba(105, 83, 63, 0.08);
+  transform: translateY(-1px);
+}
+
+.rsvp-radio-card {
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rsvp-radio-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(42, 28, 24, 0.06);
+}
+
+.rsvp-radio-card.checked {
+  animation: revealScale 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   WEDDING CLOSING FOOTER
+   ========================================================================== */
+.wedding-closing img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-closing[data-reveal].revealed img {
+  animation: photoReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.wedding-closing > span {
+  display: inline-block;
+  animation: gentleBreath 5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   HOMEPAGE ANIMATION
+   ========================================================================== */
+.wedding-home .home-paper {
+  animation: heroFloatIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.home-portrait img {
+  animation: photoReveal 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+.home-invitation {
+  animation: revealFade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+.home-invitation .cover-monogram {
+  animation: revealFade 0.6s ease 0.7s both;
+}
+
+.home-invitation .eyebrow {
+  animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+.home-invitation h1 {
+  animation: fadeInBlur 1s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+.home-invitation .cover-date {
+  animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
+}
+
+.home-invitation > p:not(.cover-date):not(.eyebrow):not(.home-selection-prompt) {
+  animation: revealFade 0.5s ease 1.2s both;
+}
+
+.home-selection-prompt {
+  animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1.3s both;
+}
+
+.home-selection-buttons {
+  animation: revealUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+}
+
+/* ==========================================================================
+   MOBILE ACTIONS SLIDE UP
+   ========================================================================== */
+.wedding-mobile-actions {
+  animation: revealUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+/* ==========================================================================
+   GIFT DIALOG QR SHIMMER
+   ========================================================================== */
+.gift-qr-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.gift-qr-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.4) 50%, transparent 65%);
+  transform: translateX(-100%);
+}
+
+.gift-dialog-stationery .gift-qr-wrapper::after {
+  animation: giftShimmer 2.5s ease-in-out 1s 1 forwards;
+}
+
+/* ==========================================================================
+   PAGE LOAD PROGRESS LINE
+   ========================================================================== */
+.wedding-canvas::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #b5a48d44 20%,
+    #b5a48d88 50%,
+    #b5a48d44 80%,
+    transparent 100%
+  );
+  z-index: 100;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: progressBar 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   SMOOTH SECTION TRANSITIONS
+   ========================================================================== */
+.paper-section,
+.gallery-stationery-section,
+.wedding-countdown,
+.wish-section,
+.wedding-closing {
+  transition: opacity 0.6s ease;
+}
+
+/* ==========================================================================
+   LIGHTBOX ANIMATION
+   ========================================================================== */
+.lightbox-image {
+  animation: revealScale 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lightbox-nav-btn {
+  transition: background-color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.lightbox-nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.lightbox-nav-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ==========================================================================
+   COPY BUTTON FEEDBACK
+   ========================================================================== */
+.copy-btn-minimal {
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.copy-btn-minimal:active {
+  transform: scale(0.94);
+}
+
+/* ==========================================================================
+   RSVP SUCCESS CELEBRATION
+   ========================================================================== */
+.rsvp-stationery-success {
+  animation: revealScale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rsvp-stationery-success .rsvp-watermark {
+  animation: fadeInBlur 0.8s ease 0.2s both;
+}
+
+.rsvp-stationery-success .success-heading {
+  animation: revealUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+.rsvp-stationery-success .signature-couple {
+  animation: revealFade 0.6s ease 0.7s both;
+}
+
+.wish-success {
+  animation: revealScale 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ==========================================================================
+   CALENDAR ACTION HOVER
+   ========================================================================== */
+.cal-action-btn {
+  transition: border-color 0.25s ease,
+              background-color 0.25s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.cal-action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(42, 28, 24, 0.08);
+}
+
+.cal-action-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ==========================================================================
+   CLOSE BUTTON WITH ANIMATED X
+   ========================================================================== */
+.close-button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid #b5a48d55;
+  font-size: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.close-button::before,
+.close-button::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 1.5px;
+  background: #594b3e;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.close-button::before {
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  transform: rotate(-45deg);
+}
+
+.close-button:hover {
+  background: #f1eadd;
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   EYEBROW TRACKING ANIMATION
+   ========================================================================== */
+.eyebrow {
+  transition: letter-spacing 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].revealed .eyebrow {
+  letter-spacing: 0.24em;
+}

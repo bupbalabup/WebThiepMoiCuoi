@@ -182,3 +182,53 @@ test("RSVP API refuses to write into a tab with unrelated headers", async () => 
 test("RSVP tabs are separated from online invitation-list tabs", () => {
   assert.deepEqual(RSVP_TAB_NAMES, { groom: "Nhà trai", bride: "Nhà gái" });
 });
+
+test("raw RSVP payloads preserve Vietnamese values, side, count and submission time", async () => {
+  const privateKey = await createPrivateKeyPem();
+  const originalFetch = globalThis.fetch;
+  const originalNow = Date.now;
+  const now = Date.parse("2026-09-30T23:15:30+07:00");
+  let appended;
+  globalThis.fetch = async (url, init = {}) => {
+    const target = String(url);
+    if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "matrix-token", expires_in: 3600 });
+    if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true, hostname: "wedding.example", action: "wedding_rsvp" });
+    if (target.includes("A1%3AJ1")) return Response.json({ values: [RSVP_HEADERS] });
+    if (target.includes("G2%3AG")) return Response.json({ values: [] });
+    if (target.includes(":append?")) {
+      appended = { url: decodeURIComponent(target), row: JSON.parse(init.body).values[0] };
+      return Response.json({ updates: { updatedRows: 1 } });
+    }
+    throw new Error(`Unexpected URL ${target}`);
+  };
+  Date.now = () => now;
+  try {
+    for (const [side, sideLabel] of Object.entries({ groom: "Nhà trai", bride: "Nhà gái" })) {
+      for (const [attendance, label, count] of [
+        ["attending", "Có tham dự", 125],
+        ["considering", "Đang cân nhắc", 2],
+        ["declined", "Không tham dự", 0],
+      ]) {
+        const response = await rsvpRequest({
+          request: request("/api/rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-Requested-With": "wedding-invitation" },
+            body: JSON.stringify({ name: "Khách kiểm thử", attendance, guestCount: attendance === "declined" ? 99 : count,
+              relationship: "other", relationshipOther: "=SUM(1,2)", invitationSide: side,
+              idempotencyKey: "123e4567-e89b-12d3-a456-426614174002", turnstileToken: "verified-test-token" }),
+          }),
+          env: env(privateKey),
+        });
+        assert.equal(response.status, 201, `${side}/${attendance}`);
+        assert.match(appended.url, /valueInputOption=RAW/);
+        assert.ok(appended.url.includes(`'${sideLabel}'!A:J`));
+        assert.deepEqual(appended.row.slice(1), ["Khách kiểm thử", label, count, "Mục khác", "=SUM(1,2)",
+          "123e4567-e89b-12d3-a456-426614174002", sideLabel, "", ""]);
+        assert.equal(appended.row[0], (now + 7 * 3600000) / 86400000 + 25569);
+      }
+    }
+  } finally {
+    globalThis.fetch = originalFetch;
+    Date.now = originalNow;
+  }
+});
