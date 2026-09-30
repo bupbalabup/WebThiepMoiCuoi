@@ -26,8 +26,10 @@ export async function onRequest({ request, env }) {
   if (typeof input?.website === "string" && input.website.trim()) return json({ ok: true, message: "Cảm ơn lời chúc của bạn!" }, { status: 201 });
   const data = validateWish(input);
   if (!data) return publicError(400, "VALIDATION_FAILED", "Vui lòng nhập tên và lời chúc (tối đa 2.000 ký tự).");
-  const verified = await verifyTurnstile(env, input.turnstileToken, request.headers.get("CF-Connecting-IP") || "", new URL(request.url).hostname, "wedding_wish").catch(() => false);
-  if (!verified) return publicError(400, "TURNSTILE_FAILED", "Xác minh chống spam đã hết hạn. Vui lòng thử lại.");
+  if (env.TURNSTILE_SECRET_KEY && input.turnstileToken) {
+    const verified = await verifyTurnstile(env, input.turnstileToken, request.headers.get("CF-Connecting-IP") || "", new URL(request.url).hostname, "wedding_wish").catch(() => false);
+    if (!verified) return publicError(400, "TURNSTILE_FAILED", "Xác minh chống spam đã hết hạn. Vui lòng thử lại.");
+  }
   try {
     const tab = data.side === "groom" ? "Lời chúc nhà trai" : "Lời chúc nhà gái";
     const headers = await readSheetRows(env, `'${tab}'!A1:G1`);

@@ -53,19 +53,17 @@ export default function HomePage() {
           </p>
 
           <p className="portal-prompt">
-            Vui lòng chọn để xem thông tin thiệp mời và phúc đáp:
+            Vui lòng chọn để xem thông tin thiệp mời:
           </p>
 
           <div className="portal-btn-grid">
             <a className="portal-side-btn" href="/nha-trai">
               <span className="side-role">NHÀ TRAI</span>
-              <strong className="side-title">LỄ THÀNH HÔN</strong>
               <span className="side-sub">Chú rể {wedding.couple.groom}</span>
             </a>
 
             <a className="portal-side-btn" href="/nha-gai">
               <span className="side-role">NHÀ GÁI</span>
-              <strong className="side-title">LỄ VU QUY</strong>
               <span className="side-sub">Cô dâu {wedding.couple.bride}</span>
             </a>
           </div>

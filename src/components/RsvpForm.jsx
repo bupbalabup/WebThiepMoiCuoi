@@ -76,10 +76,6 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
       setMessage("Vui lòng kiểm tra lại các câu trả lời được đánh dấu.");
       return;
     }
-    if (!turnstileToken) {
-      setMessage("Vui lòng hoàn tất bước xác minh bảo mật.");
-      return;
-    }
 
     const guestCount = values.attendance === "declined"
       ? 0
@@ -301,14 +297,12 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         </label>
       </div>
 
-      <TurnstileWidget onToken={onToken} resetKey={turnstileResetKey} />
-
       {message && <p className="form-notice error" role="alert">{message}</p>}
 
       <button
         className="button button-primary rsvp-submit-btn"
         type="submit"
-        disabled={status === "submitting" || (!turnstileToken && !import.meta.env.DEV)}
+        disabled={status === "submitting"}
       >
         {status === "submitting" ? "ĐANG GỬI XÁC NHẬN..." : "GỬI PHÚC ĐÁP"}
       </button>

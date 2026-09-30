@@ -48,9 +48,11 @@ async function handlePost({ request, env }) {
 
   const remoteIp = request.headers.get("CF-Connecting-IP") || "";
   const expectedHostname = new URL(request.url).hostname;
-  const challengeIsValid = await verifyTurnstile(env, input.turnstileToken, remoteIp, expectedHostname).catch(() => false);
-  if (!challengeIsValid) {
-    return publicError(400, "TURNSTILE_FAILED", "Xác minh chống spam đã hết hạn. Vui lòng thử lại.");
+  if (env.TURNSTILE_SECRET_KEY && input.turnstileToken) {
+    const challengeIsValid = await verifyTurnstile(env, input.turnstileToken, remoteIp, expectedHostname).catch(() => false);
+    if (!challengeIsValid) {
+      return publicError(400, "TURNSTILE_FAILED", "Xác minh chống spam đã hết hạn. Vui lòng thử lại.");
+    }
   }
 
   try {

@@ -241,7 +241,7 @@ export default function InvitationPage({ side, slug }) {
 
                 {/* Guest Callout Header */}
                 <div className="lux-guest-banner">
-                  <span className="lux-guest-badge">{isGroom ? "DEAR GUEST" : "KÍNH MỜI"}</span>
+                  <span className="lux-guest-badge">KÍNH MỜI</span>
                   <h3 className="lux-guest-display-name">{guestName}</h3>
                   <p className="lux-guest-lead">
                     Trân trọng kính mời bạn đến chung vui trong ngày hạnh phúc và chứng kiến khoảnh khắc chung đôi của hai gia đình chúng tôi:

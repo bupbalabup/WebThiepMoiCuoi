@@ -813,22 +813,23 @@ a {
 
 .ceremony-tag {
   display: block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   color: var(--si-accent);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .ceremony-time {
-  margin: 0;
-  font-size: 0.92rem;
+  margin: 0 0 6px;
+  font-size: 1.15rem;
   color: var(--si-ink);
 }
 
 .ceremony-address {
-  margin: 2px 0 0;
-  font-size: 0.88rem;
+  margin: 0 0 8px;
+  font-size: 1.05rem;
   color: var(--si-ink-body);
 }
 
@@ -836,7 +837,7 @@ a {
   margin: 4px 0 0;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   color: var(--si-taupe);
 }
 

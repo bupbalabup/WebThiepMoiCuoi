@@ -24,10 +24,6 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
       setNotice("Bạn hãy điền tên và lời chúc nhé.");
       return;
     }
-    if (!token) {
-      setNotice("Vui lòng đợi xác minh chống spam hoàn tất.");
-      return;
-    }
     if (!id.current) {
       id.current =
         typeof crypto.randomUUID === "function"
@@ -127,8 +123,6 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
             />
           </div>
 
-          <TurnstileWidget onToken={onToken} resetKey={resetKey} action="wedding_wish" />
-
           {notice && (
             <p role="alert" className="form-notice error" style={{ color: "#a62b2b", background: "#fdf0f0", padding: "10px", margin: 0 }}>
               {notice}
@@ -138,7 +132,7 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
           <button
             className="button button-primary"
             type="submit"
-            disabled={status === "sending" || (!token && !import.meta.env.DEV)}
+            disabled={status === "sending"}
             style={{ width: "100%", minHeight: "48px" }}
           >
             {status === "sending" ? "ĐANG GỬI LỜI CHÚC..." : "GỬI LỜI CHÚC PHÚC"}
