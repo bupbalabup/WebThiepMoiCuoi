@@ -6,24 +6,24 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette: Warm Minimalism (Kem sữa, Nâu trầm, Cát ấm & Vàng đồng) */
-  --lux-bg: #fcf9f5;
-  --lux-bg-alt: #f6efe6;
-  --lux-bg-warm: #f0e6d8;
+  /* Color Palette: Romantic Blush & White (Hồng phấn, Trắng kem, Hồng rose & Vàng hồng) */
+  --lux-bg: #fdf6f8;
+  --lux-bg-alt: #fceef2;
+  --lux-bg-warm: #f8dfe6;
   --lux-card: #ffffff;
-  --lux-card-inner: #fdfbf7;
+  --lux-card-inner: #fef8fa;
   
-  --lux-espresso: #241b16;      /* Deep primary ink for headings */
-  --lux-mocha: #48392f;         /* Secondary ink */
-  --lux-body: #594c42;          /* Body text color with high legibility */
-  --lux-muted: #857568;         /* Subtitles & captions */
-  --lux-faint: #ad9e91;         /* Watermarks & light hints */
+  --lux-espresso: #5c2434;        /* Deep rose-wine ink for headings */
+  --lux-mocha: #7a3b50;           /* Secondary ink */
+  --lux-body: #5e3d4a;            /* Body text color with high legibility */
+  --lux-muted: #9a7383;           /* Subtitles & captions */
+  --lux-faint: #c4a3b2;           /* Watermarks & light hints */
   
-  --lux-gold: #bfa074;          /* Antique gold accent */
-  --lux-bronze: #9c7b56;        /* Warm bronze eyebrow */
-  --lux-border: #dfd4c5;        /* Primary hairline border */
-  --lux-border-soft: #ece4d8;   /* Subtle divider */
-  --lux-seal: #843a33;          /* Authentic wax seal wine/terracotta */
+  --lux-gold: #d4899e;            /* Rose-pink accent */
+  --lux-bronze: #b5667e;          /* Dusty rose eyebrow */
+  --lux-border: #f0d0da;          /* Primary hairline border */
+  --lux-border-soft: #f5e0e8;     /* Subtle divider */
+  --lux-seal: #b03a5a;            /* Wax seal rose-crimson */
   
   /* Fonts - 100% Native Vietnamese Support Bundled Locally */
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
@@ -32,10 +32,10 @@
   --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
   /* Shadows */
-  --lux-shadow-sm: 0 4px 16px rgba(36, 27, 22, 0.04);
-  --lux-shadow-md: 0 12px 32px rgba(36, 27, 22, 0.08);
-  --lux-shadow-lg: 0 24px 64px rgba(36, 27, 22, 0.12);
-  --lux-shadow-card: 0 16px 48px rgba(36, 27, 22, 0.06), 0 0 0 1px rgba(223, 212, 197, 0.5);
+  --lux-shadow-sm: 0 4px 16px rgba(92, 36, 52, 0.04);
+  --lux-shadow-md: 0 12px 32px rgba(92, 36, 52, 0.08);
+  --lux-shadow-lg: 0 24px 64px rgba(92, 36, 52, 0.10);
+  --lux-shadow-card: 0 16px 48px rgba(92, 36, 52, 0.06), 0 0 0 1px rgba(240, 208, 218, 0.5);
 }
 
 /* ==========================================================================
@@ -141,8 +141,8 @@ a {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #9b4a42 0%, #762f28 55%, #501d17 100%);
-  box-shadow: 0 8px 24px rgba(80, 29, 23, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+  background: radial-gradient(circle at 35% 35%, #c94d6f 0%, #a32e52 55%, #7a1f3d 100%);
+  box-shadow: 0 8px 24px rgba(122, 31, 61, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,7 +170,7 @@ a {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 1px dashed rgba(189, 74, 66, 0.35);
+  border: 1px dashed rgba(176, 58, 90, 0.35);
   animation: sealPulse 2.8s ease-in-out infinite;
 }
 
@@ -290,14 +290,14 @@ a {
   background: var(--lux-espresso);
   color: #fff;
   border: 1px solid var(--lux-espresso);
-  box-shadow: 0 6px 20px rgba(36, 27, 22, 0.18);
+  box-shadow: 0 6px 20px rgba(92, 36, 52, 0.18);
 }
 
 .button-primary:hover {
-  background: #3e3027;
-  border-color: #3e3027;
+  background: #7a3b50;
+  border-color: #7a3b50;
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(36, 27, 22, 0.24);
+  box-shadow: 0 10px 24px rgba(92, 36, 52, 0.24);
 }
 
 .button-outline {
@@ -320,7 +320,7 @@ a {
 }
 
 .button-gift:hover {
-  background: #e6dac8;
+  background: #f0cdd6;
   transform: translateY(-2px);
 }
 
@@ -331,7 +331,7 @@ a {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: linear-gradient(135deg, #f2e5d5 0%, #e5d2be 50%, #d8c2ab 100%);
+  background: linear-gradient(135deg, #fdf0f3 0%, #f5d4dd 50%, #efc2cf 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -537,7 +537,7 @@ a {
 }
 
 .lux-nav-rsvp-pill:hover {
-  background: #3e3027;
+  background: #7a3b50;
   transform: translateY(-1px);
 }
 
@@ -584,7 +584,7 @@ a {
    ========================================================================== */
 .lux-hero-section {
   padding: clamp(40px, 6vw, 72px) 0 clamp(60px, 8vw, 90px);
-  background: radial-gradient(ellipse at 50% 20%, #fbf5eb 0%, var(--lux-bg) 70%);
+  background: radial-gradient(ellipse at 50% 20%, #fff5f7 0%, var(--lux-bg) 70%);
 }
 
 .lux-hero-grid {
@@ -1380,7 +1380,7 @@ a {
 }
 
 .lux-lightbox-nav:hover {
-  background: #48392f;
+  background: #7a3b50;
   transform: translateY(-2px);
 }
 
@@ -1711,14 +1711,14 @@ a {
   align-items: center;
   justify-content: center;
   padding: clamp(24px, 4vw, 60px) 20px;
-  background: radial-gradient(ellipse at 50% 30%, #f9f2e7 0%, #ede3d5 100%);
+  background: radial-gradient(ellipse at 50% 30%, #fff5f7 0%, #fce8ee 100%);
 }
 
 .lux-portal-card {
   width: min(1080px, 100%);
   background: var(--lux-card);
   border: 1px solid var(--lux-border);
-  box-shadow: 0 30px 80px rgba(36, 27, 22, 0.18);
+  box-shadow: 0 30px 80px rgba(92, 36, 52, 0.18);
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
@@ -1982,7 +1982,7 @@ a {
 .rsvp-standalone-page {
   min-height: 100vh;
   padding: 32px 20px 80px;
-  background: radial-gradient(ellipse at 50% 20%, #fbf5eb 0%, var(--lux-bg) 80%);
+  background: radial-gradient(ellipse at 50% 20%, #fff5f7 0%, var(--lux-bg) 80%);
 }
 
 .rsvp-page-header {

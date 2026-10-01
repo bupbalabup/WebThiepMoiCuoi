@@ -152,14 +152,14 @@
         "accountName": null,
         "bankName": null,
         "accountNumber": null,
-        "qrImage": null
+        "qrImage": "/images/qr/nha-trai.JPG"
       },
       "bride": {
         "label": "Nhà gái",
         "accountName": null,
         "bankName": null,
         "accountNumber": null,
-        "qrImage": null
+        "qrImage": "/images/qr/nha-gai.JPG"
       }
     }
   },
@@ -332,20 +332,20 @@
   },
   "theme": {
     "palette": [
-      "kem",
+      "trắng",
       "hồng",
-      "đỏ rượu"
+      "hồng phấn"
     ],
     "colors": {
-      "page": "#FFF8F0",
-      "surface": "#FFFDF9",
-      "surfaceRose": "#FBE8EC",
-      "rose": "#D98C9F",
-      "roseStrong": "#B95F78",
-      "wine": "#7A1F36",
-      "wineDark": "#541326",
-      "text": "#34282C",
-      "textMuted": "#6F5B62",
+      "page": "#FDF6F8",
+      "surface": "#FEF8FA",
+      "surfaceRose": "#FCEEF2",
+      "rose": "#D4899E",
+      "roseStrong": "#B5667E",
+      "wine": "#5C2434",
+      "wineDark": "#3D1623",
+      "text": "#5E3D4A",
+      "textMuted": "#9A7383",
       "onWine": "#FFFFFF"
     },
     "contentMaxWidth": 1280,

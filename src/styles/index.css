@@ -21,23 +21,23 @@
   --font-script: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-hand: 'Charm', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
 
-  /* Design Tokens from thiepmoicuoi.vn (Seoul Ivory & Tơ Duyên) */
-  --si-bg: #fbf8f2;            /* Ivory nền thiệp chính */
-  --si-bg-warm: #f1eadd;       /* Be ấm section highlight */
-  --si-bg-outer: #ece3d4;      /* Nền bàn bao ngoài thiệp */
-  --si-taupe: #b49a7e;         /* Nâu mộc primary */
-  --si-taupe-soft: #c9b79c;    /* Hairline soft */
-  --si-accent: #9c8463;        /* Nâu trầm eyebrow */
-  --si-gold: #c9a253;          /* Gold accent */
-  --si-ink: #2a1c18;           /* Mực than nâu sẫm cho tiêu đề */
-  --si-ink-body: #4a4039;      /* Mực nâu cho nội dung */
-  --si-ink-soft: rgba(74, 64, 57, 0.65);
-  --si-ink-faint: rgba(74, 64, 57, 0.40);
-  --si-line: rgba(180, 154, 126, 0.38); /* Hairline mảnh */
+  /* Design Tokens: Romantic Blush & White (Hồng phấn, Trắng kem, Hồng rose) */
+  --si-bg: #fdf6f8;              /* Blush nền thiệp chính */
+  --si-bg-warm: #fceef2;         /* Hồng ấm section highlight */
+  --si-bg-outer: #f8dfe6;        /* Nền bao ngoài thiệp */
+  --si-taupe: #d4899e;           /* Hồng rose primary */
+  --si-taupe-soft: #e8b4c4;      /* Hairline soft */
+  --si-accent: #b5667e;          /* Dusty rose eyebrow */
+  --si-gold: #d4899e;            /* Rose accent */
+  --si-ink: #5c2434;             /* Mực hồng sẫm cho tiêu đề */
+  --si-ink-body: #5e3d4a;        /* Mực hồng cho nội dung */
+  --si-ink-soft: rgba(94, 61, 74, 0.65);
+  --si-ink-faint: rgba(94, 61, 74, 0.40);
+  --si-line: rgba(212, 137, 158, 0.38); /* Hairline mảnh */
 
   /* Shadows */
-  --shadow-frame: 0 20px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  --shadow-subtle: 0 4px 16px rgba(42, 28, 24, 0.06);
+  --shadow-frame: 0 20px 60px rgba(92, 36, 52, 0.10), 0 0 0 1px rgba(92, 36, 52, 0.05);
+  --shadow-subtle: 0 4px 16px rgba(92, 36, 52, 0.06);
 }
 
 /* ==========================================================================
@@ -137,8 +137,8 @@ a {
 }
 
 .button-primary:hover {
-  background: #42302a;
-  border-color: #42302a;
+  background: #7a3b50;
+  border-color: #7a3b50;
   transform: translateY(-2px);
 }
 
@@ -149,7 +149,7 @@ a {
 }
 
 .button-gift:hover {
-  background: #e8dfcf;
+  background: #f0cdd6;
   transform: translateY(-2px);
 }
 
@@ -339,7 +339,7 @@ a {
 }
 
 .envelope-open-button:hover {
-  background: #42302a;
+  background: #7a3b50;
   transform: translateY(-2px);
 }
 

@@ -2,15 +2,15 @@ import React from "react";
 
 // Pre-calculated organic positions and timings for smooth falling ambient petals
 const PETAL_ITEMS = [
-  { left: "8%", size: 18, sway: "18px", dur: "22s", delay: "-4s", color: "#bda182" },
-  { left: "18%", size: 14, sway: "-14px", dur: "25s", delay: "-12s", color: "#9a836d" },
-  { left: "28%", size: 20, sway: "22px", dur: "20s", delay: "-8s", color: "#cbb399" },
-  { left: "38%", size: 16, sway: "-18px", dur: "24s", delay: "-16s", color: "#8b7460" },
-  { left: "52%", size: 19, sway: "15px", dur: "23s", delay: "-2s", color: "#bca082" },
-  { left: "64%", size: 15, sway: "-20px", dur: "26s", delay: "-10s", color: "#9c8570" },
-  { left: "75%", size: 21, sway: "24px", dur: "21s", delay: "-14s", color: "#c5ad93" },
-  { left: "84%", size: 17, sway: "-16px", dur: "24s", delay: "-6s", color: "#8d7663" },
-  { left: "92%", size: 15, sway: "19px", dur: "23s", delay: "-18s", color: "#bfa487" },
+  { left: "8%", size: 18, sway: "18px", dur: "22s", delay: "-4s", color: "#f0a5b8" },
+  { left: "18%", size: 14, sway: "-14px", dur: "25s", delay: "-12s", color: "#e88da3" },
+  { left: "28%", size: 20, sway: "22px", dur: "20s", delay: "-8s", color: "#f5c0cf" },
+  { left: "38%", size: 16, sway: "-18px", dur: "24s", delay: "-16s", color: "#d4899e" },
+  { left: "52%", size: 19, sway: "15px", dur: "23s", delay: "-2s", color: "#f2b0c2" },
+  { left: "64%", size: 15, sway: "-20px", dur: "26s", delay: "-10s", color: "#e89aad" },
+  { left: "75%", size: 21, sway: "24px", dur: "21s", delay: "-14s", color: "#f8c8d6" },
+  { left: "84%", size: 17, sway: "-16px", dur: "24s", delay: "-6s", color: "#d97d96" },
+  { left: "92%", size: 15, sway: "19px", dur: "23s", delay: "-18s", color: "#f0a8bb" },
 ];
 
 export default function AmbientPetals() {
