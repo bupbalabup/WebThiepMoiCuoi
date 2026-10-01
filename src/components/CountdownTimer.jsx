@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const TARGET_TIME = new Date("2026-10-21T11:00:00+07:00").getTime();
+import wedding from "../config/wedding.json";
+
+const TARGET_TIME = new Date(wedding.event.startsAt).getTime();
 
 function calculateTimeLeft() {
   const difference = TARGET_TIME - Date.now();
@@ -17,7 +19,7 @@ function calculateTimeLeft() {
 }
 
 export default function CountdownTimer({ title = "CÙNG ĐẾM NGƯỢC THỜI GIAN" }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +29,7 @@ export default function CountdownTimer({ title = "CÙNG ĐẾM NGƯỢC THỜI G
   }, []);
 
   if (timeLeft.isPast) {
-    return null;
+    return <p className="countdown-started">Ngày hạnh phúc của chúng mình đã đến!</p>;
   }
 
   const units = [

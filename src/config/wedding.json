@@ -172,7 +172,7 @@
         "aspectRatio": "2/3",
         "priority": false,
         "src": "/images/anhcuoi/TOM01971-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01971-1600.jpg",
+        "fullSrc": "/images/anhcuoi/TOM01971-2400.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 1"
       },
       {
@@ -180,153 +180,27 @@
         "role": "album",
         "aspectRatio": "2/3",
         "priority": false,
-        "src": "/images/anhcuoi/TOM02721-800.jpg",
+        "src": "/images/anhcuoi/TOM02721-1600.jpg",
         "fullSrc": "/images/anhcuoi/TOM02721-1600.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 2"
-      },
-      {
-        "id": "photo-00612",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00612-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00612-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 3"
-      },
-      {
-        "id": "photo-00621",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00621-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00621-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 4"
-      },
-      {
-        "id": "photo-00718",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00718-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00718-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 5"
-      },
-      {
-        "id": "photo-00723",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00723-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00723-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 6"
-      },
-      {
-        "id": "photo-00738",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00738-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00738-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 7"
       },
       {
         "id": "photo-00850",
         "role": "album",
         "aspectRatio": "2/3",
         "priority": false,
-        "src": "/images/anhcuoi/TOM00850-800.jpg",
+        "src": "/images/anhcuoi/TOM00850-1600.jpg",
         "fullSrc": "/images/anhcuoi/TOM00850-1600.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 8"
-      },
-      {
-        "id": "photo-01019",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01019-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01019-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 9"
-      },
-      {
-        "id": "photo-01243",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01243-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01243-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 10"
-      },
-      {
-        "id": "photo-01333",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01333-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01333-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 11"
-      },
-      {
-        "id": "photo-01404",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01404-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01404-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 12"
-      },
-      {
-        "id": "photo-01502",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01502-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01502-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 13"
       },
       {
         "id": "photo-01529",
         "role": "album",
         "aspectRatio": "2/3",
         "priority": false,
-        "src": "/images/anhcuoi/TOM01529-800.jpg",
+        "src": "/images/anhcuoi/TOM01529-1600.jpg",
         "fullSrc": "/images/anhcuoi/TOM01529-1600.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 14"
-      },
-      {
-        "id": "photo-02055",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM02055-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM02055-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 15"
-      },
-      {
-        "id": "photo-02168",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM02168-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM02168-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 16"
-      },
-      {
-        "id": "photo-02377",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM02377-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM02377-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 17"
-      },
-      {
-        "id": "photo-02608",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM02608-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM02608-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 18"
       }
     ]
   },

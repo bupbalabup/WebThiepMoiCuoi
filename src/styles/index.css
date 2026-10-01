@@ -932,7 +932,7 @@ a {
 .calendar-box {
   max-width: 400px;
   margin: 0 auto;
-  padding: 22px 16px;
+  padding: clamp(16px, 2.5vw, 26px) clamp(12px, 2vw, 20px);
   background: var(--si-bg-warm);
   border: 1px solid var(--si-line);
 }

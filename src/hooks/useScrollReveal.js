@@ -57,7 +57,7 @@ export default function useScrollReveal(options = {}) {
     targets.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [options.rootMargin, options.threshold, options.ready]);
+  }, [options.rootMargin, options.threshold, options.ready, options.layoutKey]);
 
   return containerRef;
 }

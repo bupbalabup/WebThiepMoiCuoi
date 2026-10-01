@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TuanAnhNgocAnh//Wedding//VI
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Đám cưới Tuấn Anh và Ngọc Anh
+X-WR-TIMEZONE:Asia/Ho_Chi_Minh
+BEGIN:VEVENT
+UID:wedding-tuananh-ngocanh-20261021@tanawedding.workers.dev
+DTSTAMP:20261002T000000Z
+DTSTART:20261021T040000Z
+DTEND:20261021T070000Z
+SUMMARY:Đám cưới Lương Tuấn Anh & Đặng Ngọc Anh
+DESCRIPTION:Trân trọng kính mời bạn đến dự đám cưới Lươ
+ ng Tuấn Anh và Đặng Ngọc Anh.\nThời gian: 11:00 ngày 21/10/2026
+  (giờ Việt Nam).\nĐịa điểm: Trống Đồng Palace – Sảnh Sa
+ pphire 1\, tầng 3 – Tòa nhà Hancorp Plaza\, số 72 Trần Đăng Ni
+ nh\, Nghĩa Đô\, Hà Nội\nChỉ đường: https://www.google.com/maps
+ /dir/?api=1&destination=Tr%E1%BB%91ng%20%C4%90%E1%BB%93ng%20Palace%2C%20Ha
+ ncorp%20Plaza%2C%2072%20Tr%E1%BA%A7n%20%C4%90%C4%83ng%20Ninh%2C%20H%C3%A0%
+ 20N%E1%BB%99i
+LOCATION:Trống Đồng Palace – Sảnh Sapphire 1\, tầng 3 – Tòa n
+ hà Hancorp Plaza\, số 72 Trần Đăng Ninh\, Nghĩa Đô\, Hà Nội
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

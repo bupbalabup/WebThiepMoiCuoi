@@ -1,0 +1,93 @@
+/* The film-inspired invitation is mounted only below 768px. */
+.mobile-invitation{background:#fffafc;color:#643d4b;font-size:14px;line-height:1.8;overflow:clip}
+.mobile-invitation p,.mobile-invitation figure{margin:0}
+.mi-script{font-family:Charm,var(--font-serif),serif;font-weight:400;font-style:normal;line-height:1.4}
+.mi-section{padding:48px 22px;text-align:center}
+.mi-heading{font-size:clamp(32px,8vw,46px);color:#9a4b68;margin:0 0 26px}
+.mi-kicker{font-size:11px;letter-spacing:2.5px;font-weight:500}
+.mi-hero{position:relative;height:100svh;min-height:600px;max-height:1100px;background:#70585e}
+.mi-hero>img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.mi-hero:after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 42%,#291820b8 100%)}
+.mi-hero-copy{position:absolute;z-index:1;bottom:55px;left:16px;right:16px;text-align:center;color:white;text-shadow:0 2px 10px #29182070}
+.mi-wedding{font-size:30px;margin-bottom:8px!important}
+.mi-hero h1{font-family:Charm,var(--font-serif),serif;font-weight:400;font-size:clamp(42px,12vw,70px);line-height:1.25;margin:0;color:white}
+.mi-hero h1 span{display:block}.mi-hero h1 i{display:block;font-size:26px;font-weight:400}
+.mi-hero-date{letter-spacing:5px;font-size:16px;margin-top:22px!important}
+.mi-date{padding:42px 12px 32px;background:#f9ecf1}
+.mi-date-grid{display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1fr);gap:12px;align-items:center}
+.mi-polaroid{padding:7px 7px 10px;background:white;transform:rotate(-5deg);box-shadow:0 8px 20px #7d4e6020}
+.mi-polaroid img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.mi-polaroid figcaption{font-size:clamp(16px,4.5vw,25px);margin-top:8px}
+.mobile-invitation .save-date-stationery-card{padding:0;border:0;background:none;box-shadow:none;min-width:0;width:100%}
+.mobile-invitation .calendar-box{padding:0;width:100%;max-width:none}
+.mobile-invitation .calendar-month-title{font-size:12px;letter-spacing:1px;margin-bottom:10px}
+.mobile-invitation .calendar-row,.mobile-invitation .calendar-days-grid{gap:2px}
+.mobile-invitation .cal-header-cell{font-size:10px;padding:4px 0}
+.mobile-invitation .cal-day-cell{min-height:34px;padding:2px 0;gap:0}
+.mobile-invitation .cal-solar-day{font-size:16px;line-height:1.25}
+.mobile-invitation .cal-lunar-day{font-size:9px;line-height:1.2}
+.mobile-invitation .calendar-legend{font-size:9px;line-height:1.6;margin:8px 0 0}
+.mobile-invitation .calendar-button-group{display:none}
+.mi-lunar-note{margin-top:28px!important;font-size:12px;line-height:1.9}
+.mi-monogram{border:1px solid #d998ae;width:66px;height:66px;margin:0 auto 32px;display:grid;place-items:center;font-family:Charm,serif;font-size:24px;color:#aa506e;position:relative}
+.mi-monogram:after{content:'';position:absolute;height:24px;width:1px;top:100%;background:#d998ae}
+.mi-family-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
+.mi-family-grid h2{font-size:27px;margin:0 0 10px;text-transform:capitalize}.mi-family-grid p{font-size:12px;line-height:1.9}
+.mi-guest{font-size:32px;margin:10px 0}
+.mi-couple{background:linear-gradient(#6e435777,#6e435777),url('/images/anhcuoi/TOM02721-1600.jpg') center/cover;padding:44px 20px 50px}
+.mi-couple-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.mi-person{background:white;padding:7px 7px 14px;box-shadow:0 8px 20px #28162030;transform:rotate(-4deg)}
+.mi-person-groom{margin-top:62px!important;transform:rotate(4deg)}
+.mi-person-crop{aspect-ratio:3/4;overflow:hidden;position:relative}
+.mi-person-crop img{height:155%;width:auto;max-width:none;position:absolute;top:-5%;left:50%;transform:translateX(-50%)}
+.mi-person-bride img{left:18%}.mi-person-groom img{left:82%}
+.mi-person figcaption span{display:block;font-size:25px;margin-top:10px}
+.mi-person figcaption strong{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:500}
+.mi-events{background:#fbedf2}
+.mi-event-card{background:white;box-shadow:0 8px 26px #8c586e15;overflow:hidden}
+.mi-event-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 32%}
+.mi-event-body{padding:28px 19px}.mi-event-body h3{font-size:17px;letter-spacing:2px;margin:0 0 20px}
+.mi-event-body h4{font-family:var(--font-serif);font-size:29px;font-weight:500;margin:22px 0 5px}
+.mi-event-body p{font-size:13px}
+.mi-event-date{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;margin:12px 0 8px;border-block:1px solid #edccd8;padding:8px 0}
+.mi-event-date strong{font-family:var(--font-serif);font-size:76px;line-height:1.1;font-weight:500;border-inline:1px solid #edccd8}
+.mi-event-date span{font-size:11px;letter-spacing:1px}.mi-event-lunar{font-style:italic}
+.mi-pill{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #a85874;border-radius:28px;background:#a85874;color:white;padding:11px 24px;font-size:11px;letter-spacing:1.2px;text-decoration:none;font-family:inherit;cursor:pointer}
+.mi-event-body>.mi-pill{margin-top:24px}.mi-map{margin-top:18px;font-size:12px}.mi-map summary{cursor:pointer;padding:8px}.mi-map iframe{border:0;width:100%;height:250px;margin-top:10px}
+.mi-schedule ol{list-style:none;text-align:left;padding:0 0 0 24px;margin:0 0 0 12px;border-left:1px solid #dca5b8}
+.mi-schedule li{position:relative;background:white;box-shadow:0 4px 20px #8c586e0f;padding:18px;margin-bottom:18px;display:flex;align-items:center;gap:18px}
+.mi-schedule li:before{content:'';width:9px;height:9px;border-radius:50%;background:#b76784;position:absolute;left:-29px}
+.mi-schedule time{font-size:14px;padding:4px 10px;border-radius:20px;background:#f9e6ee}.mi-schedule strong{font-weight:500;font-size:14px}
+.mi-album{background:#fbedf2;padding-inline:14px}
+.mobile-invitation .lux-gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mobile-invitation .lux-gallery-card,.mobile-invitation .lux-gallery-card.is-featured{grid-column:auto;grid-row:auto;aspect-ratio:2/3}
+.mobile-invitation .card-media-wrapper{height:100%;aspect-ratio:2/3}
+.mobile-invitation .lux-section-title{font-family:Charm,var(--font-serif);font-size:34px;line-height:1.4;font-style:normal}
+.mobile-invitation .lux-section-header{margin-bottom:24px}.mobile-invitation .lux-gallery-section .lux-eyebrow,.mobile-invitation .lux-gallery-section .lux-section-subtitle{display:none}
+.mi-wishes>p{font-size:13px;margin-bottom:24px}.mi-form-paper{background:white;border:1px solid #f0d4df;padding:20px 16px;text-align:left;border-radius:12px}
+.mi-rsvp{text-align:center;border-top:1px solid #eed4de;padding-top:24px;margin-top:24px}.mi-rsvp p{font-size:11px;margin-top:12px}.mi-rsvp .mi-pill{width:100%}
+.mi-gifts{background:#fbedf2}.mi-gifts>p{font-size:13px}
+.mi-gift-envelope{display:block;position:relative;width:230px;max-width:100%;margin:30px auto 0;padding:28px 12px 18px;background:linear-gradient(155deg,#fff 48%,#f2d5e0 49%,#fff5f8 51%);border:1px solid #e2afc1;box-shadow:0 8px 24px #96557120;cursor:pointer;color:#965571}
+.mi-gift-monogram{display:block;font-family:Charm,serif;font-size:38px;margin-bottom:18px}
+.mi-closing-banner{display:block;width:100%;height:480px;object-fit:cover;object-position:center 65%}
+.mi-thanks{padding-bottom:100px}.mi-thanks>img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center 40%;border:5px solid white;box-shadow:0 0 0 1px #e8bfce}
+.mi-thanks h2{font-size:46px;margin:20px 0 8px}.mi-thanks-names{font-family:var(--font-serif);font-size:23px}.mi-thanks p{margin-bottom:18px;font-size:13px}.mi-thanks a{font-size:11px;color:#965571}
+.mobile-envelope-screen{width:100%;max-width:767px;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:36px 24px;text-align:center;background:radial-gradient(ellipse at 10% 10%,#fff 0,transparent 50%),linear-gradient(145deg,#f9e9f0,#fffafc 55%,#edd1dc);color:#85425b}
+.mobile-envelope-screen>h1{font-size:36px;margin:12px 0 50px;overflow-wrap:anywhere}
+.mi-envelope{width:min(100%,330px);aspect-ratio:1.55;position:relative;isolation:isolate;background:#f8e5ed;border:1px solid #e2b9c9;padding:0;box-shadow:0 20px 30px #7c3e5826;cursor:pointer;perspective:900px}
+.mi-envelope-letter{position:absolute;inset:10px;background:white;padding:25px 8px;color:#9e546e;font-family:Charm,serif;font-size:21px;transition:transform .7s}
+.mi-envelope-fold{position:absolute;inset:0;background:linear-gradient(32deg,#f4dce6 49%,transparent 50%),linear-gradient(-32deg,#f8e6ed 49%,transparent 50%);z-index:2}
+.mi-envelope-flap{position:absolute;inset:0;background:#faedf2;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;z-index:3;transition:transform .65s}
+.mi-envelope-seal{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);z-index:4;display:grid;place-items:center;width:57px;height:57px;border-radius:50%;background:#a85572;color:white;border:4px double #dca4b7;font-family:Charm,serif;font-size:17px;box-shadow:0 3px 8px #74344840;transition:opacity .25s}
+.is-opening .mi-envelope-flap{transform:rotateX(180deg)}.is-opening .mi-envelope-seal{opacity:0}.is-opening .mi-envelope-letter{transform:translateY(-35px)}
+.mi-open-hint{font-size:12px;margin-top:28px}.mi-envelope-signature{margin-top:52px}.mi-envelope-signature .mi-script{font-size:29px;margin:0 0 12px}.mi-envelope-signature>p:last-child{font-size:12px;letter-spacing:4px}
+@media(max-width:767px){.lux-navbar{display:none}.lux-cover-overlay:has(.mobile-envelope-screen){padding:0;background:#fff5f9}.lux-mobile-bar{backdrop-filter:none;background:#fffcfdf2}.lux-wedding-suite:has(.mobile-invitation){padding-top:0}}
+@media(min-width:480px) and (max-width:767px){.mi-section{padding-left:40px;padding-right:40px}.mi-date-grid{gap:24px}.mobile-invitation .cal-day-cell{min-height:46px}.mobile-invitation .cal-solar-day{font-size:20px}.mi-person-crop{aspect-ratio:4/5}.mi-hero-copy{bottom:70px}}
+@media(prefers-reduced-motion:reduce){.mi-envelope-flap,.mi-envelope-letter,.mi-envelope-seal{transition:none}}
+/* Keep the date visible above the persistent controls; tighten stationery spacing. */
+.mi-hero-copy{bottom:120px}
+.mobile-invitation .save-date-stationery-card,.mobile-invitation .calendar-box{margin:0}
+.mi-person-crop img{height:250%;top:-26%;left:50%}
+.mi-person-bride img{transform:translateX(-67%)}
+.mi-person-groom img{transform:translateX(-33%)}
+@media(min-width:480px) and (max-width:767px){.mi-hero-copy{bottom:120px}}

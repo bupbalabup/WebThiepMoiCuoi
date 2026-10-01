@@ -1,28 +1,11 @@
 import React from "react";
 
-/**
- * WaxSeal: Realistic 3D embossed wax seal with monogram A&A
- */
-export function WaxSeal({ size = 64, monogram = "A & A", onClick, className = "" }) {
-  return (
-    <div
-      className={`lux-wax-seal ${className}`}
-      style={{ width: `${size}px`, height: `${size}px` }}
-      onClick={onClick}
-      role={onClick ? "button" : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      aria-label="Con dấu sáp đám cưới"
-    >
-      <div className="seal-outer-ripple" />
-      <div className="seal-body">
-        <svg viewBox="0 0 100 100" className="seal-inner-svg">
-          <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeDasharray="3 2" />
-          <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(0,0,0,0.25)" strokeWidth="1" />
-        </svg>
-        <span className="seal-monogram-text">{monogram}</span>
-      </div>
-    </div>
-  );
+export function WeddingMonogram({ size = 80, className = "" }) {
+  return <img className={`wedding-monogram ${className}`} src="/images/wedding-monogram.svg" width={size} height={size} alt="Chữ lồng A và A" />;
+}
+
+export function WaxSeal({ size = 64, onClick, className = "" }) {
+  return onClick ? <button type="button" className="monogram-button" onClick={onClick} aria-label="Mở thiệp mời"><WeddingMonogram size={size} className={className} /></button> : <WeddingMonogram size={size} className={className} />;
 }
 
 /**

@@ -19,7 +19,7 @@ export default function HomePage() {
         {/* Left Side: Wedding Portrait */}
         <div className="lux-portal-photo">
           <img
-            src="/images/anhcuoi/TOM02721-800.jpg"
+            src="/images/anhcuoi/TOM02721-1600.jpg"
             alt="Ảnh cưới Tuấn Anh & Ngọc Anh"
             width="533"
             height="800"
@@ -41,17 +41,20 @@ export default function HomePage() {
             <span className="hero-name-line">{wedding.couple.bride}</span>
           </h1>
 
-          <p style={{ fontSize: "0.86rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--lux-muted)", margin: "0 0 16px" }}>
+          {/* <p style={{ fontSize: "0.86rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--lux-muted)", margin: "0 0 16px" }}>
             {wedding.couple.groomFullName} &amp; {wedding.couple.brideFullName}
-          </p>
+          </p> */}
 
-          <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--lux-espresso)", margin: "0 0 4px" }}>
+          <p
+            style={{
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              color: "var(--lux-espresso)",
+              margin: "0 0 4px",
+            }}
+          >
             11:00 — THỨ TƯ, 21.10.2026
           </p>
-          <p style={{ fontSize: "0.9rem", color: "var(--lux-body)", margin: "0 0 20px" }}>
-            {wedding.event.venueName} — {wedding.event.hall}
-          </p>
-
           <p className="portal-prompt">
             Vui lòng chọn để xem thông tin thiệp mời:
           </p>
