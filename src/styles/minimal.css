@@ -3,10 +3,10 @@
   --font-hand:var(--font-script);
   --font-heading:var(--font-script);
   --font-upright:var(--font-script);
-  --si-accent:#79654f;
-  --si-ink-soft:#756b61;
-  --si-bg:#fbf8f1;
-  --si-bg-outer:#eeebe5
+  --si-accent:#a43e60;
+  --si-ink-soft:#795361;
+  --si-bg:#fffafb;
+  --si-bg-outer:#fbeaf0
 }
 
 body {
@@ -28,40 +28,40 @@ button {
   border-radius:2px
 }
 .button-primary {
-  background:#69533f;
-  border-color:#69533f
+  background:#a43e60;
+  border-color:#a43e60
 }
 .button-primary:hover {
-  background:#4c3b2d
+  background:#842d4a
 }
 .button-outline {
-  border-color:#8c7965;
-  color:#584431;
+  border-color:#c78098;
+  color:#703749;
   background:transparent
 }
 .eyebrow {
   font-size:.7rem;
   letter-spacing:.21em;
-  color:#75614d;
+  color:#875268;
   line-height:1.8;
   font-weight:600
 }
 .minimal-wedding {
-  background:#eeebe5
+  background:#fbeaf0
 }
 .wedding-canvas {
   max-width:920px;
   margin:auto;
-  background:#fbf8f1;
-  box-shadow:0 0 60px #55412c0a
+  background:#fffafb;
+  box-shadow:0 0 60px #7037490a
 }
 .wedding-nav {
   position:sticky;
   top:0;
   z-index:20;
   min-height:62px;
-  background:#fbf8f1f5;
-  border-bottom:1px solid #b5a48d55;
+  background:#fffafbf5;
+  border-bottom:1px solid #dba9bb55;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -79,7 +79,7 @@ button {
   font-size:12px
 }
 .wedding-nav button {
-  background:#69533f;
+  background:#a43e60;
   color:white;
   border:0;
   padding:10px 16px;
@@ -88,11 +88,11 @@ button {
 .wedding-hero {
   text-align:center;
   padding:64px 32px 48px;
-  background:radial-gradient(ellipse at 15% 5%,#e4d8c444,transparent 50%)
+  background:radial-gradient(ellipse at 15% 5%,#f3d7e144,transparent 50%)
 }
 .wedding-hero h1,.cover-paper h1,.home-invitation h1 {
   font:italic clamp(42px,6vw,68px)/1.03 var(--font-serif);
-  color:#594b3e;
+  color:#703749;
   margin:18px 0
 }
 .wedding-hero h1 span,.cover-paper h1 span,.home-invitation h1 span {
@@ -109,7 +109,7 @@ button {
   max-width:580px;
   margin:0 auto;
   padding:12px;
-  border:1px solid #ae9678
+  border:1px solid #d49ab0
 }
 .hero-photo img {
   width:100%;
@@ -124,12 +124,12 @@ button {
 .paper-section {
   text-align:center;
   padding:64px 54px;
-  border-top:1px solid #b5a48d55;
+  border-top:1px solid #dba9bb55;
   scroll-margin-top:70px
 }
 .paper-section h2,.wedding-closing h2 {
   font:italic clamp(36px,5vw,52px)/1.15 var(--font-serif);
-  color:#594b3e;
+  color:#703749;
   margin-bottom:24px
 }
 .paper-section h3 {
@@ -141,10 +141,10 @@ button {
 }
 .ceremony-section {
   margin:20px 28px 0;
-  border:1px solid #b5a48d88;
-  outline:1px solid #b5a48d55;
+  border:1px solid #dba9bb88;
+  outline:1px solid #dba9bb55;
   outline-offset:-8px;
-  background:#fffdf744
+  background:#ffffff44
 }
 .family-ceremony-section {
   padding:0;
@@ -163,14 +163,14 @@ button {
 .family-heading {
   font-size:11px;
   letter-spacing:.15em;
-  color:#69533f
+  color:#a43e60
 }
 .parent-line {
   margin:6px 0;
   font-size:13px!important
 }
 .home-ceremony-card {
-  border-top:1px solid #b5a48d55;
+  border-top:1px solid #dba9bb55;
   margin:20px 0;
   padding:24px 0;
   background:transparent
@@ -216,7 +216,7 @@ button {
   aspect-ratio:2/3!important;
   padding:0;
   border:0;
-  background:#e4d8c4;
+  background:#f3d7e1;
   overflow:hidden;
   border-radius:0
 }
@@ -230,14 +230,14 @@ button {
   transform:scale(1.03)
 }
 .gallery-hover-overlay {
-  background:#46332255
+  background:#70374955
 }
 .reception-date {
   padding:20px 0;
   margin:0 auto 24px;
   max-width:380px;
-  border-top:1px solid #b5a48d77;
-  border-bottom:1px solid #b5a48d77
+  border-top:1px solid #dba9bb77;
+  border-bottom:1px solid #dba9bb77
 }
 .reception-date strong {
   font:28px var(--font-serif)
@@ -245,7 +245,7 @@ button {
 .reception-date>span {
   display:block;
   font:90px/1 var(--font-serif);
-  color:#69533f
+  color:#a43e60
 }
 .reception-date p {
   letter-spacing:.15em;
@@ -258,7 +258,7 @@ button {
 .wedding-timeline {
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  border-block:1px solid #b5a48d55;
+  border-block:1px solid #dba9bb55;
   margin:28px 0
 }
 .wedding-timeline>div {
@@ -268,11 +268,11 @@ button {
   padding:22px 8px
 }
 .wedding-timeline>div+div {
-  border-left:1px solid #b5a48d55
+  border-left:1px solid #dba9bb55
 }
 .wedding-timeline strong {
   font:28px var(--font-serif);
-  color:#69533f
+  color:#a43e60
 }
 .wedding-timeline span {
   font-size:12px
@@ -303,7 +303,7 @@ button {
   min-height:44px
 }
 .is-wedding-day {
-  background:#69533f!important;
+  background:#a43e60!important;
   color:#fff!important;
   border-radius:50%
 }
@@ -313,10 +313,10 @@ button {
 .deadline-note {
   font-size:12px!important;
   margin:16px 0 0;
-  color:#75614d
+  color:#875268
 }
 .location-section {
-  background:#f1eadd88
+  background:#fce8ef88
 }
 .wedding-map {
   margin:24px 0
@@ -349,7 +349,7 @@ button {
 .countdown-minimal-card {
   padding:12px 4px;
   background:none;
-  border:1px solid #b5a48d77
+  border:1px solid #dba9bb77
 }
 .cd-val {
   font:40px var(--font-serif)
@@ -358,7 +358,7 @@ button {
   font-size:10px
 }
 .wish-section {
-  background:#f1eadd66
+  background:#fce8ef66
 }
 .wish-form {
   max-width:560px;
@@ -375,11 +375,11 @@ button {
 }
 .wish-form input,.wish-form textarea {
   width:100%;
-  border:1px solid #b5a48d;
-  background:#fffdf9;
+  border:1px solid #dba9bb;
+  background:#ffffff;
   padding:13px;
   font-size:16px;
-  color:#4a4039;
+  color:#583b47;
   border-radius:2px
 }
 .wish-form textarea {
@@ -389,12 +389,12 @@ button {
 .wish-form small {
   font-size:11px;
   font-weight:400;
-  color:#756b61
+  color:#795361
 }
 .wish-success {
   padding:24px;
-  border:1px solid #b5a48d;
-  background:#fffdf9
+  border:1px solid #dba9bb;
+  background:#ffffff
 }
 .wish-success blockquote {
   font:italic 24px/1.5 var(--font-serif);
@@ -429,7 +429,7 @@ button {
   position:fixed;
   inset:0;
   z-index:80;
-  background:#e8e1d5;
+  background:#f8e0e9;
   display:grid;
   place-items:center;
   padding:24px;
@@ -437,17 +437,17 @@ button {
 }
 .cover-paper {
   width:min(500px,100%);
-  background:#fbf8f1;
-  border:1px solid #b5a48d;
+  background:#fffafb;
+  border:1px solid #dba9bb;
   padding:40px 24px;
   text-align:center;
-  outline:1px solid #b5a48d88;
+  outline:1px solid #dba9bb88;
   outline-offset:-12px;
-  box-shadow:0 20px 60px #55412c18
+  box-shadow:0 20px 60px #70374918
 }
 .cover-monogram {
   font:italic 42px var(--font-serif);
-  color:#75614d
+  color:#875268
 }
 .cover-paper .eyebrow {
   margin:24px 0 14px
@@ -467,16 +467,16 @@ button {
   display:grid;
   place-items:center;
   padding:40px 24px;
-  background:#eeebe5
+  background:#fbeaf0
 }
 .home-paper {
   display:grid;
   grid-template-columns:1fr 1fr;
   max-width:1000px;
   width:100%;
-  background:#fbf8f1;
-  box-shadow:0 20px 60px #55412c12;
-  border:1px solid #b5a48d55
+  background:#fffafb;
+  box-shadow:0 20px 60px #70374912;
+  border:1px solid #dba9bb55
 }
 .home-portrait img {
   width:100%;
@@ -507,7 +507,7 @@ button {
 .rsvp-watermark {
   font-size:30px!important;
   letter-spacing:.08em!important;
-  color:#79654f!important;
+  color:#a43e60!important;
   opacity:1!important
 }
 .rsvp-super-title {
@@ -515,18 +515,18 @@ button {
   font-size:13px
 }
 .rsvp-stationery-form {
-  background:#fbf8f1;
-  border-color:#b5a48d
+  background:#fffafb;
+  border-color:#dba9bb
 }
 .rsvp-standalone-page {
-  background:#eeebe5
+  background:#fbeaf0
 }
 .rsvp-radio-card.checked {
-  border-color:#69533f;
-  background:#ede4d7
+  border-color:#a43e60;
+  background:#fbe5ed
 }
 .rsvp-input-text:focus {
-  border-color:#69533f
+  border-color:#a43e60
 }
 .rsvp-page-header {
   gap:20px;
@@ -563,7 +563,7 @@ button {
   min-width:44px;
   font-size:11px;
   padding:12px 8px;
-  background:#69533f;
+  background:#a43e60;
   color:white
 }
 .gift-quote {
@@ -642,20 +642,20 @@ a,button {
   right:0;
   z-index:30;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  background:#fbf8ff;
-  border-top:1px solid #b5a48d;
+  background:#fffafb;
+  border-top:1px solid #dba9bb;
   padding-bottom:env(safe-area-inset-bottom)
 }
 .wedding-mobile-actions>* {
   border:0;
-  background:#fbf8f1;
+  background:#fffafb;
   font-size:12px;
   padding:16px 4px;
   text-align:center;
-  color:#594431
+  color:#703749
 }
 .wedding-mobile-actions>*+* {
-  border-left:1px solid #b5a48d55
+  border-left:1px solid #dba9bb55
 }
 .minimal-wedding {
   padding-bottom:54px

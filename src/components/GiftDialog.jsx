@@ -27,7 +27,7 @@ export default function GiftDialog({ side, open, onClose }) {
         {account.qrImage ? (
           <div className="gift-content">
             <div className="gift-qr-wrapper">
-              <img className="gift-qr" src={account.qrImage} alt={`Mã QR mừng cưới ${account.label}`} width="560" height="560" />
+              <img className="gift-qr" src={account.qrImage} alt={`Mã QR mừng cưới ${account.label}`} />
             </div>
 
             <div className="gift-details-card">
@@ -61,7 +61,7 @@ export default function GiftDialog({ side, open, onClose }) {
             </div>
 
             <div className="gift-actions">
-              <a className="button button-primary" href={account.qrImage} download={`qr-mung-cuoi-${side}.png`}>
+              <a className="button button-primary" href={account.qrImage} download={`qr-mung-cuoi-${side === "groom" ? "nha-trai" : "nha-gai"}.jpg`}>
                 TẢI ẢNH QR
               </a>
             </div>

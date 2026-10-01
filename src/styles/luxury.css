@@ -7,7 +7,7 @@
 
 :root {
   /* Color Palette: Romantic Blush & White (Hồng phấn, Trắng kem, Hồng rose & Vàng hồng) */
-  --lux-bg: #fdf6f8;
+  --lux-bg: #fffafb;
   --lux-bg-alt: #fceef2;
   --lux-bg-warm: #f8dfe6;
   --lux-card: #ffffff;
@@ -16,11 +16,11 @@
   --lux-espresso: #5c2434;        /* Deep rose-wine ink for headings */
   --lux-mocha: #7a3b50;           /* Secondary ink */
   --lux-body: #5e3d4a;            /* Body text color with high legibility */
-  --lux-muted: #9a7383;           /* Subtitles & captions */
+  --lux-muted: #805365;           /* Subtitles & captions */
   --lux-faint: #c4a3b2;           /* Watermarks & light hints */
   
   --lux-gold: #d4899e;            /* Rose-pink accent */
-  --lux-bronze: #b5667e;          /* Dusty rose eyebrow */
+  --lux-bronze: #a43e60;          /* Rose accent with readable contrast */
   --lux-border: #f0d0da;          /* Primary hairline border */
   --lux-border-soft: #f5e0e8;     /* Subtle divider */
   --lux-seal: #b03a5a;            /* Wax seal rose-crimson */
@@ -161,7 +161,7 @@ a {
   font-style: italic;
   font-size: 1.15rem;
   font-weight: 600;
-  color: #fff6ef;
+  color: #fffafb;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   letter-spacing: 0.05em;
 }
@@ -351,7 +351,7 @@ a {
   width: min(540px, 94vw);
   background: var(--lux-card);
   border: 1px solid var(--lux-border);
-  box-shadow: 0 30px 80px rgba(36, 27, 22, 0.32), 0 8px 24px rgba(36, 27, 22, 0.15);
+  box-shadow: 0 30px 80px rgba(92, 36, 52, 0.32), 0 8px 24px rgba(92, 36, 52, 0.15);
   padding: clamp(48px, 8vw, 76px) clamp(28px, 6vw, 56px) clamp(36px, 6vw, 48px);
   text-align: center;
   border-radius: 4px;
@@ -454,7 +454,7 @@ a {
   z-index: 100;
   width: 100%;
   height: 68px;
-  background: rgba(252, 249, 245, 0.92);
+  background: rgba(255, 250, 252, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--lux-border-soft);
@@ -462,8 +462,8 @@ a {
 }
 
 .lux-navbar.scrolled {
-  box-shadow: 0 4px 20px rgba(36, 27, 22, 0.06);
-  background: rgba(252, 249, 245, 0.98);
+  box-shadow: 0 4px 20px rgba(92, 36, 52, 0.06);
+  background: rgba(255, 250, 252, 0.98);
 }
 
 .lux-nav-container {
@@ -1210,7 +1210,7 @@ a {
   color: #ffffff !important;
   font-weight: 700;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(36, 27, 22, 0.35);
+  box-shadow: 0 2px 8px rgba(92, 36, 52, 0.35);
 }
 
 .calendar-button-group {
@@ -1298,7 +1298,7 @@ a {
 .card-hover-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(36, 27, 22, 0.1) 0%, rgba(36, 27, 22, 0.6) 100%);
+  background: linear-gradient(180deg, rgba(92, 36, 52, 0.1) 0%, rgba(92, 36, 52, 0.6) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1507,7 +1507,7 @@ a {
   outline: none;
   border-color: var(--lux-espresso);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(36, 27, 22, 0.08);
+  box-shadow: 0 0 0 3px rgba(92, 36, 52, 0.08);
 }
 
 .wish-form textarea {
@@ -1613,7 +1613,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(252, 249, 245, 0.1) 0%, var(--lux-bg) 100%);
+  background: linear-gradient(180deg, rgba(255, 250, 252, 0.1) 0%, var(--lux-bg) 100%);
 }
 
 .lux-closing-title {
@@ -1663,7 +1663,7 @@ a {
   left: 0;
   right: 0;
   z-index: 90;
-  background: rgba(252, 249, 245, 0.96);
+  background: rgba(255, 250, 252, 0.96);
   border-top: 1px solid var(--lux-border);
   backdrop-filter: blur(12px);
   padding: 10px 16px max(10px, env(safe-area-inset-bottom));
@@ -1924,7 +1924,7 @@ a {
   padding: 8px 18px;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid var(--lux-border);
-  box-shadow: 0 4px 16px rgba(36, 27, 22, 0.1);
+  box-shadow: 0 4px 16px rgba(92, 36, 52, 0.1);
   cursor: pointer;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -1935,7 +1935,7 @@ a {
 .audio-toggle-btn:hover {
   border-color: var(--lux-gold);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(36, 27, 22, 0.15);
+  box-shadow: 0 6px 20px rgba(92, 36, 52, 0.15);
 }
 
 .audio-soundwave {

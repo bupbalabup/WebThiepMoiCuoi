@@ -52,9 +52,9 @@
 }
 
 @keyframes pulseRing {
-  0%   { box-shadow: 0 0 0 0 rgba(105, 83, 63, 0.3); }
-  70%  { box-shadow: 0 0 0 10px rgba(105, 83, 63, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(105, 83, 63, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(164, 62, 96, 0.3); }
+  70%  { box-shadow: 0 0 0 10px rgba(164, 62, 96, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(164, 62, 96, 0); }
 }
 
 @keyframes calendarDayAppear {
@@ -63,8 +63,8 @@
 }
 
 @keyframes weddingDayPulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(105, 83, 63, 0.4); }
-  50%      { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(105, 83, 63, 0); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(164, 62, 96, 0.4); }
+  50%      { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(164, 62, 96, 0); }
 }
 
 @keyframes fadeInBlur {
@@ -232,8 +232,8 @@
 }
 
 .wedding-nav.scrolled {
-  box-shadow: 0 2px 20px rgba(42, 28, 24, 0.08);
-  background: #fbf8f1fa;
+  box-shadow: 0 2px 20px rgba(92, 36, 52, 0.08);
+  background: #fffafbfa;
 }
 
 /* Nav link hover underline */
@@ -273,7 +273,7 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  border-color: #b5a48d66;
+  border-color: #dba9bb66;
   border-style: solid;
   opacity: 0;
   transition: opacity 0.6s ease 0.3s;
@@ -310,7 +310,7 @@
 
 .countdown-minimal-card:hover {
   transform: translateY(-2px);
-  border-color: #b5a48d;
+  border-color: #dba9bb;
 }
 
 /* Staggered entrance */
@@ -382,7 +382,7 @@
 
 .gallery-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(42, 28, 24, 0.12);
+  box-shadow: 0 8px 24px rgba(92, 36, 52, 0.12);
 }
 
 .gallery-item img {
@@ -397,7 +397,7 @@
 
 .gallery-hover-overlay {
   transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  background: linear-gradient(180deg, rgba(42, 28, 24, 0.1) 0%, rgba(42, 28, 24, 0.5) 100%);
+  background: linear-gradient(180deg, rgba(92, 36, 52, 0.1) 0%, rgba(92, 36, 52, 0.5) 100%);
 }
 
 .gallery-zoom-text {
@@ -437,7 +437,7 @@
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(42, 28, 24, 0.12);
+  box-shadow: 0 4px 14px rgba(92, 36, 52, 0.12);
 }
 
 .button:active {
@@ -476,7 +476,7 @@
 .rsvp-input-text:focus,
 .wish-form input:focus,
 .wish-form textarea:focus {
-  box-shadow: 0 0 0 3px rgba(105, 83, 63, 0.08);
+  box-shadow: 0 0 0 3px rgba(164, 62, 96, 0.08);
   transform: translateY(-1px);
 }
 
@@ -486,7 +486,7 @@
 
 .rsvp-radio-card:hover {
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(42, 28, 24, 0.06);
+  box-shadow: 0 2px 8px rgba(92, 36, 52, 0.06);
 }
 
 .rsvp-radio-card.checked {
@@ -591,9 +591,9 @@
   height: 2px;
   background: linear-gradient(90deg,
     transparent 0%,
-    #b5a48d44 20%,
-    #b5a48d88 50%,
-    #b5a48d44 80%,
+    #dba9bb44 20%,
+    #dba9bb88 50%,
+    #dba9bb44 80%,
     transparent 100%
   );
   z-index: 100;
@@ -682,7 +682,7 @@
 
 .cal-action-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(42, 28, 24, 0.08);
+  box-shadow: 0 2px 8px rgba(92, 36, 52, 0.08);
 }
 
 .cal-action-btn:active {
@@ -696,7 +696,7 @@
   width: 32px;
   height: 32px;
   background: transparent;
-  border: 1px solid #b5a48d55;
+  border: 1px solid #dba9bb55;
   font-size: 0;
   cursor: pointer;
   display: grid;
@@ -711,7 +711,7 @@
   position: absolute;
   width: 14px;
   height: 1.5px;
-  background: #594b3e;
+  background: #703749;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -724,7 +724,7 @@
 }
 
 .close-button:hover {
-  background: #f1eadd;
+  background: #fce8ef;
   transform: rotate(90deg);
 }
 

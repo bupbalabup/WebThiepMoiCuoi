@@ -149,16 +149,16 @@
     "accounts": {
       "groom": {
         "label": "Nhà trai",
-        "accountName": null,
-        "bankName": null,
-        "accountNumber": null,
+        "accountName": "LUONG TUAN ANH",
+        "bankName": "Techcombank",
+        "accountNumber": "1111112234",
         "qrImage": "/images/qr/nha-trai.JPG"
       },
       "bride": {
         "label": "Nhà gái",
-        "accountName": null,
-        "bankName": null,
-        "accountNumber": null,
+        "accountName": "DANG NGOC ANH",
+        "bankName": "Techcombank",
+        "accountNumber": "79235449579",
         "qrImage": "/images/qr/nha-gai.JPG"
       }
     }
