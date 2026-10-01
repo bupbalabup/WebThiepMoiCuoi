@@ -2203,7 +2203,8 @@ a {
 .lux-home-portal .cover-couple-title,.lux-home-portal .cover-couple-title .hero-name-line{font-family:'Charm',serif;font-style:normal;font-weight:400}
 .lux-cover-overlay:has(.mobile-envelope-screen){padding:0;background:#fcf2f6}
 .mobile-envelope-screen{max-width:none;width:100%;min-height:100svh}
-.mi-envelope-seal{width:72px;height:72px;background:white;border:0;box-shadow:0 4px 14px #87485c26}
+.mi-envelope-seal{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);width:clamp(56px,15vw,72px);height:clamp(56px,15vw,72px);background:white;border:0;box-shadow:0 4px 14px #87485c26;z-index:4}
+.mi-envelope-seal .wedding-monogram{width:100%;height:100%;display:block}
 .mi-monogram{border:0;width:96px;height:96px}
 .mi-gift-monogram{margin-bottom:12px}
 .mi-gift-monogram .wedding-monogram{margin:auto}
@@ -2221,14 +2222,16 @@ a {
   .mi-hero-copy{grid-column:1;grid-row:1;position:static;align-self:center;padding:48px 28px;color:#82415b;text-shadow:none}
   .mi-hero h1{color:#82415b;font-size:clamp(56px,5.8vw,86px)}
   .mi-wedding{font-size:38px}.mi-hero-date{font-size:19px}
-  .mi-date-grid{max-width:950px;margin:auto;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:70px}
-  .mi-polaroid{padding:14px 14px 22px}.mi-polaroid figcaption{font-size:32px}
+  .mi-date-grid{max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,4vw,56px);align-items:center;justify-items:center;justify-content:center}
+  .mi-polaroid{padding:14px 14px 22px;margin:0 auto;width:100%;max-width:380px;transform:none;box-shadow:0 12px 32px rgba(125,78,96,0.12);border-radius:2px}
+  .mi-polaroid figcaption{font-size:32px;text-align:center;margin-top:12px}
+  .mobile-invitation .save-date-stationery-card{width:100%;max-width:380px;margin:0 auto}
   .mobile-invitation .calendar-month-title{font-size:21px;margin-bottom:22px}
   .mobile-invitation .cal-header-cell{font-size:15px;padding:10px 0}
   .mobile-invitation .cal-day-cell{min-height:58px;gap:3px}
   .mobile-invitation .cal-solar-day{font-size:24px}.mobile-invitation .cal-lunar-day{font-size:12px}
   .mobile-invitation .calendar-button-group{display:flex;margin-top:26px;padding-bottom:4px}
-  .mobile-invitation .calendar-box{padding:clamp(16px,2.5vw,26px) clamp(12px,2vw,20px)}
+  .mobile-invitation .calendar-box{padding:clamp(16px,2.5vw,26px) clamp(12px,2vw,20px);width:100%;margin:0 auto;box-sizing:border-box}
   .mi-lunar-note{font-size:16px;margin-top:38px!important}
   .mi-family-grid{max-width:880px;margin:0 auto 40px;gap:60px}
   .mi-family-grid h2{font-size:40px}.mi-family-grid p{font-size:17px}
