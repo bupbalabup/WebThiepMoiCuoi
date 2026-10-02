@@ -1,5 +1,6 @@
 import React from "react";
 import { WeddingMonogram } from "./Ornaments.jsx";
+import photos from "../config/photos.json";
 import wedding from "../config/wedding.json";
 import SaveTheDateCalendar from "./SaveTheDateCalendar.jsx";
 import WeddingGallery from "./WeddingGallery.jsx";
@@ -7,8 +8,8 @@ import CountdownTimer from "./CountdownTimer.jsx";
 import WishForm from "./WishForm.jsx";
 import "../styles/mobile-invitation.css";
 
-const portrait = "/images/anhcuoi/TOM01971-1600.jpg";
-const embrace = "/images/anhcuoi/TOM02721-1600.jpg";
+const embrace = photos.calendar;
+
 
 export function MobileEnvelope({ first, second, guestName, onOpen }) {
   return <div className="mobile-envelope-screen">
@@ -28,10 +29,11 @@ export function MobileEnvelope({ first, second, guestName, onOpen }) {
 export default function MobileInvitation({ side, guestName, invitedName, slug, onRsvp, onGift }) {
   const first = side === "groom" ? wedding.couple.groom : wedding.couple.bride;
   const second = side === "groom" ? wedding.couple.bride : wedding.couple.groom;
+  const sideOrder = side === "groom" ? ["groom", "bride"] : ["bride", "groom"];
   return <div className="mobile-invitation">
     <section className="mi-hero" id="dau-trang" aria-label="Thiệp cưới Tuấn Anh và Ngọc Anh">
-      <img src={portrait} srcSet="/images/anhcuoi/TOM01971-800.jpg 533w, /images/anhcuoi/TOM01971-1600.jpg 1067w, /images/anhcuoi/TOM01971-2400.jpg 1600w" sizes="(min-width: 1440px) 720px, (min-width: 768px) 50vw, 100vw" alt="Tuấn Anh và Ngọc Anh trong ngày chung đôi" fetchPriority="high" width="1600" height="2400" />
-      <div className="mi-hero-copy"><p className="mi-script mi-wedding">Ngày chung đôi</p><h1><span>{first}</span><i>&amp;</i><span>{second}</span></h1><p className="mi-hero-date">21 . 10 . 2026</p></div>
+      <picture className="mi-hero-picture"><source media="(min-width: 768px)" srcSet={photos.heroDesktop} /><img src={photos.heroMobile} alt={`${first} và ${second} trong ngày chung đôi`} fetchPriority="high" /></picture>
+      <div className="mi-hero-copy"><p className="mi-script mi-wedding">Ngày chung đôi</p><h1><span className="mi-first-name">{wedding.couple.groom.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span><i>&amp;</i><span className="mi-second-name">{wedding.couple.bride.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span></h1><p className="mi-hero-date">21 . 10 . 2026</p></div>
     </section>
 
     <section className="mi-section mi-date" aria-label="Lịch ngày cưới">
@@ -41,12 +43,12 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
 
     <section className="mi-section mi-families" id="le-cuoi">
       <div className="mi-family-paper"><div className="mi-double-happiness"><svg viewBox="0 0 160 120" role="img" aria-label="Song hỉ" fill="none" stroke="currentColor" strokeWidth="6"><g id="happiness-left"><path d="M12 18H72M42 7V30M17 32H67M17 67H67M23 59L28 67M61 59L56 67"/><path d="M22 43H62V55H22ZM19 81H65V105H19Z"/></g><g transform="translate(76 0)"><path d="M12 18H72M42 7V30M17 32H67M17 67H67M23 59L28 67M61 59L56 67"/><path d="M22 43H62V55H22ZM19 81H65V105H19Z"/></g></svg></div>
-      <div className="mi-family-grid">{["bride", "groom"].map(key => <div key={key}><h2 className="mi-script">{wedding.families[key].label}</h2><p>{wedding.families[key].father}</p><p>{wedding.families[key].mother}</p></div>)}</div></div>
+      <div className="mi-family-grid">{sideOrder.map(key => <div key={key}><h2 className="mi-script">{wedding.families[key].label}</h2><p>{wedding.families[key].father}</p><p>{wedding.families[key].mother}</p></div>)}</div></div>
       <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p><h2 className="mi-script mi-guest">{guestName}</h2><p>Đến chung vui cùng gia đình chúng mình<br />trong ngày hạnh phúc.</p>
     </section>
 
     <section className="mi-couple" aria-label="Cô dâu và chú rể">
-      <div className="mi-couple-cards">{["bride", "groom"].map(key => <figure className={`mi-person mi-person-${key}`} key={key}><div className="mi-person-crop"><img src={portrait} alt={key === "bride" ? "Cô dâu Ngọc Anh" : "Chú rể Tuấn Anh"} loading="lazy" /></div><figcaption><span className="mi-script">{key === "bride" ? "Cô dâu" : "Chú rể"}</span><strong>{wedding.couple[`${key}FullName`]}</strong></figcaption></figure>)}</div>
+      <div className="mi-couple-cards">{sideOrder.map(key => <figure className={`mi-person mi-person-${key}`} key={key}><div className="mi-person-crop"><img src={photos[key]} alt={key === "bride" ? "Cô dâu Ngọc Anh" : "Chú rể Tuấn Anh"} loading="lazy" /></div><figcaption><span className="mi-script">{key === "bride" ? "Cô dâu" : "Chú rể"}</span><strong>{wedding.couple[`${key}FullName`]}</strong></figcaption></figure>)}</div>
     </section>
 
     <section className="mi-section mi-events" id="dia-diem">
@@ -63,7 +65,7 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
     <section className="mi-section mi-gifts" id="mung-cuoi"><h2 className="mi-script mi-heading">Hộp mừng cưới</h2><p>Cảm ơn những yêu thương<br />bạn dành cho chúng mình.</p><button type="button" className="mi-gift-envelope" onClick={onGift}><span className="mi-gift-monogram"><WeddingMonogram size={90} /></span><span className="mi-pill">Chạm để mở</span></button></section>
 
     <section className="mi-countdown" id="dem-nguoc" aria-labelledby="countdown-heading">
-      <img className="mi-countdown-photo" src="/images/anhcuoi/TOM01529-1600.jpg" alt="Tuấn Anh và Ngọc Anh cùng đón ngày chung đôi" loading="lazy" />
+      <img className="mi-countdown-photo" src={photos.countdown} alt="Tuấn Anh và Ngọc Anh cùng đón ngày chung đôi" loading="lazy" />
       <div className="mi-countdown-content">
         <h2 className="mi-script" id="countdown-heading">Đếm ngược<br />đến ngày cưới</h2>
         <CountdownTimer title="" />
@@ -71,6 +73,6 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
         <p className="mi-countdown-zone">Giờ Việt Nam</p>
       </div>
     </section>
-    <footer className="mi-section mi-thanks"><img src="/images/anhcuoi/TOM01529-1600.jpg" alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><h2 className="mi-script">Cảm ơn bạn!</h2><p className="mi-thanks-names">{first} &amp; {second}</p><p>Cảm ơn bạn đã yêu thương và chúc phúc.<br />Hẹn gặp bạn trong ngày vui của chúng mình!</p><p className="mi-kicker">21 · 10 · 2026</p></footer>
+    <footer className="mi-section mi-thanks"><img src={photos.thanks} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><h2 className="mi-script">Cảm ơn bạn!</h2><p className="mi-thanks-names">{first} &amp; {second}</p><p>Cảm ơn bạn đã yêu thương và chúc phúc.<br />Hẹn gặp bạn trong ngày vui của chúng mình!</p><p className="mi-kicker">21 · 10 · 2026</p></footer>
   </div>;
 }

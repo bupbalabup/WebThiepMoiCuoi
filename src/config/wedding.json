@@ -167,40 +167,28 @@
     "minimumImagesForLaunch": 12,
     "slots": [
       {
-        "id": "photo-01971",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01971-800.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01971-2400.jpg",
+        "id": "photo-1",
+        "src": "/images/optimized/khoanhkhac1.jpg",
+        "fullSrc": "/images/optimized/khoanhkhac1.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 1"
       },
       {
-        "id": "photo-02721",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM02721-1600.jpg",
-        "fullSrc": "/images/anhcuoi/TOM02721-1600.jpg",
+        "id": "photo-2",
+        "src": "/images/optimized/khoanhkhac2.jpg",
+        "fullSrc": "/images/optimized/khoanhkhac2.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 2"
       },
       {
-        "id": "photo-00850",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM00850-1600.jpg",
-        "fullSrc": "/images/anhcuoi/TOM00850-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 8"
+        "id": "photo-3",
+        "src": "/images/optimized/khoanhkhac3.jpg",
+        "fullSrc": "/images/optimized/khoanhkhac3.jpg",
+        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 3"
       },
       {
-        "id": "photo-01529",
-        "role": "album",
-        "aspectRatio": "2/3",
-        "priority": false,
-        "src": "/images/anhcuoi/TOM01529-1600.jpg",
-        "fullSrc": "/images/anhcuoi/TOM01529-1600.jpg",
-        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 14"
+        "id": "photo-4",
+        "src": "/images/optimized/khoanhkhac4.jpg",
+        "fullSrc": "/images/optimized/khoanhkhac4.jpg",
+        "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 4"
       }
     ]
   },

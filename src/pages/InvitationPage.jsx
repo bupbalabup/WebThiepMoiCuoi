@@ -78,7 +78,7 @@ export default function InvitationPage({ side, slug }) {
         <nav ref={navRef} className="lux-navbar" aria-label="Điều hướng thiệp cưới">
           <div className="lux-nav-container">
             <a href="/" className="lux-nav-brand">
-              Tuấn Anh &amp; Ngọc Anh
+              {first} &amp; {second}
             </a>
             <div className="lux-nav-menu">
               <a href="#dau-trang">Trang chủ</a>

@@ -1,4 +1,5 @@
 import React from "react";
+import photos from "../config/photos.json";
 import wedding from "../config/wedding.json";
 import AmbientPetals from "../components/AmbientPetals.jsx";
 import AudioPlayer from "../components/AudioPlayer.jsx";
@@ -19,7 +20,7 @@ export default function HomePage() {
         {/* Left Side: Wedding Portrait */}
         <div className="lux-portal-photo">
           <img
-            src="/images/anhcuoi/TOM02721-1600.jpg"
+            src={photos.homepage}
             alt="Ảnh cưới Tuấn Anh & Ngọc Anh"
             width="533"
             height="800"

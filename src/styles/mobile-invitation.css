@@ -34,7 +34,7 @@
 .mi-family-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
 .mi-family-grid h2{font-size:27px;margin:0 0 10px;text-transform:capitalize}.mi-family-grid p{font-size:12px;line-height:1.9}
 .mi-guest{font-size:32px;margin:10px 0}
-.mi-couple{background:linear-gradient(#6e435777,#6e435777),url('/images/anhcuoi/TOM02721-1600.jpg') center/cover;padding:44px 20px 50px}
+.mi-couple{background:var(--invitation-page-bg);padding:44px 20px 50px}
 .mi-couple-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .mi-person{background:white;padding:7px 7px 14px;box-shadow:0 8px 20px #28162030;transform:rotate(-4deg)}
 .mi-person-groom{margin-top:62px!important;transform:rotate(4deg)}
