@@ -32,6 +32,7 @@ import "./styles/index.css";
 import "./styles/minimal.css";
 import "./styles/animations.css";
 import "./styles/luxury.css";
+import "./styles/rsvp.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

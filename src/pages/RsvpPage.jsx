@@ -10,6 +10,7 @@ export default function RsvpPage({ side }) {
   const safeSlug = slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) && slug !== "phuc-dap" ? slug : null;
   const invite = useInvitation(side, safeSlug);
   const config = SIDE_CONFIG[side];
+  const names = side === "groom" ? [wedding.couple.groom, wedding.couple.bride] : [wedding.couple.bride, wedding.couple.groom];
 
   if (safeSlug && invite.status === "loading") return <InvitationLoading />;
   if (safeSlug && invite.status === "error") return <InvitationError error={invite.error} />;
@@ -18,19 +19,20 @@ export default function RsvpPage({ side }) {
     <main className={`rsvp-standalone-page side-${side}`}>
       <header className="rsvp-page-header">
         <a className="rsvp-nav-brand" href="/">
-          {wedding.couple.groomFullName} &amp; {wedding.couple.brideFullName}
+          {names.join(" & ")}
         </a>
         <a className="rsvp-back-link" href={safeSlug ? `${config.path}/${safeSlug}` : config.path}>
-          XEM THIỆP MỜI {config.label.toUpperCase()}
+          Xem thiệp mời
         </a>
       </header>
 
+      <div className="rsvp-page-layout">
       <section className="rsvp-hero-card">
-        <span className="rsvp-super-title">PHÚC ĐÁP</span>
+        <span className="rsvp-super-title">NGÀY VUI CỦA CHÚNG MÌNH</span>
         <h1 className="rsvp-main-heading">
-          <span className="hero-name-line">{wedding.couple.groom}</span>
+          <span className="hero-name-line">{names[0]}</span>
           <span className="amp">&amp;</span>
-          <span className="hero-name-line">{wedding.couple.bride}</span>
+          <span className="hero-name-line">{names[1]}</span>
         </h1>
 
         {invite.invitation?.name ? (
@@ -51,6 +53,7 @@ export default function RsvpPage({ side }) {
           <span className="meta-sep">|</span>
           <span>{wedding.event.hall}</span>
         </div>
+        <p className="rsvp-side-tag">Khách mời {config.label}</p>
       </section>
 
       <div className="rsvp-card-container">
@@ -59,6 +62,7 @@ export default function RsvpPage({ side }) {
           invitedName={invite.invitation?.name || ""}
           invitationSlug={safeSlug}
         />
+      </div>
       </div>
 
       <div className="rsvp-footer-action">

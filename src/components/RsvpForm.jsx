@@ -141,11 +141,12 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
   return (
     <form className={`rsvp-stationery-form ${compact ? "compact" : ""}`} onSubmit={onSubmit} noValidate>
       <div className="rsvp-form-header">
-        <span className="rsvp-watermark" aria-hidden="true">PHÚC ĐÁP</span>
+        <span className="rsvp-form-kicker">MỘT LỜI HẸN CHO NGÀY VUI</span>
+        <h2 className="rsvp-form-title">Hẹn gặp bạn nhé!</h2>
         <p className="rsvp-notice-text">
-          Vui lòng phúc đáp số lượng khách mời sẽ tham dự để gia đình sắp xếp đón tiếp chu đáo nhất!
+          Bạn dành chút thời gian để chúng mình chuẩn bị đón tiếp thật chu đáo nhé.
         </p>
-        <span className="rsvp-deadline-badge">HẠN PHÚC ĐÁP: HẾT NGÀY 15.10.2026</span>
+        <span className="rsvp-deadline-badge">Phúc đáp trước hết ngày <strong>15.10.2026</strong></span>
       </div>
 
       {/* Field 1: Name */}
@@ -273,6 +274,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
             <input
               type="text"
               className="rsvp-input-text"
+              aria-label="Mối quan hệ khác"
               value={values.relationshipOther}
               onChange={(event) => update("relationshipOther", event.target.value)}
               placeholder="Vui lòng cho chúng mình biết thêm..."

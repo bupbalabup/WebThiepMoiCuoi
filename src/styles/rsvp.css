@@ -1,0 +1,90 @@
+/* Shared stationery for the standalone response and invitation dialog. */
+.rsvp-standalone-page{background:#fff7fa;padding:28px 24px 48px;color:#634652}
+.rsvp-page-header{max-width:1120px;gap:20px;margin-bottom:40px}
+.rsvp-nav-brand{font-family:Charm,cursive;font-style:normal;font-size:26px;font-weight:400;text-transform:none;letter-spacing:0}
+.rsvp-back-link{border-radius:24px;font-size:12px;letter-spacing:0;text-transform:none;white-space:nowrap;padding:10px 18px}
+.rsvp-page-layout{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;max-width:1120px;margin:auto;align-items:start}
+.rsvp-hero-card{position:sticky;top:32px;background:transparent;border:0;box-shadow:none;padding:48px 12px;margin:0;width:100%}
+.rsvp-super-title{font:600 11px/1.7 "Be Vietnam Pro",sans-serif;letter-spacing:.2em;color:#a45776}
+.rsvp-main-heading{font-family:Charm,cursive;font-style:normal;font-size:clamp(44px,4.5vw,64px);line-height:1.3;margin:28px 0;color:#854762}
+.rsvp-main-heading .hero-name-line{display:block}
+.rsvp-main-heading .amp{display:block;font-size:28px;color:#bb8299;margin:8px 0}
+.rsvp-card-sub{font-size:15px;line-height:1.9;max-width:340px;margin:22px auto}
+.rsvp-meta-info{display:flex;flex-direction:column;gap:7px;font-size:14px;line-height:1.7;color:#785b68}
+.rsvp-meta-info .meta-sep{display:none}
+.rsvp-meta-info>span:first-child{font-weight:600;color:#854762;margin-bottom:8px}
+.rsvp-side-tag{display:inline-block;background:#f6e5ed;color:#854762;border-radius:24px;padding:8px 18px;margin:24px 0 0;font-size:12px}
+.rsvp-guest-tag{border:0;border-radius:12px;background:#f9eaf0;padding:12px 20px}
+.rsvp-card-container{width:100%;min-width:0;padding:32px;background:#fff;border:0;border-radius:24px;box-shadow:0 12px 48px #82445e0c}
+.rsvp-footer-action{margin-top:30px}
+.rsvp-footer-action a{font-size:12px;letter-spacing:.03em;border:0;background:transparent;box-shadow:none;color:#89536a}
+.rsvp-stationery-form{gap:28px;font-family:"Be Vietnam Pro",sans-serif}
+.rsvp-form-header{padding:0 0 24px;border-bottom:1px solid #f2e3e9}
+.rsvp-form-kicker{font-size:10px;font-weight:600;letter-spacing:.18em;color:#a45776}
+.rsvp-form-title{font-family:Charm,cursive;font-size:38px;font-weight:400;line-height:1.35;color:#854762;margin:10px 0}
+.rsvp-notice-text{font-size:14px;line-height:1.8;color:#806774;max-width:420px;margin:0 auto}
+.rsvp-deadline-badge{border:0;border-radius:20px;padding:8px 14px;background:#fff1f6;font-size:11px;font-weight:400;letter-spacing:0;line-height:1.7;color:#96546f;margin-top:16px}
+.rsvp-field{min-width:0;gap:10px}
+.rsvp-label{font-size:14px;font-weight:600;line-height:1.8;color:#634652;margin-bottom:10px}
+.rsvp-field legend{float:none;width:100%;padding:0}
+.rsvp-input-text{border:1px solid #eadce2;border-radius:12px;background:#fffafb;min-height:52px;padding:13px 16px;font:400 16px/1.5 "Be Vietnam Pro",sans-serif;color:#634652;box-shadow:none}
+.rsvp-input-text::placeholder{color:#a58f99;font-size:14px}
+.rsvp-input-text:focus{border-color:#b9688b;outline:3px solid #f9e5ee;box-shadow:none}
+.rsvp-input-text[aria-invalid=true]{border-color:#b84061}
+.rsvp-options-vertical,.rsvp-options-grid-two,.rsvp-options-grid-three{gap:10px}
+.rsvp-options-grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rsvp-options-grid-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rsvp-radio-card{position:relative;min-width:0;min-height:54px;padding:14px;border:1px solid #eee2e7;border-radius:12px;background:#fff;gap:12px;transform:none;transition:background .15s,border-color .15s}
+.rsvp-radio-card:hover{background:#fff7fa;border-color:#d9aec0;transform:none}
+.rsvp-radio-card.checked{background:#fcf0f5;border-color:#bb7895;box-shadow:none}
+.rsvp-radio-card:focus-within{outline:3px solid #efd5e1;outline-offset:2px}
+.rsvp-radio-card input[type=radio]{display:block;appearance:auto;position:static;margin:0;width:18px;height:18px;accent-color:#a8587b}
+.rsvp-radio-card .option-title{font-size:13px;font-weight:500;line-height:1.6;color:#634652}
+.rsvp-radio-card .option-sub{font-size:11px;line-height:1.7;color:#927684;margin-top:3px}
+.rsvp-radio-card.count-style{display:grid;grid-template-columns:18px 1fr;align-content:center;text-align:left;gap:8px;padding:13px 10px}
+.rsvp-radio-card .count-number{font:500 13px/1.6 "Be Vietnam Pro",sans-serif;color:#634652}
+.rsvp-radio-card .count-desc{display:none}
+.rsvp-stationery-form .other-input-block{padding:14px;background:#fff7fa;border-radius:12px;margin-top:4px}
+.rsvp-stationery-form .sub-label{font-size:12px;line-height:1.7;margin-bottom:8px}
+.rsvp-submit-btn.button{border:0;border-radius:12px;min-height:54px;background:#ab6080;color:#fff;font:600 14px/1.5 "Be Vietnam Pro",sans-serif;letter-spacing:.05em;box-shadow:0 6px 18px #a8587b22;transform:none}
+.rsvp-submit-btn.button:hover{background:#934866;transform:none}
+.rsvp-privacy-note{font-size:11px;line-height:1.8;color:#957c88;margin-top:-14px}
+.rsvp-stationery-form .field-error{font-size:12px;line-height:1.6;margin-top:4px}
+.rsvp-stationery-form .form-notice{border-radius:12px;font-size:13px;line-height:1.7}
+.modal-card.rsvp-modal{max-width:640px;width:100%;border:0;border-radius:24px;box-shadow:0 24px 80px #57283e33;background:#fff;overflow:hidden}
+.rsvp-modal .modal-header{padding:16px 24px;background:#fff;border-bottom:1px solid #f2e3e9;flex-shrink:0}
+.rsvp-modal .modal-header h2{font:500 13px/1.6 "Be Vietnam Pro",sans-serif;letter-spacing:0;color:#8d5a70}
+.rsvp-modal .close-button{position:static;width:auto;height:auto;min-width:64px;flex-shrink:0;border:0;border-radius:20px;padding:8px 14px;background:#fff0f5;color:#94536e;font-size:12px;transform:none}
+.rsvp-modal .close-button::before,.rsvp-modal .close-button::after{display:none}
+.rsvp-modal .modal-content{padding:26px 32px 32px;overscroll-behavior:contain}
+.rsvp-stationery-success .rsvp-watermark,.rsvp-stationery-closed .rsvp-watermark{font-family:Charm,cursive;font-size:36px;letter-spacing:0;color:#a8587b;margin-bottom:24px}
+@media(max-width:850px){
+  .rsvp-page-layout{grid-template-columns:minmax(0,1fr);max-width:620px;gap:24px}
+  .rsvp-page-header{max-width:620px;margin-bottom:16px}
+  .rsvp-hero-card{position:static;padding:20px 0 4px}
+  .rsvp-main-heading{font-size:42px;margin:18px 0}
+  .rsvp-main-heading .hero-name-line,.rsvp-main-heading .amp{display:inline}
+  .rsvp-main-heading .amp{margin:0 10px}
+  .rsvp-card-sub{max-width:420px;margin:16px auto}
+}
+@media(max-width:480px){
+  .rsvp-standalone-page{padding:20px 14px 32px}
+  .rsvp-nav-brand{font-size:20px}
+  .rsvp-back-link{padding:8px 12px;font-size:11px}
+  .rsvp-page-header{gap:10px}
+  .rsvp-main-heading{font-size:36px}
+  .rsvp-card-container{padding:26px 18px;border-radius:20px}
+  .rsvp-form-title{font-size:34px}
+  .rsvp-label{font-size:13px}
+  .rsvp-options-grid-two{grid-template-columns:minmax(0,1fr)}
+  .rsvp-radio-card{padding:12px;gap:10px}
+  .rsvp-radio-card.count-style{padding:12px 8px;gap:5px}
+  .rsvp-radio-card .count-number{font-size:12px}
+  .modal-card.rsvp-modal{border-radius:20px;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
+  .rsvp-modal .modal-header{padding:12px 16px}
+  .rsvp-modal .modal-content{padding:22px 18px 28px}
+}
+@media(max-width:360px){
+  .rsvp-radio-card.count-style{display:flex;flex-direction:column;gap:7px;text-align:center}
+  .rsvp-radio-card .count-number{white-space:nowrap}
+}
