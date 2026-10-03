@@ -29,7 +29,7 @@ export default function CountdownTimer({ title = "CÙNG ĐẾM NGƯỢC THỜI G
   }, []);
 
   if (timeLeft.isPast) {
-    return <p className="countdown-started">Ngày hạnh phúc của chúng mình đã đến!</p>;
+    return <p className="countdown-started">Ngày hạnh phúc của chúng tôi đã đến!</p>;
   }
 
   const units = [

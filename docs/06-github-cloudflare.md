@@ -6,11 +6,11 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 
 1. Tạo Google Cloud project, bật Google Sheets API.
 2. Tạo service account và khóa JSON; giữ private key ngoài repository.
-3. Trong hai tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề từ `google-sheets/rsvp-headers.tsv` vào A1:J1.
+3. Trong hai tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề từ `google-sheets/rsvp-headers.tsv` vào A1:K1.
 4. Trong tab `Tổng hợp số lượng`, dán `google-sheets/tong-hop-so-luong.formulas.tsv` vào A1 để tổng tự cập nhật từ hai bên.
 5. Chia sẻ Sheet cho email service account quyền Editor. Giữ Sheet ở chế độ riêng tư.
 6. Dùng một Sheet test cho preview và một Sheet thật cho production nếu có thể.
-7. Giữ/tạo hai tab `Nhà trai mời onl`, `Nhà gái mời onl` với A: Tên, B: Slug, C: Link thiệp. Áp dụng [công thức tự tạo link](08-link-moi-ca-nhan.md), cột D chỉ xử lý ngoại lệ. Cấu hình quyền đọc tên khách và ghi RSVP cho Worker; kiểm thử Sheet thật trước khi bàn giao link.
+7. Giữ/tạo hai tab `Nhà trai mời onl`, `Nhà gái mời onl` với A: STT, B: Tên, C: Slug, D: Link thiệp, E: Đã mời. Áp dụng [công thức tự tạo link](08-link-moi-ca-nhan.md), công thức áp dụng cho 1.000 dòng. Cấu hình quyền đọc tên khách và ghi RSVP cho Worker; kiểm thử Sheet thật trước khi bàn giao link.
 
 ## 2. GitHub
 
@@ -26,7 +26,7 @@ Tài liệu thao tác cho **giai đoạn kết nối và phát hành**. Ứng d�
 4. Trong **Settings > Variables and Secrets**, thêm `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_SHEET_ID`, `TURNSTILE_SECRET_KEY` dạng Secret; thêm `GOOGLE_GROOM_RSVP_TAB=Nhà trai`, `GOOGLE_BRIDE_RSVP_TAB=Nhà gái`, `APP_ENV=production`, `ALLOWED_ORIGINS=https://TEN-MIEN-THAT` dạng Text. Dùng Sheet/secret khác cho preview nếu có thể.
 5. Deploy; mở URL `*.workers.dev` ở `/`, `/nha-trai`, `/nha-gai`, `/nha-trai/phuc-dap`, `/nha-gai/phuc-dap`, refresh trực tiếp từng trang; kiểm tra hai nút home dẫn đúng thiệp và `/api/rsvp` từ các route có form. Entry tại `worker/index.js` chuyển `/api/*` vào API trước khi SPA fallback chạy.
 6. Nếu dùng domain riêng, thêm domain sau khi bản `workers.dev` đã ổn. Cập nhật `ALLOWED_ORIGINS` và hostname Turnstile khi chuyển domain.
-7. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột C, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.
+7. Cập nhật `Cấu hình!B1` bằng origin production thực tế. Mở một link cá nhân của mỗi bên từ cột D, kiểm tra tên có dấu, form điền trước, QR mừng cưới và các cột `invitation_slug`/`invited_name` trong Sheet phản hồi.
 8. Trong Security > WAF > Rate limiting rules của domain, tạo một rule cho path bắt đầu bằng `/api/` với ngưỡng thấp phù hợp lượng khách (ví dụ 10 request/phút/IP). Chọn Managed Challenge nếu gói/tài khoản đang dùng cho phép; giữ Turnstile trong form dù đã có rule.
 
 ## Bàn giao link cho QR phúc đáp đã có
@@ -54,3 +54,5 @@ Cloudflare Workers Free có hạn mức build/request; Sheets API có quota theo
 - [Google service account và chia sẻ Sheet](https://developers.google.com/workspace/guides/create-credentials)
 - [Google Sheets append API](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/append)
 - [Google Sheets API quotas](https://developers.google.com/workspace/sheets/api/limits)
+
+

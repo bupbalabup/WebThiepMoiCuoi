@@ -46,7 +46,7 @@ Website có trang thiệp mời và trang phúc đáp riêng, đọc dễ trên 
 - Ảnh và phong cách ảnh; logo/monogram nếu có; ảnh sử dụng đã được đồng ý chia sẻ công khai.
 - Cần ít nhất 12 ảnh cưới, ưu tiên có cả ảnh dọc, ngang và vuông. Nếu cung cấp 18 ảnh trở lên có thể lấp đầy toàn bộ vị trí đã thiết kế mà không lặp ảnh.
 - Có muốn thêm lời chúc hoặc chọn suất ăn ở phiên bản sau không.
-- Đã chốt link cá nhân theo slug từ tab `Nhà trai mời onl` và `Nhà gái mời onl`, bố cục A: Tên, B: Slug, C: Link thiệp. Cần quyền truy cập Sheet thực tế để gắn công thức và kết nối tra tên. Quy tắc công thức, trùng tên và giữ link nằm trong [tài liệu thiệp cá nhân](08-link-moi-ca-nhan.md).
+- Đã chốt link cá nhân theo slug từ tab `Nhà trai mời onl` và `Nhà gái mời onl`, bố cục A: STT, B: Tên, C: Slug, D: Link thiệp, E: Đã mời. Cần quyền truy cập Sheet thực tế để gắn công thức và kết nối tra tên. Quy tắc công thức, trùng tên và giữ link nằm trong [tài liệu thiệp cá nhân](08-link-moi-ca-nhan.md).
 - Ảnh QR mừng cưới nhà trai và nhà gái cùng thông tin người nhận tương ứng. Đã chốt hai QR nhưng mỗi link chỉ hiển thị một QR, không cần hỏi lại lựa chọn này.
 - Có muốn công khai số điện thoại, danh sách lời chúc hoặc chỉ giữ ở Sheet riêng tư không.
 - Tên repository GitHub, tài khoản GitHub/Cloudflare, tên miền riêng (nếu có).
@@ -63,3 +63,4 @@ Website có trang thiệp mời và trang phúc đáp riêng, đọc dễ trên 
 ## Ngoài phạm vi phiên bản đầu
 
 Trang quản trị, đối soát giao dịch mừng cưới tự động, gửi email/SMS tự động, quản lý danh sách khách với đăng nhập. Hiển thị QR mừng cưới đã nằm trong phiên bản đầu; website không xác nhận đã nhận tiền.
+

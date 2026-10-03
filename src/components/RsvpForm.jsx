@@ -13,7 +13,6 @@ const RELATIONSHIPS = [
   { value: "family", label: "Gia đình / Người thân" },
   { value: "friend", label: "Bạn bè" },
   { value: "coworker", label: "Đồng nghiệp" },
-  { value: "mutual_friend", label: "Bạn chung của cả hai" },
   { value: "other", label: "Mối quan hệ khác" },
 ];
 
@@ -28,7 +27,7 @@ function validate(values) {
     if (!Number.isSafeInteger(count) || count < 1) errors.guestCount = "Vui lòng nhập số người từ 1 trở lên.";
   }
   if (!RELATIONSHIPS.some((item) => item.value === values.relationship)) errors.relationship = "Vui lòng chọn một phương án.";
-  if (values.relationship === "other" && !values.relationshipOther.trim()) errors.relationshipOther = "Vui lòng cho chúng mình biết thêm thông tin.";
+  if (values.relationship === "other" && !values.relationshipOther.trim()) errors.relationshipOther = "Vui lòng cho chúng tôi biết thêm thông tin.";
   return errors;
 }
 
@@ -144,7 +143,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         <span className="rsvp-form-kicker">MỘT LỜI HẸN CHO NGÀY VUI</span>
         <h2 className="rsvp-form-title">Hẹn gặp bạn nhé!</h2>
         <p className="rsvp-notice-text">
-          Bạn dành chút thời gian để chúng mình chuẩn bị đón tiếp thật chu đáo nhé.
+          Bạn dành chút thời gian để chúng tôi chuẩn bị đón tiếp thật chu đáo nhé.
         </p>
         <span className="rsvp-deadline-badge">Phúc đáp trước hết ngày <strong>15.10.2026</strong></span>
       </div>
@@ -172,7 +171,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
       {/* Field 2: Attendance */}
       <fieldset className="rsvp-field">
         <legend className="rsvp-label">
-          2. Bạn có tham dự tiệc cưới của chúng mình không? <span className="req">*</span>
+          2. Bạn có tham dự tiệc cưới của chúng tôi không? <span className="req">*</span>
         </legend>
         <div className="rsvp-options-vertical">
           {ATTENDANCE.map((item) => (
@@ -277,7 +276,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
               aria-label="Mối quan hệ khác"
               value={values.relationshipOther}
               onChange={(event) => update("relationshipOther", event.target.value)}
-              placeholder="Vui lòng cho chúng mình biết thêm..."
+              placeholder="Vui lòng cho chúng tôi biết thêm..."
               maxLength="120"
             />
           </div>

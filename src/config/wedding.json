@@ -80,7 +80,7 @@
         "required": true
       },
       "attendance": {
-        "label": "Bạn có tham dự tiệc cưới của chúng mình không?",
+        "label": "Bạn có tham dự tiệc cưới của chúng tôi không?",
         "required": true,
         "options": [
           {
@@ -129,10 +129,6 @@
             "label": "Đồng nghiệp"
           },
           {
-            "value": "mutual_friend",
-            "label": "Bạn chung"
-          },
-          {
             "value": "other",
             "label": "Mục khác"
           }
@@ -168,26 +164,26 @@
     "slots": [
       {
         "id": "photo-1",
-        "src": "/images/optimized/khoanhkhac1.jpg",
-        "fullSrc": "/images/optimized/khoanhkhac1.jpg",
+        "src": "/images/khoanhkhac/1.jpg",
+        "fullSrc": "/images/khoanhkhac/1.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 1"
       },
       {
         "id": "photo-2",
-        "src": "/images/optimized/khoanhkhac2.jpg",
-        "fullSrc": "/images/optimized/khoanhkhac2.jpg",
+        "src": "/images/khoanhkhac/2.jpg",
+        "fullSrc": "/images/khoanhkhac/2.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 2"
       },
       {
         "id": "photo-3",
-        "src": "/images/optimized/khoanhkhac3.jpg",
-        "fullSrc": "/images/optimized/khoanhkhac3.jpg",
+        "src": "/images/khoanhkhac/3.jpg",
+        "fullSrc": "/images/khoanhkhac/3.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 3"
       },
       {
         "id": "photo-4",
-        "src": "/images/optimized/khoanhkhac4.jpg",
-        "fullSrc": "/images/optimized/khoanhkhac4.jpg",
+        "src": "/images/khoanhkhac/4.jpg",
+        "fullSrc": "/images/khoanhkhac/4.jpg",
         "alt": "Ảnh cưới Tuấn Anh và Ngọc Anh 4"
       }
     ]

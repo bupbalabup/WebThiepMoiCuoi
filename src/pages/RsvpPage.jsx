@@ -42,7 +42,7 @@ export default function RsvpPage({ side }) {
           </div>
         ) : (
           <p className="rsvp-card-sub">
-            Trân trọng kính mời quý khách xác nhận thông tin tham dự tiệc cưới cùng chúng mình.
+            Trân trọng kính mời bạn xác nhận thông tin tham dự tiệc cưới cùng chúng tôi.
           </p>
         )}
 

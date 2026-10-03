@@ -98,7 +98,7 @@ export default function GiftDialog({ side, open, onClose }) {
               </div>
             ) : (
               <p className="empty-gift-text">
-                Thông tin số tài khoản và mã QR mừng cưới {account.label.toLowerCase()} đang được cập nhật. Bạn cũng có thể trao gửi trực tiếp trong ngày tiệc cưới của chúng mình!
+                Thông tin số tài khoản và mã QR mừng cưới {account.label.toLowerCase()} đang được cập nhật. Bạn cũng có thể trao gửi trực tiếp trong ngày tiệc cưới của chúng tôi!
               </p>
             )}
           </div>

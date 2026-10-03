@@ -1,0 +1,112 @@
+@font-face {
+  font-family: "Wedding Calligraphy";
+  src: url("/fonts/DFVN%20Desirable%20Calligraphy.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Motherland Signature Local";
+  src: url("/fonts/NVN-Motherland-Signature.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "DFVN ED Drayton Local";
+  src: url("/fonts/DFVN%20ED%20Drayton.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Great Vibes Local";
+  src: url("/fonts/GreatVibes-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Philosopher Local";
+  src: url("/fonts/Philosopher-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* The three display typefaces requested for the invitation. */
+.mobile-invitation .mi-hero h1 {
+  font-family: "DFVN ED Drayton Local", "Motherland Signature Local", "Wedding Calligraphy", "Charm", cursive;
+  font-size: clamp(58px, 15vw, 88px);
+  line-height: 1.2;
+}
+
+.mobile-invitation .mi-wedding,
+.mobile-invitation .mi-polaroid figcaption,
+.mobile-invitation .mi-family-grid h2,
+.mobile-invitation .mi-wishes > h2,
+.mobile-invitation .mi-gifts > h2,
+.mobile-invitation .mi-thanks > h2,
+.mobile-invitation .mi-person figcaption span,
+.mobile-invitation .mi-events > .mi-heading,
+.mobile-invitation .wedding-album > .mi-heading,
+.mobile-invitation .mi-countdown-content > h2 {
+  font-family: "Great Vibes Local", "Charm", cursive;
+  font-weight: 400;
+}
+
+.mobile-invitation .mi-person figcaption span {
+  font-size: clamp(25px, 6.6vw, 38px);
+  line-height: 1.05;
+}
+
+.mobile-invitation .mi-person figcaption strong {
+  font-family: "Kodchasan", "Be Vietnam Pro", sans-serif;
+  font-size: clamp(26px, 5.8vw, 38px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.mobile-invitation .mi-thanks-names {
+  font-family: "DFVN ED Drayton Local", "Motherland Signature Local", "Wedding Calligraphy", cursive;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.mobile-invitation .wedding-album > .mi-heading,
+.mobile-invitation .mi-wishes > .mi-heading,
+.mobile-invitation .mi-gifts > .mi-heading {
+  word-spacing: 0.16em;
+}
+
+.mobile-invitation .mi-guest,
+.mobile-invitation .mi-families > p:last-child {
+  font-family: "Philosopher Local", Georgia, serif;
+}
+
+@media (min-width: 768px) {
+  .mobile-invitation .mi-hero h1 {
+    font-size: clamp(84px, 8.2vw, 120px);
+    line-height: 1.3;
+  }
+
+  .mobile-invitation .mi-hero h1 .mi-first-name,
+  .mobile-invitation .mi-hero h1 .mi-second-name {
+    width: 30%;
+  }
+
+  .mobile-invitation .mi-hero h1 .mi-first-name {
+    left: 2%;
+  }
+
+  .mobile-invitation .mi-hero h1 .mi-second-name {
+    right: 2%;
+  }
+}

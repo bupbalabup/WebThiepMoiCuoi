@@ -1,6 +1,6 @@
 export const VALID_SIDES = new Set(["groom", "bride"]);
 export const VALID_ATTENDANCE = new Set(["attending", "considering", "declined"]);
-export const VALID_RELATIONSHIPS = new Set(["family", "friend", "coworker", "mutual_friend", "other"]);
+export const VALID_RELATIONSHIPS = new Set(["family", "friend", "coworker", "other"]);
 export const RSVP_CLOSES_AT_MS = Date.parse("2026-10-16T00:00:00+07:00");
 export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 

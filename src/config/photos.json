@@ -1,14 +1,13 @@
 {
-  "heroMobile": "/images/optimized/hero-banner-mobile.jpg",
-  "heroDesktop": "/images/optimized/hero-banner-pc.jpg",
-  "calendar": "/images/optimized/anhlich.jpg",
-  "groom": "/images/optimized/chure.jpg",
-  "bride": "/images/optimized/codau.jpg",
-  "countdown": "/images/optimized/demnguoc.jpg",
-  "thanks": "/images/optimized/camon.jpg",
-  "gallery1": "/images/optimized/khoanhkhac1.jpg",
-  "gallery2": "/images/optimized/khoanhkhac2.jpg",
-  "gallery3": "/images/optimized/khoanhkhac3.jpg",
-  "gallery4": "/images/optimized/khoanhkhac4.jpg",
-  "homepage": "/images/optimized/homepage.jpg"
+  "heroMobile": "/images/anhcuoi/hero-banner-mobile.jpg",
+  "heroDesktop": "/images/anhcuoi/hero-banner-pc.JPG",
+  "calendar": "/images/anhcuoi/anhlich.jpg",
+  "groom": "/images/anhcuoi/chure.JPG",
+  "bride": "/images/anhcuoi/codau.JPG",
+  "countdown": "/images/anhcuoi/demnguoc.jpg",
+  "gallery1": "/images/khoanhkhac/1.jpg",
+  "gallery2": "/images/khoanhkhac/2.jpg",
+  "gallery3": "/images/khoanhkhac/3.jpg",
+  "gallery4": "/images/khoanhkhac/4.jpg",
+  "homepage": "/images/anhcuoi/homepage.JPG"
 }

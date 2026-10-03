@@ -58,10 +58,10 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
     <>
       {!hideHeader && (
         <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <p className="lux-eyebrow">GỬI ĐẾN CHÚNG MÌNH</p>
+          <p className="lux-eyebrow">GỬI ĐẾN CHÚNG TÔI</p>
           <h2 className="lux-section-title">Sổ Lưu Bút</h2>
           <p className="lux-section-subtitle">
-            Một lời chúc nhỏ, một kỷ niệm thật đẹp trong ngày chung đôi.
+            Một lời chúc nhỏ, một kỷ niệm thật đẹp trong ngày cưới.
           </p>
         </div>
       )}

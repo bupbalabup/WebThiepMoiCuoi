@@ -16,7 +16,7 @@ export function MobileEnvelope({ first, second, guestName, onOpen }) {
     <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p>
     <h1 className="mi-script">{guestName}</h1>
     <button autoFocus type="button" className="mi-envelope" onClick={onOpen} aria-label="Mở thiệp mời">
-      <span className="mi-envelope-letter">Hẹn ngày chung đôi<br />21.10.2026</span>
+      <span className="mi-envelope-letter">Save the date<br />21.10.2026</span>
       <span className="mi-envelope-fold" />
       <span className="mi-envelope-flap" />
       <span className="mi-envelope-seal"><WeddingMonogram size={72} /></span>
@@ -32,23 +32,23 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
   const sideOrder = side === "groom" ? ["groom", "bride"] : ["bride", "groom"];
   return <div className="mobile-invitation">
     <section className="mi-hero" id="dau-trang" aria-label="Thiệp cưới Tuấn Anh và Ngọc Anh">
-      <picture className="mi-hero-picture"><source media="(min-width: 768px)" srcSet={photos.heroDesktop} /><img src={photos.heroMobile} alt={`${first} và ${second} trong ngày chung đôi`} fetchPriority="high" /></picture>
-      <div className="mi-hero-copy"><p className="mi-script mi-wedding">Ngày chung đôi</p><h1><span className="mi-first-name">{wedding.couple.groom.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span><i>&amp;</i><span className="mi-second-name">{wedding.couple.bride.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span></h1><p className="mi-hero-date">21 . 10 . 2026</p></div>
+      <picture className="mi-hero-picture"><source media="(min-width: 768px)" srcSet={photos.heroDesktop} /><img src={photos.heroMobile} alt={`${first} và ${second} trong ngày cưới`} fetchPriority="high" /></picture>
+      <div className="mi-hero-copy"><p className="mi-script mi-wedding">Wedding</p><h1><span className="mi-first-name">{wedding.couple.groom.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span><i>&amp;</i><span className="mi-second-name">{wedding.couple.bride.split(" ").map((word, i) => <span key={i}>{word}{" "}</span>)}</span></h1><p className="mi-hero-date">21 . 10 . 2026</p></div>
     </section>
 
     <section className="mi-section mi-date" aria-label="Lịch ngày cưới">
-      <div className="mi-date-grid"><figure className="mi-polaroid"><img src={embrace} alt="Hẹn ngày chung đôi" loading="lazy" /><figcaption className="mi-script">Hẹn ngày cưới</figcaption></figure><SaveTheDateCalendar /></div>
+      <div className="mi-date-grid"><figure className="mi-polaroid"><img src={embrace} alt="Save the date" loading="lazy" /><figcaption className="mi-script">Save the date</figcaption></figure><SaveTheDateCalendar /></div>
       <p className="mi-lunar-note">11:00 · Thứ Tư, ngày 21 tháng 10 năm 2026<br />Tức ngày 12 tháng 9 năm Bính Ngọ</p>
     </section>
 
     <section className="mi-section mi-families" id="le-cuoi">
       <div className="mi-family-paper"><div className="mi-double-happiness"><svg viewBox="0 0 160 120" role="img" aria-label="Song hỉ" fill="none" stroke="currentColor" strokeWidth="6"><g id="happiness-left"><path d="M12 18H72M42 7V30M17 32H67M17 67H67M23 59L28 67M61 59L56 67"/><path d="M22 43H62V55H22ZM19 81H65V105H19Z"/></g><g transform="translate(76 0)"><path d="M12 18H72M42 7V30M17 32H67M17 67H67M23 59L28 67M61 59L56 67"/><path d="M22 43H62V55H22ZM19 81H65V105H19Z"/></g></svg></div>
       <div className="mi-family-grid">{sideOrder.map(key => <div key={key}><h2 className="mi-script">{wedding.families[key].label}</h2><p>{wedding.families[key].father}</p><p>{wedding.families[key].mother}</p></div>)}</div></div>
-      <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p><h2 className="mi-script mi-guest">{guestName}</h2><p>Đến chung vui cùng gia đình chúng mình<br />trong ngày hạnh phúc.</p>
+      <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p><h2 className="mi-script mi-guest">{guestName}</h2><p>Đến dự tiệc chung vui cùng gia đình chúng tôi.</p>
     </section>
 
     <section className="mi-couple" aria-label="Cô dâu và chú rể">
-      <div className="mi-couple-cards">{sideOrder.map(key => <figure className={`mi-person mi-person-${key}`} key={key}><div className="mi-person-crop"><img src={photos[key]} alt={key === "bride" ? "Cô dâu Ngọc Anh" : "Chú rể Tuấn Anh"} loading="lazy" /></div><figcaption><span className="mi-script">{key === "bride" ? "Cô dâu" : "Chú rể"}</span><strong>{wedding.couple[`${key}FullName`]}</strong></figcaption></figure>)}</div>
+      <div className="mi-couple-cards">{sideOrder.map(key => <figure className={`mi-person mi-person-${key}`} key={key}><div className="mi-person-crop"><img src={photos[key]} alt={key === "bride" ? "Cô dâu Ngọc Anh" : "Chú rể Tuấn Anh"} loading="lazy" /></div><figcaption><span className="mi-script">{key === "bride" ? "Cô dâu" : "Chú rể"}</span><strong>{wedding.couple[key]}</strong></figcaption></figure>)}</div>
     </section>
 
     <section className="mi-section mi-events" id="dia-diem">
@@ -60,12 +60,12 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
 
     <section className="mi-section mi-album" id="album-anh"><WeddingGallery /></section>
 
-    <section className="mi-section mi-wishes" id="so-luu-but"><h2 className="mi-script mi-heading">Gửi lời chúc</h2><p>Những lời nhắn yêu thương và sự hiện diện của bạn là món quà quý giá với chúng mình.</p><div className="mi-form-paper"><WishForm side={side} invitedName={invitedName} invitationSlug={slug} hideHeader /></div></section>
+    <section className="mi-section mi-wishes" id="so-luu-but"><h2 className="mi-script mi-heading">Gửi Lời Chúc</h2><p>Những lời nhắn yêu thương và sự hiện diện của bạn là món quà quý giá với chúng tôi.</p><div className="mi-form-paper"><WishForm side={side} invitedName={invitedName} invitationSlug={slug} hideHeader /></div></section>
 
-    <section className="mi-section mi-gifts" id="mung-cuoi"><h2 className="mi-script mi-heading">Hộp mừng cưới</h2><p>Cảm ơn những yêu thương<br />bạn dành cho chúng mình.</p><button type="button" className="mi-gift-envelope" onClick={onGift}><span className="mi-gift-monogram"><WeddingMonogram size={90} /></span><span className="mi-pill">Chạm để mở</span></button></section>
+    <section className="mi-section mi-gifts" id="mung-cuoi"><h2 className="mi-script mi-heading">Hộp Mừng Cưới</h2><p>Cảm ơn những yêu thương<br />bạn dành cho chúng tôi.</p><button type="button" className="mi-gift-envelope" onClick={onGift}><span className="mi-gift-monogram"><WeddingMonogram size={90} /></span><span className="mi-pill">Chạm để mở</span></button></section>
 
     <section className="mi-countdown" id="dem-nguoc" aria-labelledby="countdown-heading">
-      <img className="mi-countdown-photo" src={photos.countdown} alt="Tuấn Anh và Ngọc Anh cùng đón ngày chung đôi" loading="lazy" />
+      <img className="mi-countdown-photo" src={photos.countdown} alt="Tuấn Anh và Ngọc Anh cùng đón ngày cưới" loading="lazy" />
       <div className="mi-countdown-content">
         <h2 className="mi-script" id="countdown-heading">Đếm ngược<br />đến ngày cưới</h2>
         <CountdownTimer title="" />
@@ -73,6 +73,6 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
         <p className="mi-countdown-zone">Giờ Việt Nam</p>
       </div>
     </section>
-    <footer className="mi-section mi-thanks"><img src={photos.thanks} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><h2 className="mi-script">Cảm ơn bạn!</h2><p className="mi-thanks-names">{first} &amp; {second}</p><p>Cảm ơn bạn đã yêu thương và chúc phúc.<br />Hẹn gặp bạn trong ngày vui của chúng mình!</p><p className="mi-kicker">21 · 10 · 2026</p></footer>
+    <footer className="mi-section mi-thanks"><h2 className="mi-script">Lời cảm ơn</h2><p className="mi-thanks-names">{wedding.couple.bride} &amp; {wedding.couple.groom}</p><p>Cảm ơn bạn đã yêu thương và chúc phúc.<br />Hẹn gặp bạn trong ngày vui của gia đình chúng tôi!</p><p className="mi-kicker">21 · 10 · 2026</p></footer>
   </div>;
 }

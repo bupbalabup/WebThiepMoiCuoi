@@ -30,7 +30,7 @@ Node.js phục vụ cài gói, chạy Vite, build và kiểm thử cục bộ. K
 
 ## API đã triển khai
 
-`GET /api/invitation?side=groom&slug=nguyen-van-a`: server chỉ cho phép `groom`/`bride`, ánh xạ tới tab `Nhà trai mời onl`/`Nhà gái mời onl`, đọc A:B và tìm slug chính xác, duy nhất. Không nhận tên tab hoặc range tùy ý từ client. `200` trả `{name, slug, side}` của đúng một người; `400` nếu tham số sai/dành riêng, `404` nếu không có, `409` nếu trùng slug, `503` nếu Google không phản hồi. Không trả toàn bộ danh sách khách và không biến lỗi Google thành `404`.
+`GET /api/invitation?side=groom&slug=nguyen-van-a`: server chỉ cho phép `groom`/`bride`, ánh xạ tới tab `Nhà trai mời onl`/`Nhà gái mời onl`, đọc A:C (STT, Tên, Slug) và tìm slug chính xác, duy nhất. Không nhận tên tab hoặc range tùy ý từ client. `200` trả `{name, slug, side}` của đúng một người; `400` nếu tham số sai/dành riêng, `404` nếu không có, `409` nếu trùng slug, `503` nếu Google không phản hồi. Không trả toàn bộ danh sách khách và không biến lỗi Google thành `404`.
 
 Thiệp cá nhân tra tên có dấu rồi điền trước lời mời và form. Hai trang phúc đáp chấp nhận tham số `khach` tùy chọn để dùng cùng tra cứu; không có tham số thì khách tự nhập tên. Tránh ghi đè tên đã được khách chỉnh sửa khi request tra tên trả về muộn. Link theo tên là cách cá nhân hóa, không phải cơ chế xác thực khách.
 
@@ -53,7 +53,7 @@ Thiệp cá nhân tra tên có dấu rồi điền trước lời mời và form
 
 `attendance` nhận đúng một trong `attending`, `considering`, `declined`. `guestCount` là tổng số người, tính cả người trả lời. Với `attending` hoặc `considering`, đây phải là số nguyên an toàn từ 1 trở lên và không đặt giới hạn tối đa theo nghiệp vụ. Với `declined`, API chỉ chấp nhận/lưu 0. Giao diện cho chọn nhanh 1, 2 hoặc nhập “Mục khác”; API chỉ nhận giá trị số cuối cùng, không phụ thuộc cách nhập trên giao diện.
 
-`relationship` nhận `family`, `friend`, `coworker`, `mutual_friend` hoặc `other`. Nếu là `other`, `relationshipOther` bắt buộc có nội dung sau khi chuẩn hóa khoảng trắng; với các lựa chọn còn lại, API bỏ trống trường này để không lưu dữ liệu cũ còn sót trong form. `website` là trường bẫy spam, ẩn với người dùng thật. Dữ liệu phải được kiểm tra lại ở Function, không chỉ ở form. API trả `201` khi ghi thành công, `400` cho dữ liệu sai, `410` kèm mã `RSVP_CLOSED` khi quá hạn, `429` nếu có giới hạn tốc độ, `500/502` nếu ghi Sheet thất bại. Giao diện không được báo thành công trước khi nhận xác nhận từ API.
+`relationship` nhận `family`, `friend`, `coworker` hoặc `other`. Nếu là `other`, `relationshipOther` bắt buộc có nội dung sau khi chuẩn hóa khoảng trắng; với các lựa chọn còn lại, API bỏ trống trường này để không lưu dữ liệu cũ còn sót trong form. `website` là trường bẫy spam, ẩn với người dùng thật. Dữ liệu phải được kiểm tra lại ở Function, không chỉ ở form. API trả `201` khi ghi thành công, `400` cho dữ liệu sai, `410` kèm mã `RSVP_CLOSED` khi quá hạn, `429` nếu có giới hạn tốc độ, `500/502` nếu ghi Sheet thất bại. Giao diện không được báo thành công trước khi nhận xác nhận từ API.
 
 `invitationSide` bắt buộc là `groom` khi gửi từ thiệp hoặc phúc đáp nhà trai, `bride` khi gửi từ thiệp hoặc phúc đáp nhà gái. Form lấy bên mời từ route, không yêu cầu khách nhập lại và không dùng lựa chọn còn lưu từ trang khác. API từ chối thiếu hoặc sai giá trị bằng `400`; không có giá trị mặc định không xác định. Đây là metadata phục vụ phân loại, không phải chứng thực danh tính khách.
 
@@ -69,16 +69,17 @@ Google Maps: cấu hình có URL tìm đúng tên/địa chỉ, URL chỉ đư�
 
 | Cột | Nội dung |
 | --- | --- |
-| A | `submitted_at` (ISO 8601) |
-| B | `name` |
-| C | `attendance` (`attending`, `considering`, `declined`) |
-| D | `guest_count` (tính cả người trả lời; 0 nếu không tham gia) |
-| E | `relationship` |
-| F | `relationship_other` |
-| G | `submission_id` |
-| H | `invitation_side` (`groom` hoặc `bride`, bắt buộc) |
-| I | `invitation_slug` (trống nếu khách vào thiệp/phúc đáp chung của bên) |
-| J | `invited_name` (tên gốc có dấu từ tab khách mời; trống nếu không có slug) |
+| A | `STT` (công thức tự động) |
+| B | `submitted_at` (ngày giờ Google Sheets) |
+| C | `name` |
+| D | `attendance` (`attending`, `considering`, `declined`) |
+| E | `guest_count` (tính cả người trả lời; 0 nếu không tham gia) |
+| F | `relationship` |
+| G | `relationship_other` |
+| H | `submission_id` |
+| I | `invitation_side` (`groom` hoặc `bride`, bắt buộc) |
+| J | `invitation_slug` (trống nếu khách vào thiệp/phúc đáp chung của bên) |
+| K | `invited_name` (tên gốc có dấu từ tab khách mời; trống nếu không có slug) |
 
 `submission_id` dùng để dò trường hợp gửi lại do lỗi mạng; bản đầu có thể vẫn có phản hồi trùng nếu khách cố ý gửi nhiều lần. Nếu cần sửa RSVP hoặc chống trùng tuyệt đối, phải chốt quy tắc nhận diện khách trước khi code. Sheet không được chia sẻ công khai.
 
@@ -95,3 +96,4 @@ Tạo Google Cloud project, bật Sheets API, tạo service account và chia s�
 - `submission_id` được dò trước khi append để giảm bản ghi lặp khi request được gửi lại. Đây không phải khóa giao dịch tuyệt đối của Sheets; Turnstile và việc khóa nút vẫn là lớp chính chống spam/gửi dồn.
 - Không render HTML từ nội dung khách nhập; React hiển thị dạng text. Không có API đọc danh sách RSVP hoặc toàn bộ tab khách mời; API tra thiệp chỉ trả tên/bên/slug của một link được yêu cầu.
 - Có lời thông báo ngắn cạnh form: dữ liệu chỉ dùng để chuẩn bị tiệc và cách liên hệ để sửa/xóa phản hồi.
+

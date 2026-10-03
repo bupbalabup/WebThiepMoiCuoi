@@ -25,7 +25,7 @@ export default function InvitationPage({ side, slug }) {
   const isGroom = side === "groom";
   const first = isGroom ? wedding.couple.groom : wedding.couple.bride;
   const second = isGroom ? wedding.couple.bride : wedding.couple.groom;
-  const guestName = invite.invitation?.name || "Quý khách";
+  const guestName = invite.invitation?.name || "Bạn";
 
   // Open envelope / cover
   const handleOpen = useCallback(() => {

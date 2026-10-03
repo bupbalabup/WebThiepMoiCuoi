@@ -33,6 +33,12 @@ test("other relationship requires a short explanation", () => {
   assert.equal(result.errors.relationshipOther, "required");
 });
 
+test("removed mutual-friend relationship is rejected", () => {
+  const result = validateRsvp({ ...valid, relationship: "mutual_friend" }, RSVP_CLOSES_AT_MS - 1);
+  assert.equal(result.ok, false);
+  assert.equal(result.errors.relationship, "invalid");
+});
+
 test("guest count has no business maximum but must be a safe positive integer", () => {
   assert.equal(validateRsvp({ ...valid, guestCount: 1000 }, RSVP_CLOSES_AT_MS - 1).ok, true);
   assert.equal(validateRsvp({ ...valid, guestCount: 0 }, RSVP_CLOSES_AT_MS - 1).ok, false);

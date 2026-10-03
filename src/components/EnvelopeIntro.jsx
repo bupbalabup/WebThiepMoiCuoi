@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import wedding from "../config/wedding.json";
 
-export default function EnvelopeIntro({ side = "groom", guestName = "Quý khách", onOpen }) {
+export default function EnvelopeIntro({ side = "groom", guestName = "Bạn", onOpen }) {
   const [opening, setOpening] = useState(false);
   const [opened, setOpened] = useState(false);
 

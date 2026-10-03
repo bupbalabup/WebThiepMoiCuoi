@@ -19,7 +19,7 @@ Dự án thiệp cưới trực tuyến theo phong cách trẻ, hiện đại, �
 - Bố cục responsive từ 320px đến màn hình lớn, không có khung ảnh rỗng hoặc vùng trống vô nghĩa. Thiệp có 18 vị trí ảnh linh hoạt và yêu cầu tối thiểu 12 ảnh thật trước khi phát hành.
 - Trên thiệp, nút **Tham dự** mở form phúc đáp tại chỗ; nút **Gửi mừng cưới** chỉ mở QR của bên tương ứng với link thiệp.
 - Chủ tiệc đã tạo QR dẫn đến trang phúc đáp. Khi deploy xong, bàn giao hai URL production cố định `/nha-trai/phuc-dap` và `/nha-gai/phuc-dap` để chủ tiệc gắn đúng link cho QR của từng bên.
-- Mỗi khách có link thiệp riêng, ví dụ `/nha-trai/nguyen-van-a`. Tên có dấu lấy từ tab `Nhà trai mời onl` hoặc `Nhà gái mời onl`; cột A là Tên, B tự tạo Slug, C tự tạo Link thiệp. Xem [cách đặt công thức](docs/08-link-moi-ca-nhan.md).
+- Mỗi khách có link thiệp riêng, ví dụ `/nha-trai/nguyen-van-a`. Tên có dấu lấy từ tab `Nhà trai mời onl` hoặc `Nhà gái mời onl`; cột A là STT, B là Tên, C tự tạo Slug và D tự tạo Link thiệp cho 1.000 dòng. Xem [cách đặt công thức](docs/08-link-moi-ca-nhan.md).
 
 ## Hai trang và hai mục đích QR
 
@@ -124,7 +124,7 @@ Trong `.dev.vars`, điền theo mẫu `.dev.vars.example`. Có thể giữ `APP_
 4. `GOOGLE_PRIVATE_KEY`: lấy nguyên trường `private_key`, gồm cả `BEGIN PRIVATE KEY` và `END PRIVATE KEY`.
 5. `GOOGLE_SHEET_ID`: lấy phần nằm giữa `/d/` và `/edit` trong URL Google Sheet. Không dùng số `gid`.
 6. Chia sẻ chính Sheet đó cho `client_email` với quyền **Editor**, còn quyền truy cập chung vẫn để **Restricted**.
-7. Trong cả tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề trong `google-sheets/rsvp-headers.tsv` vào A1:J1.
+7. Trong cả tab `Nhà trai` và `Nhà gái`, dán hàng tiêu đề trong `google-sheets/rsvp-headers.tsv` vào A1:K1; cột A là STT tự động.
 8. Trong tab `Tổng hợp số lượng`, dán toàn bộ `google-sheets/tong-hop-so-luong.formulas.tsv` vào A1. Công thức tự cộng hai bên.
 
 ### 3. Lấy Turnstile key
