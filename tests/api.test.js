@@ -44,7 +44,7 @@ test("invitation API returns one matching name without exposing the sheet", asyn
   globalThis.fetch = async (url) => {
     if (String(url).includes("oauth2.googleapis.com")) return Response.json({ access_token: "test-access-token", expires_in: 3600 });
     assert.match(String(url), /sheets\.googleapis\.com/);
-    return Response.json({ values: [["Nguyễn Văn A", "nguyen-van-a"]] });
+    return Response.json({ values: [["STT", "Tên khách mời", "Đường dẫn khách mời"], ["1", "Nguyễn Văn A", "nguyen-van-a"]] });
   };
   try {
     const response = await invitationRequest({
@@ -68,14 +68,14 @@ test("RSVP API verifies and appends values as a raw row", async () => {
     const target = String(url);
     if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "test-access-token", expires_in: 3600 });
     if (target.includes("challenges.cloudflare.com")) return Response.json({success:true,hostname:"wedding.example",action:"wedding_rsvp"});
-    if (target.includes("A1%3AJ1")) return Response.json({values:[RSVP_HEADERS]});
+    if (target.includes("A1%3AK1")) return Response.json({values:[["STT", ...RSVP_HEADERS]]});
     if (init.method === "POST") {
       assert.match(target, /:append\?/);
       appended = { url: target, body: JSON.parse(init.body) };
       return Response.json({ updates: { updatedRows: 1 } });
     }
-    if (target.includes("G2%3AG")) return Response.json({ values: [] });
-    if (target.includes("A2%3AB")) return Response.json({ values: [["Nguyễn Văn A", "nguyen-van-a"]] });
+    if (target.includes("H2%3AH")) return Response.json({ values: [] });
+    if (target.includes("A1%3AC")) return Response.json({ values: [["STT", "Tên khách mời", "Đường dẫn khách mời"], ["1", "Nguyễn Văn A", "nguyen-van-a"]] });
     throw new Error(`Unexpected URL ${target}`);
   };
   Date.now = () => Date.parse("2026-09-29T12:00:00+07:00");
@@ -103,6 +103,7 @@ test("RSVP API verifies and appends values as a raw row", async () => {
     assert.match(appended.url, /valueInputOption=RAW/);
     assert.match(appended.url, /insertDataOption=OVERWRITE/);
     assert.match(appended.url, /Nh%C3%A0%20trai/);
+    assert.match(decodeURIComponent(appended.url), /'Nhà trai'!B:K/);
     assert.deepEqual(appended.body.values[0].slice(1), [
       "Nguyễn Văn A", "Có tham dự", 3, "Bạn bè", "", "123e4567-e89b-12d3-a456-426614174000", "Nhà trai", "nguyen-van-a", "Nguyễn Văn A",
     ]);
@@ -193,8 +194,8 @@ test("raw RSVP payloads preserve Vietnamese values, side, count and submission t
     const target = String(url);
     if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "matrix-token", expires_in: 3600 });
     if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true, hostname: "wedding.example", action: "wedding_rsvp" });
-    if (target.includes("A1%3AJ1")) return Response.json({ values: [RSVP_HEADERS] });
-    if (target.includes("G2%3AG")) return Response.json({ values: [] });
+    if (target.includes("A1%3AK1")) return Response.json({ values: [["STT", ...RSVP_HEADERS]] });
+    if (target.includes("H2%3AH")) return Response.json({ values: [] });
     if (target.includes(":append?")) {
       appended = { url: decodeURIComponent(target), row: JSON.parse(init.body).values[0] };
       return Response.json({ updates: { updatedRows: 1 } });
@@ -221,7 +222,7 @@ test("raw RSVP payloads preserve Vietnamese values, side, count and submission t
         });
         assert.equal(response.status, 201, `${side}/${attendance}`);
         assert.match(appended.url, /valueInputOption=RAW/);
-        assert.ok(appended.url.includes(`'${sideLabel}'!A:J`));
+        assert.ok(appended.url.includes(`'${sideLabel}'!B:K`));
         assert.deepEqual(appended.row.slice(1), ["Khách kiểm thử", label, count, "Mục khác", "=SUM(1,2)",
           "123e4567-e89b-12d3-a456-426614174002", sideLabel, "", ""]);
         assert.equal(appended.row[0], (now + 7 * 3600000) / 86400000 + 25569);

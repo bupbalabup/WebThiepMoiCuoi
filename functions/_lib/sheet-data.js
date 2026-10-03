@@ -4,6 +4,17 @@ export const WISH_HEADERS = ["Thời gian gửi", "Họ và tên", "Lời chúc"
 export const ATTENDANCE_LABELS = { attending: "Có tham dự", accepted: "Có tham dự", considering: "Đang cân nhắc", declined: "Không tham dự" };
 export const RELATIONSHIP_LABELS = { family: "Gia đình/người thân", friend: "Bạn bè", coworker: "Đồng nghiệp", mutual_friend: "Bạn chung", other: "Mục khác" };
 export const SIDE_LABELS = { groom: "Nhà trai", bride: "Nhà gái" };
+export const STT_HEADER = "STT";
 // Sheets dates are serial numbers. Apply the display format separately so dates remain sortable.
 export function vietnamSheetDate(now = Date.now()) { return (now + 7 * 3600000) / 86400000 + 25569; }
 export function hasHeaders(row, expected) { return expected.every((value, i) => row?.[i] === value); }
+export function hasSttHeaders(row, expected) { return row?.[0] === STT_HEADER && hasHeaders(row.slice(1), expected); }
+
+export function invitationColumns(rows) {
+  const hasStt = rows?.[0]?.[0] === STT_HEADER;
+  return {
+    rows: Array.isArray(rows) ? rows.slice(1) : [],
+    nameIndex: hasStt ? 1 : 0,
+    slugIndex: hasStt ? 2 : 1,
+  };
+}

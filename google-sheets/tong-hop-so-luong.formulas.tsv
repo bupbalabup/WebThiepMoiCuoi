@@ -1,8 +1,8 @@
-Hạng mục	Nhà trai	Nhà gái	Tổng
-Tổng người xác nhận tham gia	=SUMIF('Nhà trai'!C2:C;"attending";'Nhà trai'!D2:D)+SUMIF('Nhà trai'!C2:C;"Có tham dự";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"attending";'Nhà gái'!D2:D)+SUMIF('Nhà gái'!C2:C;"Có tham dự";'Nhà gái'!D2:D)	=SUM(B2:C2)
-Tổng lượt phúc đáp	=COUNTIF('Nhà trai'!B2:B;"<>")	=COUNTIF('Nhà gái'!B2:B;"<>")	=SUM(B3:C3)
-Lượt xác nhận tham gia	=COUNTIF('Nhà trai'!C2:C;"attending")+COUNTIF('Nhà trai'!C2:C;"Có tham dự")	=COUNTIF('Nhà gái'!C2:C;"attending")+COUNTIF('Nhà gái'!C2:C;"Có tham dự")	=SUM(B4:C4)
-Số người đang cân nhắc	=SUMIF('Nhà trai'!C2:C;"Đang cân nhắc";'Nhà trai'!D2:D)	=SUMIF('Nhà gái'!C2:C;"Đang cân nhắc";'Nhà gái'!D2:D)	=SUM(B5:C5)
-Lượt đang cân nhắc	=COUNTIF('Nhà trai'!C2:C;"Đang cân nhắc")	=COUNTIF('Nhà gái'!C2:C;"Đang cân nhắc")	=SUM(B6:C6)
-Lượt không tham gia	=COUNTIF('Nhà trai'!C2:C;"Không tham dự")	=COUNTIF('Nhà gái'!C2:C;"Không tham dự")	=SUM(B7:C7)
-Tổng lời chúc	=COUNTIF('Lời chúc nhà trai'!B2:B;"<>")	=COUNTIF('Lời chúc nhà gái'!B2:B;"<>")	=SUM(B8:C8)
+STT	Hạng mục	Nhà trai	Nhà gái	Tổng
+=ARRAYFORMULA(IF(B2:B1001="";"";TO_TEXT(ROW(B2:B1001)-1)))	Tổng người xác nhận tham gia	=SUMIF('Nhà trai'!D2:D;"attending";'Nhà trai'!E2:E)+SUMIF('Nhà trai'!D2:D;"Có tham dự";'Nhà trai'!E2:E)	=SUMIF('Nhà gái'!D2:D;"attending";'Nhà gái'!E2:E)+SUMIF('Nhà gái'!D2:D;"Có tham dự";'Nhà gái'!E2:E)	=SUM(C2:D2)
+	Tổng lượt phúc đáp	=COUNTIF('Nhà trai'!C2:C;"<>")	=COUNTIF('Nhà gái'!C2:C;"<>")	=SUM(C3:D3)
+	Lượt xác nhận tham gia	=COUNTIF('Nhà trai'!D2:D;"attending")+COUNTIF('Nhà trai'!D2:D;"Có tham dự")	=COUNTIF('Nhà gái'!D2:D;"attending")+COUNTIF('Nhà gái'!D2:D;"Có tham dự")	=SUM(C4:D4)
+	Số người đang cân nhắc	=SUMIF('Nhà trai'!D2:D;"Đang cân nhắc";'Nhà trai'!E2:E)	=SUMIF('Nhà gái'!D2:D;"Đang cân nhắc";'Nhà gái'!E2:E)	=SUM(C5:D5)
+	Lượt đang cân nhắc	=COUNTIF('Nhà trai'!D2:D;"Đang cân nhắc")	=COUNTIF('Nhà gái'!D2:D;"Đang cân nhắc")	=SUM(C6:D6)
+	Lượt không tham gia	=COUNTIF('Nhà trai'!D2:D;"Không tham dự")	=COUNTIF('Nhà gái'!D2:D;"Không tham dự")	=SUM(C7:D7)
+	Tổng lời chúc	=COUNTIF('Lời chúc nhà trai'!C2:C;"<>")	=COUNTIF('Lời chúc nhà gái'!C2:C;"<>")	=SUM(C8:D8)

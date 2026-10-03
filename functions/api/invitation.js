@@ -1,5 +1,6 @@
 import { readSheetRows } from "../_lib/google.js";
 import { isSameSiteRequest, json, publicError } from "../_lib/http.js";
+import { invitationColumns } from "../_lib/sheet-data.js";
 import { validateLookup } from "../_lib/validation.js";
 
 const SHEET_TABS = {
@@ -19,12 +20,12 @@ async function handleGet({ request, env }) {
   try {
     const { side, slug } = validation.value;
     const tab = SHEET_TABS[side].replace(/'/g, "''");
-    const rows = await readSheetRows(env, `'${tab}'!A2:B`);
-    const matches = rows.filter((row) => String(row[1] || "").trim().toLowerCase() === slug);
+    const table = invitationColumns(await readSheetRows(env, `'${tab}'!A1:C`));
+    const matches = table.rows.filter((row) => String(row[table.slugIndex] || "").trim().toLowerCase() === slug);
     if (!matches.length) return publicError(404, "INVITATION_NOT_FOUND", "Không tìm thấy thiệp mời này.");
     if (matches.length > 1) return publicError(409, "DUPLICATE_SLUG", "Link thiệp đang bị trùng. Vui lòng liên hệ gia đình.");
 
-    const invitedName = String(matches[0][0] || "").trim().replace(/\s+/g, " ").slice(0, 120);
+    const invitedName = String(matches[0][table.nameIndex] || "").trim().replace(/\s+/g, " ").slice(0, 120);
     if (!invitedName) return publicError(404, "INVITATION_NOT_FOUND", "Không tìm thấy thiệp mời này.");
     return json({ ok: true, name: invitedName, side, slug });
   } catch (error) {

@@ -2,7 +2,7 @@ import { appendSheetRow, readSheetRows } from "../_lib/google.js";
 import { isSameSiteRequest, json, publicError, readSmallJson } from "../_lib/http.js";
 import { verifyTurnstile } from "../_lib/turnstile.js";
 import { validateRsvp } from "../_lib/validation.js";
-import { RSVP_HEADERS_VI, RSVP_HEADERS_LEGACY, ATTENDANCE_LABELS, RELATIONSHIP_LABELS, SIDE_LABELS, vietnamSheetDate, hasHeaders } from "../_lib/sheet-data.js";
+import { RSVP_HEADERS_VI, RSVP_HEADERS_LEGACY, ATTENDANCE_LABELS, RELATIONSHIP_LABELS, SIDE_LABELS, vietnamSheetDate, hasHeaders, hasSttHeaders, invitationColumns } from "../_lib/sheet-data.js";
 
 export const RSVP_HEADERS = RSVP_HEADERS_VI;
 export const RSVP_TAB_NAMES = Object.freeze({
@@ -58,11 +58,12 @@ async function handlePost({ request, env }) {
   try {
     const data = validation.value;
     const tab = rsvpTabName(env, data.invitationSide).replace(/'/g, "''");
-    const headers = await readSheetRows(env, `'${tab}'!A1:J1`);
-    if (!hasHeaders(headers[0], RSVP_HEADERS) && !hasHeaders(headers[0], RSVP_HEADERS_LEGACY)) {
+    const headers = await readSheetRows(env, `'${tab}'!A1:K1`);
+    const hasStt = hasSttHeaders(headers[0], RSVP_HEADERS) || hasSttHeaders(headers[0], RSVP_HEADERS_LEGACY);
+    if (!hasStt && !hasHeaders(headers[0], RSVP_HEADERS) && !hasHeaders(headers[0], RSVP_HEADERS_LEGACY)) {
       throw new Error("RSVP_SHEET_HEADERS_MISMATCH");
     }
-    const idRows = await readSheetRows(env, `'${tab}'!G2:G`);
+    const idRows = await readSheetRows(env, hasStt ? `'${tab}'!H2:H` : `'${tab}'!G2:G`);
     if (idRows.some((row) => String(row[0] || "") === data.idempotencyKey)) {
       return json({ ok: true, message: "Phúc đáp đã được ghi nhận." });
     }
@@ -70,16 +71,16 @@ async function handlePost({ request, env }) {
     let invitedName = "";
     if (data.invitationSlug) {
       const invitationTab = data.invitationSide === "groom" ? "Nhà trai mời onl" : "Nhà gái mời onl";
-      const invitationRows = await readSheetRows(env, `'${invitationTab}'!A2:B`);
-      const matches = invitationRows.filter((row) => String(row[1] || "").trim().toLowerCase() === data.invitationSlug);
+      const invitationTable = invitationColumns(await readSheetRows(env, `'${invitationTab}'!A1:C`));
+      const matches = invitationTable.rows.filter((row) => String(row[invitationTable.slugIndex] || "").trim().toLowerCase() === data.invitationSlug);
       if (matches.length !== 1) {
         return publicError(matches.length ? 409 : 400, matches.length ? "DUPLICATE_SLUG" : "INVITATION_NOT_FOUND", "Link thiệp cá nhân không hợp lệ.");
       }
-      invitedName = String(matches[0][0] || "").trim().replace(/\s+/g, " ").slice(0, 120);
+      invitedName = String(matches[0][invitationTable.nameIndex] || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!invitedName) return publicError(400, "INVITATION_NOT_FOUND", "Link thiệp cá nhân không hợp lệ.");
     }
 
-    await appendSheetRow(env, `'${tab}'!A:J`, [
+    await appendSheetRow(env, hasStt ? `'${tab}'!B:K` : `'${tab}'!A:J`, [
       vietnamSheetDate(),
       data.name,
       ATTENDANCE_LABELS[data.attendance],

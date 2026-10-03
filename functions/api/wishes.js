@@ -2,7 +2,7 @@ import { appendSheetRow, readSheetRows } from "../_lib/google.js";
 import { isSameSiteRequest, json, publicError, readSmallJson } from "../_lib/http.js";
 import { verifyTurnstile } from "../_lib/turnstile.js";
 import { validateLookup, VALID_SIDES } from "../_lib/validation.js";
-import { WISH_HEADERS, SIDE_LABELS, vietnamSheetDate, hasHeaders } from "../_lib/sheet-data.js";
+import { WISH_HEADERS, SIDE_LABELS, vietnamSheetDate, hasHeaders, hasSttHeaders, invitationColumns } from "../_lib/sheet-data.js";
 
 export function validateWish(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) return null;
@@ -32,20 +32,21 @@ export async function onRequest({ request, env }) {
   }
   try {
     const tab = data.side === "groom" ? "Lời chúc nhà trai" : "Lời chúc nhà gái";
-    const headers = await readSheetRows(env, `'${tab}'!A1:G1`);
-    if (!hasHeaders(headers[0], WISH_HEADERS)) throw new Error("WISH_HEADERS_MISMATCH");
-    const ids = await readSheetRows(env, `'${tab}'!G2:G`);
+    const headers = await readSheetRows(env, `'${tab}'!A1:H1`);
+    const hasStt = hasSttHeaders(headers[0], WISH_HEADERS);
+    if (!hasStt && !hasHeaders(headers[0], WISH_HEADERS)) throw new Error("WISH_HEADERS_MISMATCH");
+    const ids = await readSheetRows(env, hasStt ? `'${tab}'!H2:H` : `'${tab}'!G2:G`);
     if (ids.some(row => row[0] === data.id)) return json({ ok: true, message: "Cảm ơn lời chúc của bạn!" });
     let invitedName = "";
     if (data.slug) {
       const inviteTab = data.side === "groom" ? "Nhà trai mời onl" : "Nhà gái mời onl";
-      const rows = await readSheetRows(env, `'${inviteTab}'!A2:B`);
-      const matches = rows.filter(row => String(row[1] || "").trim() === data.slug);
+      const table = invitationColumns(await readSheetRows(env, `'${inviteTab}'!A1:C`));
+      const matches = table.rows.filter(row => String(row[table.slugIndex] || "").trim() === data.slug);
       if (matches.length !== 1) return publicError(400, "INVALID_INVITATION", "Link thiệp cá nhân không hợp lệ.");
-      invitedName = String(matches[0][0] || "").trim().replace(/\s+/g, " ").slice(0, 120);
+      invitedName = String(matches[0][table.nameIndex] || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!invitedName) return publicError(400, "INVALID_INVITATION", "Link thiệp cá nhân không hợp lệ.");
     }
-    await appendSheetRow(env, `'${tab}'!A:G`, [vietnamSheetDate(), data.name, data.message, SIDE_LABELS[data.side], data.slug, invitedName, data.id]);
+    await appendSheetRow(env, hasStt ? `'${tab}'!B:H` : `'${tab}'!A:G`, [vietnamSheetDate(), data.name, data.message, SIDE_LABELS[data.side], data.slug, invitedName, data.id]);
     return json({ ok: true, message: "Cảm ơn bạn! Lời chúc đã được gửi đến Tuấn Anh và Ngọc Anh." }, { status: 201 });
   } catch (error) {
     console.error("Wish save failed", error instanceof Error ? error.message : "UNKNOWN");
