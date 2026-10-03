@@ -103,7 +103,7 @@ export default function InvitationPage({ side, slug }) {
             className="bar-btn-rsvp"
             onClick={() => setRsvpOpen(true)}
           >
-            Phúc đáp
+            Tham dự
           </button>
           <a className="bar-btn-wish" href="#so-luu-but">
             Lời chúc

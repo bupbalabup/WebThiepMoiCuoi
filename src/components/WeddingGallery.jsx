@@ -1,132 +1,56 @@
-import React, { useEffect, useState } from "react";
-import wedding from "../config/wedding.json";
-import Modal from "./Modal.jsx";
+import React, { useRef, useState } from "react";
+import photos from "virtual:wedding-album";
+import "../styles/album.css";
 
 export default function WeddingGallery() {
-  const photos = wedding.gallery.slots.filter((photo) => photo.src);
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [showAll, setShowAll] = useState(false);
+  const [active, setActive] = useState(0);
+  const [ratios, setRatios] = useState({});
+  const touch = useRef(null);
+  const total = photos.length;
+  const wrap = index => (index + total) % total;
+  const go = direction => setActive(index => wrap(index + direction));
 
-  useEffect(() => {
-    if (selectedIndex !== null && !photos[selectedIndex]) {
-      setSelectedIndex(null);
-    }
-  }, [photos, selectedIndex]);
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    if (selectedIndex === null) return undefined;
-    function handleKeyDown(e) {
-      if (e.key === "ArrowLeft") {
-        setSelectedIndex((curr) => (curr > 0 ? curr - 1 : photos.length - 1));
-      } else if (e.key === "ArrowRight") {
-        setSelectedIndex((curr) => (curr < photos.length - 1 ? curr + 1 : 0));
-      }
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedIndex, photos.length]);
-
-  if (!photos.length) return null;
-
-  function prevPhoto() {
-    setSelectedIndex((curr) => (curr > 0 ? curr - 1 : photos.length - 1));
+  if (!total) return null;
+  function distance(index) {
+    let offset = (index - active + total) % total;
+    if (offset > total / 2) offset -= total;
+    return offset;
   }
 
-  function nextPhoto() {
-    setSelectedIndex((curr) => (curr < photos.length - 1 ? curr + 1 : 0));
-  }
-
-  const displayedPhotos = showAll ? photos : photos.slice(0, 9);
-  const currentPhoto = selectedIndex !== null ? photos[selectedIndex] : null;
-
-  return (
-    <section className="lux-gallery-section" aria-labelledby="gallery-title">
-      <div className="lux-section-header">
-        <span className="lux-eyebrow">ALBUM HÌNH CƯỚI</span>
-        <h2 id="gallery-title" className="lux-section-title">Khoảnh Khắc Ngọt Ngào</h2>
-        <p className="lux-section-subtitle">
-          Những khung hình lưu giữ tình yêu và hành trình cùng nhau bước tới ngày chung đôi.
-        </p>
-      </div>
-
-      {/* Editorial Responsive Mosaic Grid */}
-      <div className="lux-gallery-grid">
-        {displayedPhotos.map((photo, index) => {
-          const isFeatured = index === 0 || index === 7;
-          return (
-            <button
-              type="button"
-              className={`lux-gallery-card ${isFeatured ? "is-featured" : ""}`}
-              key={photo.id || index}
-              onClick={() => setSelectedIndex(index)}
-              aria-label={`Xem ảnh cưới ${index + 1}`}
+  return <section className="wedding-album" aria-labelledby="gallery-title">
+    <h2 id="gallery-title" className="mi-script mi-heading">Khoảnh Khắc Ngọt Ngào</h2>
+    <div className="album-stage" role="region" aria-label="Album ảnh cưới" aria-roledescription="băng chuyền ảnh"
+      onKeyDown={event => {
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault(); go(event.key === "ArrowLeft" ? -1 : 1);
+        }
+      }}
+      onTouchStart={event => { touch.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
+      onTouchEnd={event => {
+        if (!touch.current) return;
+        const dx = event.changedTouches[0].clientX - touch.current.x;
+        const dy = event.changedTouches[0].clientY - touch.current.y;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          go(dx < 0 ? 1 : -1);
+        }
+        touch.current = null;
+      }}>
+      <div className="album-perspective">
+        {photos.map((photo, index) => {
+          const offset = distance(index), depth = Math.abs(offset);
+          return <div key={photo.id} className="album-photo"
+            aria-hidden={offset !== 0 ? true : undefined}
+            style={{ aspectRatio: ratios[photo.id] || "2 / 3", transform: `translateX(${Math.sign(offset) * (depth === 1 ? 72 : depth * 62)}%) translateZ(${-depth * 45}px) rotateY(${-Math.sign(offset) * Math.min(depth * 18, 28)}deg) scale(${Math.max(.66, 1 - depth * .16)})`, opacity: depth > 2 ? 0 : Math.max(.55, 1 - depth * .16), zIndex: 100 - depth, pointerEvents: depth > 2 ? "none" : "auto" }}
             >
-              <div className="card-media-wrapper">
-                <img
-                  src={photo.src}
-                  alt={photo.alt || `Ảnh cưới Tuấn Anh và Ngọc Anh ${index + 1}`}
-                  loading={index < 4 ? "eager" : "lazy"}
-                  decoding="async"
-                />
-                <div className="card-hover-overlay">
-                  <span className="card-zoom-badge">XEM ẢNH</span>
-                  <span className="card-index-pill">0{index + 1}</span>
-                </div>
-              </div>
-            </button>
-          );
+            <img src={photo.src} alt={`Ảnh cưới Tuấn Anh và Ngọc Anh ${index + 1}`} draggable="false" loading="lazy" decoding="async"
+              onLoad={event => { const image = event.currentTarget; setRatios(previous => ({ ...previous, [photo.id]: image.naturalWidth / image.naturalHeight })); }} />
+          </div>;
         })}
       </div>
-
-      {/* Toggle View More Button */}
-      {photos.length > 9 && (
-        <div className="lux-gallery-action">
-          <button
-            type="button"
-            className="button button-outline"
-            onClick={() => setShowAll((prev) => !prev)}
-          >
-            {showAll ? "THU GỌN ALBUM" : `XEM TẤT CẢ ${photos.length} ẢNH`}
-          </button>
-        </div>
-      )}
-
-      {/* Lightbox Modal */}
-      <Modal
-        title={`Khoảnh khắc (${selectedIndex !== null ? selectedIndex + 1 : 1} / ${photos.length})`}
-        open={Boolean(currentPhoto)}
-        onClose={() => setSelectedIndex(null)}
-        className="photo-modal"
-      >
-        {currentPhoto && (
-          <div className="lux-lightbox-view">
-            <button
-              type="button"
-              className="lux-lightbox-nav prev"
-              onClick={prevPhoto}
-              aria-label="Ảnh trước đó"
-            >
-              ẢNH TRƯỚC
-            </button>
-            <div className="lux-lightbox-image-box">
-              <img
-                className="lux-lightbox-img"
-                src={currentPhoto.fullSrc || currentPhoto.src}
-                alt={currentPhoto.alt || "Ảnh cưới Tuấn Anh & Ngọc Anh"}
-              />
-            </div>
-            <button
-              type="button"
-              className="lux-lightbox-nav next"
-              onClick={nextPhoto}
-              aria-label="Ảnh kế tiếp"
-            >
-              ẢNH SAU
-            </button>
-          </div>
-        )}
-      </Modal>
-    </section>
-  );
+      {total > 1 && <>
+        <button className="album-arrow album-prev" type="button" aria-label="Ảnh trước" onClick={() => { go(-1); }}><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6" /></svg></button>
+        <button className="album-arrow album-next" type="button" aria-label="Ảnh sau" onClick={() => { go(1); }}><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6" /></svg></button>
+      </>}
+    </div>
+  </section>;
 }

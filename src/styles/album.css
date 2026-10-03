@@ -1,0 +1,17 @@
+.wedding-album{width:100%;min-width:0;text-align:center}
+.wedding-album .mi-heading{margin-bottom:24px}
+.album-stage{position:relative;height:clamp(320px,48vw,580px);overflow:hidden;touch-action:pan-y}
+.album-perspective{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;perspective:1000px}
+.album-photo{position:absolute;height:92%;width:auto;max-width:76%;padding:0;border:0;border-radius:16px;overflow:hidden;box-shadow:0 14px 35px #63465226;cursor:default;background:#fff;transition:transform 1100ms ease-in-out,opacity 1100ms ease-in-out;will-change:transform}
+.album-photo img{display:block;height:100%;width:100%;object-fit:cover}
+.album-photo:focus-visible{outline:3px solid #b16586;outline-offset:4px}
+.album-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:110;border:1px solid #ffffff80;border-radius:24px;background:#ffffffd9;color:#81465f;min-width:52px;min-height:44px;padding:8px 12px;font:500 12px "Be Vietnam Pro",sans-serif;cursor:pointer;box-shadow:0 3px 14px #603c5112}
+.album-prev{left:3%}.album-next{right:3%}
+.album-arrow:hover{background:#fff}.album-arrow:focus-visible,.album-controls button:focus-visible{outline:2px solid #a8587b;outline-offset:3px}
+.album-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:24px;color:#886775;font:400 13px "Be Vietnam Pro",sans-serif}
+.album-controls button{border:0;border-bottom:1px solid #d9b8c7;background:none;color:inherit;font:inherit;padding:6px 0;cursor:pointer}
+@media(max-width:767px){.album-stage{height:420px;height:clamp(300px,105vw,470px)}.album-photo{border-radius:12px;max-width:72%}.album-prev{left:0}.album-next{right:0}.album-arrow{min-width:44px;padding:8px;font-size:11px}.album-controls{margin-top:18px}}
+@media(prefers-reduced-motion:reduce){.album-photo{transition:none;will-change:auto}}
+
+.album-arrow{display:grid;place-items:center;width:46px;height:46px;min-width:46px;padding:0;border-radius:50%}
+.album-arrow svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
