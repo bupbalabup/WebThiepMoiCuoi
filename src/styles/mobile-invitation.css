@@ -71,7 +71,7 @@
 .mi-gift-monogram{display:block;font-family:Charm,serif;font-size:38px;margin-bottom:18px}
 .mi-closing-banner{display:block;width:100%;height:480px;object-fit:cover;object-position:center 65%}
 .mi-thanks{padding-bottom:100px}.mi-thanks>img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center 40%;border:5px solid white;box-shadow:0 0 0 1px #e8bfce}
-.mi-thanks h2{font-size:46px;margin:20px 0 8px}.mi-thanks-names{font-family:var(--font-serif);font-size:23px}.mi-thanks p{margin-bottom:18px;font-size:13px}.mi-thanks a{font-size:11px;color:#965571}
+.mi-thanks h2{font-size:46px;margin:20px 0 8px}.mi-thanks-names{font-family:var(--font-serif);font-size:23px;white-space:nowrap}.mi-thanks p{margin-bottom:18px;font-size:13px}.mi-thanks a{font-size:11px;color:#965571}
 .mobile-envelope-screen{width:100%;max-width:767px;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:36px 24px;text-align:center;background:radial-gradient(ellipse at 10% 10%,#fff 0,transparent 50%),linear-gradient(145deg,#f9e9f0,#fffafc 55%,#edd1dc);color:#85425b}
 .mobile-envelope-screen>h1{font-size:36px;margin:12px 0 50px;overflow-wrap:anywhere}
 .mi-envelope{width:min(100%,330px);aspect-ratio:1.55;position:relative;isolation:isolate;background:#f8e5ed;border:1px solid #e2b9c9;padding:0;box-shadow:0 20px 30px #7c3e5826;cursor:pointer;perspective:900px}

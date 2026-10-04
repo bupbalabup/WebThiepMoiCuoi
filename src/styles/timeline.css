@@ -16,7 +16,7 @@
 }
 
 .mobile-invitation .mi-schedule-title {
-  margin: 0 0 clamp(30px, 5vw, 50px);
+  margin: 0 0 clamp(18px, 3vw, 32px);
   color: var(--timeline-ink);
   font-family: "Great Vibes Local", "Charm", cursive;
   font-size: clamp(56px, 11vw, 94px);
@@ -54,7 +54,7 @@
   place-items: center;
   width: clamp(78px, 17vw, 120px);
   aspect-ratio: 1;
-  color: #292126;
+  color: var(--timeline-ink);
 }
 
 .mi-timeline-icon svg {
@@ -75,7 +75,7 @@
   bottom: 0;
   left: 50%;
   width: 1.5px;
-  background: #292126;
+  background: var(--timeline-ink);
   transform: translateX(-50%);
 }
 
@@ -91,8 +91,8 @@
   height: 15px;
   border: 2px solid var(--timeline-paper);
   border-radius: 50%;
-  background: #292126;
-  box-shadow: 0 0 0 1px #292126;
+  background: var(--timeline-ink);
+  box-shadow: 0 0 0 1px var(--timeline-ink);
   transform: translate(-50%, -50%);
 }
 
@@ -101,7 +101,7 @@
   align-items: baseline;
   min-width: 0;
   padding-left: clamp(10px, 3vw, 26px);
-  color: #292126;
+  color: var(--timeline-ink);
   font-family: "Philosopher Local", Georgia, serif;
   font-size: clamp(18px, 3.45vw, 30px);
   line-height: 1.25;
@@ -147,7 +147,7 @@
 .mi-timeline-heart {
   width: 38px;
   height: 34px;
-  background: #292126;
+  background: var(--timeline-ink);
   clip-path: polygon(50% 100%, 7% 60%, 0 38%, 4% 20%, 16% 7%, 34% 3%, 50% 15%, 66% 3%, 84% 7%, 96% 20%, 100% 38%, 93% 60%);
 }
 
@@ -157,13 +157,19 @@
 }
 
 @media (max-width: 479px) {
-  .mi-schedule { padding-inline: 8px; }
-  .mi-schedule-card { padding-inline: 6px; }
-  .mi-schedule .mi-timeline-list { --icon-column: 69px; --line-column: 20px; }
-  .mi-timeline-item { min-height: 126px; }
-  .mi-timeline-icon { width: 62px; }
-  .mi-timeline-copy { padding-left: 7px; font-size: clamp(12px, 3.65vw, 16px); white-space: nowrap; }
+  .mi-schedule {
+    padding: 28px 4px;
+  }
+  .mi-schedule-card {
+    padding: 8px 6px 8px;
+  }
+  .mi-schedule .mi-timeline-list { --icon-column: 58px; --line-column: 18px; }
+  .mi-schedule .mi-timeline-item { min-height: 72px; }
+  .mi-timeline-icon { width: 50px; }
+  .mobile-invitation .mi-schedule-title { margin-bottom: 9px; }
+  .mi-timeline-copy { padding-left: 5px; font-size: clamp(16px, 4.8vw, 20px); white-space: nowrap; }
   .mi-timeline-dot { width: 12px; height: 12px; }
+  .mi-timeline-flourish { margin-top: 8px; }
 }
 
 @media (min-width: 768px) {

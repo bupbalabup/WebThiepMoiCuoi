@@ -75,15 +75,28 @@
 
 .mobile-invitation .mi-thanks-names {
   font-family: "DFVN ED Drayton Local", "Motherland Signature Local", "Wedding Calligraphy", cursive;
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(25px, 5vw, 64px);
   font-weight: 400;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .mobile-invitation .wedding-album > .mi-heading,
 .mobile-invitation .mi-wishes > .mi-heading,
 .mobile-invitation .mi-gifts > .mi-heading {
   word-spacing: 0.16em;
+}
+
+@media (max-width: 767px) {
+  .mobile-invitation .wedding-album > .mi-heading {
+    font-size: clamp(22px, 6vw, 30px);
+    white-space: nowrap;
+    word-spacing: 0.08em;
+  }
+
+  .mobile-invitation .mi-person figcaption strong {
+    font-size: clamp(20px, 4.8vw, 28px);
+  }
 }
 
 .mobile-invitation .mi-guest,
