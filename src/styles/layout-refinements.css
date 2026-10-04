@@ -123,6 +123,9 @@ body { min-width: 0; }
   .mobile-invitation .mi-event-body p { font-size: 16px; }
   .mobile-invitation .mi-event-date span { font-size: 13px; }
   .mobile-invitation .mi-map summary { padding-block: 10px; }
+  .mobile-invitation .mi-thanks-names {
+    font-size: clamp(34px, 9.8vw, 38px);
+  }
 }
 
 /* RSVP modal and standalone page share the same readable type scale. */
