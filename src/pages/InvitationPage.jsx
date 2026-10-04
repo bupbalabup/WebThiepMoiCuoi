@@ -10,6 +10,27 @@ import GiftDialog from "../components/GiftDialog.jsx";
 import AudioPlayer from "../components/AudioPlayer.jsx";
 import AmbientPetals from "../components/AmbientPetals.jsx";
 import { InvitationError, InvitationLoading } from "../components/InvitationLoading.jsx";
+import photos from "../config/photos.json";
+
+const INVITATION_PRIORITY_IMAGES = [
+  photos.heroMobile,
+  photos.heroDesktop,
+  photos.calendar,
+  photos.groom,
+  photos.bride,
+  photos.weddingEvent,
+  photos.countdown,
+  photos.thumbnail,
+];
+
+function preloadInvitationImages() {
+  INVITATION_PRIORITY_IMAGES.forEach(src => {
+    const image = new Image();
+    image.decoding = "async";
+    image.fetchPriority = "high";
+    image.src = src;
+  });
+}
 
 export default function InvitationPage({ side, slug }) {
   const invite = useInvitation(side, slug);
@@ -26,6 +47,10 @@ export default function InvitationPage({ side, slug }) {
   const first = isGroom ? wedding.couple.groom : wedding.couple.bride;
   const second = isGroom ? wedding.couple.bride : wedding.couple.groom;
   const guestName = invite.invitation?.name || "Bạn";
+
+  useEffect(() => {
+    preloadInvitationImages();
+  }, []);
 
   // Open envelope / cover
   const handleOpen = useCallback(() => {

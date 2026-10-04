@@ -1,14 +1,15 @@
 {
-  "heroMobile": "/images/anhcuoi/hero-banner-mobile.jpg",
-  "heroDesktop": "/images/anhcuoi/hero-banner-pc.JPG",
-  "calendar": "/images/anhcuoi/anhlich.jpg",
-  "groom": "/images/anhcuoi/chure.JPG",
-  "bride": "/images/anhcuoi/codau.JPG",
-  "countdown": "/images/anhcuoi/demnguoc.jpg",
+  "heroMobile": "/images/anhcuoi/hero-banner-mobile-optimized.webp",
+  "heroDesktop": "/images/anhcuoi/hero-banner-pc-optimized.webp",
+  "calendar": "/images/anhcuoi/anhlich-optimized.webp",
+  "groom": "/images/anhcuoi/chure-optimized.webp",
+  "bride": "/images/anhcuoi/codau-optimized.webp",
+  "countdown": "/images/anhcuoi/demnguoc-optimized.webp",
   "gallery1": "/images/khoanhkhac/1.jpg",
   "gallery2": "/images/khoanhkhac/2.jpg",
   "gallery3": "/images/khoanhkhac/3.jpg",
   "gallery4": "/images/khoanhkhac/4.jpg",
-  "homepage": "/images/anhcuoi/homepage.JPG",
-  "weddingEvent": "/images/anhcuoi/sukiencuoi.jpg"
+  "homepage": "/images/anhcuoi/homepage-optimized.webp",
+  "weddingEvent": "/images/anhcuoi/sukiencuoi-optimized.webp",
+  "thumbnail": "/images/anhcuoi/thumbnail-optimized.webp"
 }

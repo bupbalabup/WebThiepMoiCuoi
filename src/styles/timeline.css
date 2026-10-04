@@ -1,24 +1,25 @@
 .mi-schedule {
-  --timeline-ink: #9d526c;
-  --timeline-soft: #dbaabd;
-  --timeline-paper: #fff8fa;
-  padding-block: clamp(58px, 8vw, 104px);
+  --timeline-ink: #b05f7b;
+  --timeline-soft: #d9a1b4;
+  --timeline-paper: var(--invitation-page-bg, #fff7fa);
+  padding-block: clamp(58px, 9vw, 112px);
+  background: var(--invitation-page-bg, #fff7fa);
 }
 
 .mi-schedule-card {
-  width: min(100%, 820px);
+  width: min(100%, 830px);
   margin-inline: auto;
-  padding: clamp(30px, 5vw, 56px) clamp(18px, 6vw, 72px) clamp(32px, 5vw, 52px);
+  padding: clamp(26px, 5vw, 54px) clamp(16px, 6vw, 70px) clamp(30px, 5vw, 50px);
   color: var(--timeline-ink);
   background: var(--timeline-paper);
-  box-shadow: 0 16px 45px rgba(126, 65, 88, 0.10);
+  box-shadow: none;
 }
 
 .mobile-invitation .mi-schedule-title {
   margin: 0 0 clamp(30px, 5vw, 50px);
   color: var(--timeline-ink);
   font-family: "Great Vibes Local", "Charm", cursive;
-  font-size: clamp(58px, 11vw, 92px);
+  font-size: clamp(56px, 11vw, 94px);
   font-weight: 400;
   line-height: .9;
 }
@@ -39,7 +40,7 @@
   display: grid;
   grid-template-columns: var(--icon-column) var(--line-column) minmax(0, 1fr);
   align-items: center;
-  min-height: clamp(132px, 24vw, 176px);
+  min-height: clamp(132px, 24vw, 180px);
   padding: 0;
   background: transparent;
   box-shadow: none;
@@ -53,7 +54,7 @@
   place-items: center;
   width: clamp(78px, 17vw, 120px);
   aspect-ratio: 1;
-  color: var(--timeline-ink);
+  color: #292126;
 }
 
 .mi-timeline-icon svg {
@@ -73,8 +74,8 @@
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
-  background: var(--timeline-soft);
+  width: 1.5px;
+  background: #292126;
   transform: translateX(-50%);
 }
 
@@ -86,12 +87,12 @@
   top: 50%;
   left: 50%;
   z-index: 1;
-  width: 14px;
-  height: 14px;
-  border: 3px solid var(--timeline-paper);
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--timeline-paper);
   border-radius: 50%;
-  background: var(--timeline-ink);
-  box-shadow: 0 0 0 1px var(--timeline-ink);
+  background: #292126;
+  box-shadow: 0 0 0 1px #292126;
   transform: translate(-50%, -50%);
 }
 
@@ -100,9 +101,9 @@
   align-items: baseline;
   min-width: 0;
   padding-left: clamp(10px, 3vw, 26px);
-  color: #704052;
+  color: #292126;
   font-family: "Philosopher Local", Georgia, serif;
-  font-size: clamp(18px, 3.5vw, 29px);
+  font-size: clamp(18px, 3.45vw, 30px);
   line-height: 1.25;
   letter-spacing: .01em;
   text-transform: uppercase;
@@ -144,9 +145,9 @@
 }
 
 .mi-timeline-heart {
-  width: 34px;
-  height: 31px;
-  background: currentColor;
+  width: 38px;
+  height: 34px;
+  background: #292126;
   clip-path: polygon(50% 100%, 7% 60%, 0 38%, 4% 20%, 16% 7%, 34% 3%, 50% 15%, 66% 3%, 84% 7%, 96% 20%, 100% 38%, 93% 60%);
 }
 
@@ -157,11 +158,11 @@
 
 @media (max-width: 479px) {
   .mi-schedule { padding-inline: 8px; }
-  .mi-schedule-card { padding-inline: 8px; }
-  .mi-schedule .mi-timeline-list { --icon-column: 65px; --line-column: 20px; }
+  .mi-schedule-card { padding-inline: 6px; }
+  .mi-schedule .mi-timeline-list { --icon-column: 69px; --line-column: 20px; }
   .mi-timeline-item { min-height: 126px; }
   .mi-timeline-icon { width: 62px; }
-  .mi-timeline-copy { padding-left: 7px; font-size: clamp(13px, 3.85vw, 16px); white-space: nowrap; }
+  .mi-timeline-copy { padding-left: 7px; font-size: clamp(12px, 3.65vw, 16px); white-space: nowrap; }
   .mi-timeline-dot { width: 12px; height: 12px; }
 }
 

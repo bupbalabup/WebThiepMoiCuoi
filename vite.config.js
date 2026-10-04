@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 // Discover every album image at build time; refresh when files change in dev.
@@ -13,9 +13,12 @@ function weddingAlbum() {
     load(source) {
       if (source !== "\0" + id) return;
       const files = readdirSync(folder, { withFileTypes: true })
-        .filter(file => file.isFile() && /\.(jpe?g|png|webp|avif)$/i.test(file.name))
-        .map(file => file.name).sort((a, b) => a.localeCompare(b, "vi", { numeric: true }));
-      return `export default ${JSON.stringify(files.map(name => ({ id: name, src: `/images/khoanhkhac/${encodeURIComponent(name)}` })))};`;
+        .filter(file => file.isFile() && /\.(jpe?g|png)$/i.test(file.name))
+        .map(file => {
+          const optimized = file.name.replace(/\.[^.]+$/, "-optimized.webp");
+          return { id: file.name, src: `/images/khoanhkhac/${encodeURIComponent(existsSync(resolve(folder, optimized)) ? optimized : file.name)}` };
+        }).sort((a, b) => a.id.localeCompare(b.id, "vi", { numeric: true }));
+      return `export default ${JSON.stringify(files)};`;
     },
     configureServer(server) {
       server.watcher.add(folder);
