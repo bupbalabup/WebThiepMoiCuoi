@@ -15,7 +15,7 @@ const embrace = photos.calendar;
 export function MobileEnvelope({ first, second, guestName, onOpen }) {
   return <div className="mobile-envelope-screen">
     <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p>
-    <h1 className="mi-envelope-guest" style={{ fontFamily: '"Motherland Signature Local", "Charm", cursive' }}>{guestName}</h1>
+    <h1 className="mi-envelope-guest" style={{ fontFamily: '"DFVN ED Drayton Local", "Charm", cursive' }}>{guestName}</h1>
     <button autoFocus type="button" className="mi-envelope" onClick={onOpen} aria-label="Mở thiệp mời">
       <span className="mi-envelope-letter">Save the date<br />21.10.2026</span>
       <span className="mi-envelope-fold" />
