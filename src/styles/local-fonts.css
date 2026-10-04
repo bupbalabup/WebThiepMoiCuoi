@@ -99,6 +99,16 @@
   }
 }
 
+@media (max-width: 334px) {
+  .mobile-invitation .mi-thanks-names {
+    font-size: 21px;
+  }
+
+  .mobile-invitation .wedding-album > .mi-heading {
+    font-size: 21px;
+  }
+}
+
 .mobile-invitation .mi-guest {
   font-family: "DFVN ED Drayton Local", "Charm", cursive;
 }
