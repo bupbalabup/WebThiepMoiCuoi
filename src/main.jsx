@@ -38,6 +38,7 @@ import "./styles/animations.css";
 import "./styles/luxury.css";
 import "./styles/rsvp.css";
 import "./styles/local-fonts.css";
+import "./styles/timeline.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

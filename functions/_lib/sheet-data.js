@@ -2,7 +2,7 @@ export const RSVP_HEADERS_VI = ["Thời gian gửi", "Họ và tên", "Phúc đ�
 export const RSVP_HEADERS_LEGACY = ["submitted_at", "name", "attendance", "guest_count", "relationship", "relationship_other", "submission_id", "invitation_side", "invitation_slug", "invited_name"];
 export const WISH_HEADERS = ["Thời gian gửi", "Họ và tên", "Lời chúc", "Bên mời", "Đường dẫn khách mời", "Tên được mời", "Mã lời chúc"];
 export const ATTENDANCE_LABELS = { attending: "Có tham dự", accepted: "Có tham dự", considering: "Đang cân nhắc", declined: "Không tham dự" };
-export const RELATIONSHIP_LABELS = { family: "Gia đình/người thân", friend: "Bạn bè", coworker: "Đồng nghiệp", mutual_friend: "Bạn chung", other: "Mục khác" };
+export const RELATIONSHIP_LABELS = { family: "Gia đình/người thân", friend: "Bạn bè", coworker: "Đồng nghiệp", other: "Mục khác" };
 export const SIDE_LABELS = { groom: "Nhà trai", bride: "Nhà gái" };
 export const STT_HEADER = "STT";
 // Sheets dates are serial numbers. Apply the display format separately so dates remain sortable.

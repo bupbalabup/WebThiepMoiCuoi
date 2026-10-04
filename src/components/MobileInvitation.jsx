@@ -6,6 +6,7 @@ import SaveTheDateCalendar from "./SaveTheDateCalendar.jsx";
 import WeddingGallery from "./WeddingGallery.jsx";
 import CountdownTimer from "./CountdownTimer.jsx";
 import WishForm from "./WishForm.jsx";
+import { TIMELINE_ICONS } from "./TimelineIcons.jsx";
 import "../styles/mobile-invitation.css";
 
 const embrace = photos.calendar;
@@ -56,7 +57,23 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
       <article className="mi-event-card"><img className="mi-event-photo" src={embrace} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><div className="mi-event-body"><h3>LỄ THÀNH HÔN</h3><p>11:00 · THỨ TƯ</p><div className="mi-event-date"><span>THÁNG 10</span><strong>21</strong><span>NĂM 2026</span></div><p className="mi-event-lunar">Ngày 12 tháng 9 năm Bính Ngọ</p><h4>{wedding.event.venueName}</h4><p>{wedding.event.hall}</p><p>{wedding.event.address}</p><a className="mi-pill" href={wedding.event.maps.directionsUrl} target="_blank" rel="noopener noreferrer">XEM CHỈ ĐƯỜNG</a><details className="mi-map"><summary>Xem bản đồ địa điểm</summary><iframe title="Bản đồ Trống Đồng Palace" src={wedding.event.maps.embedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></details></div></article>
     </section>
 
-    <section className="mi-section mi-schedule" id="lich-trinh"><h2 className="mi-script mi-heading">Lịch trình</h2><ol>{wedding.event.timeline.map(item => <li key={item.time}><time>{item.time}</time><strong>{item.title}</strong></li>)}</ol><div className="mi-rsvp"><button type="button" className="mi-pill" onClick={onRsvp}>XÁC NHẬN THAM DỰ</button><p>Vui lòng phản hồi trước hết ngày 15.10.2026</p></div></section>
+    <section className="mi-section mi-schedule" id="lich-trinh">
+      <div className="mi-schedule-card">
+        <h2 className="mi-schedule-title">Timeline</h2>
+        <ol className="mi-timeline-list">
+          {wedding.event.timeline.map((item, index) => {
+            const TimelineIcon = TIMELINE_ICONS[index] || TIMELINE_ICONS[TIMELINE_ICONS.length - 1];
+            return <li className="mi-timeline-item" key={item.time}>
+              <span className="mi-timeline-icon"><TimelineIcon /></span>
+              <span className="mi-timeline-rail" aria-hidden="true"><span className="mi-timeline-dot" /></span>
+              <span className="mi-timeline-copy"><time>{item.time}</time><strong>{item.title}</strong></span>
+            </li>;
+          })}
+        </ol>
+        <div className="mi-timeline-flourish" aria-hidden="true"><span className="mi-timeline-heart" /></div>
+      </div>
+      <div className="mi-rsvp"><button type="button" className="mi-pill" onClick={onRsvp}>XÁC NHẬN THAM DỰ</button><p>Vui lòng phản hồi trước hết ngày 15.10.2026</p></div>
+    </section>
 
     <section className="mi-section mi-album" id="album-anh"><WeddingGallery /></section>
 

@@ -25,10 +25,11 @@
       "bride": "Nhà gái mời onl"
     },
     "columns": {
-      "name": "A",
-      "slug": "B",
-      "invitationUrl": "C",
-      "fixedSlug": "D"
+      "stt": "A",
+      "name": "B",
+      "slug": "C",
+      "invitationUrl": "D",
+      "sent": "E"
     },
     "firstDataRow": 2,
     "reservedSlugs": [
