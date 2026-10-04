@@ -2,14 +2,14 @@
   --timeline-ink: #b05f7b;
   --timeline-soft: #d9a1b4;
   --timeline-paper: var(--invitation-page-bg, #fff7fa);
-  padding-block: clamp(58px, 9vw, 112px);
+  padding-block: clamp(32px, 5vw, 64px);
   background: var(--invitation-page-bg, #fff7fa);
 }
 
 .mi-schedule-card {
   width: min(100%, 830px);
   margin-inline: auto;
-  padding: clamp(26px, 5vw, 54px) clamp(16px, 6vw, 70px) clamp(30px, 5vw, 50px);
+  padding: 0 clamp(12px, 3vw, 36px) 12px;
   color: var(--timeline-ink);
   background: var(--timeline-paper);
   box-shadow: none;
@@ -34,13 +34,17 @@
   list-style: none;
   text-align: left;
   border: 0;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .mi-schedule .mi-timeline-item {
   display: grid;
-  grid-template-columns: var(--icon-column) var(--line-column) minmax(0, 1fr);
+  grid-template-columns: var(--icon-column) var(--line-column) max-content;
   align-items: center;
-  min-height: clamp(132px, 24vw, 180px);
+  min-height: clamp(110px, 17vw, 150px);
+  gap: 0;
   padding: 0;
   background: transparent;
   box-shadow: none;
@@ -57,10 +61,11 @@
   color: var(--timeline-ink);
 }
 
-.mi-timeline-icon svg {
+.mi-timeline-icon img {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .mi-timeline-rail {
@@ -147,8 +152,8 @@
 .mi-timeline-heart {
   width: 38px;
   height: 34px;
-  background: var(--timeline-ink);
-  clip-path: polygon(50% 100%, 7% 60%, 0 38%, 4% 20%, 16% 7%, 34% 3%, 50% 15%, 66% 3%, 84% 7%, 96% 20%, 100% 38%, 93% 60%);
+  display: block;
+  object-fit: contain;
 }
 
 .mi-schedule .mi-rsvp {
@@ -164,10 +169,10 @@
     padding: 8px 6px 8px;
   }
   .mi-schedule .mi-timeline-list { --icon-column: 58px; --line-column: 18px; }
-  .mi-schedule .mi-timeline-item { min-height: 72px; }
-  .mi-timeline-icon { width: 50px; }
+  .mi-schedule .mi-timeline-item { min-height: 98px; }
+  .mi-timeline-icon { width: 56px; }
   .mobile-invitation .mi-schedule-title { margin-bottom: 9px; }
-  .mi-timeline-copy { padding-left: 5px; font-size: clamp(16px, 4.8vw, 20px); white-space: nowrap; }
+  .mi-timeline-copy { padding-left: 8px; font-size: clamp(14px, 4.2vw, 19px); white-space: nowrap; }
   .mi-timeline-dot { width: 12px; height: 12px; }
   .mi-timeline-flourish { margin-top: 8px; }
 }

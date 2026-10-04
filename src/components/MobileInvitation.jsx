@@ -15,7 +15,7 @@ const embrace = photos.calendar;
 export function MobileEnvelope({ first, second, guestName, onOpen }) {
   return <div className="mobile-envelope-screen">
     <p className="mi-kicker">TRÂN TRỌNG KÍNH MỜI</p>
-    <h1 className="mi-envelope-guest" style={{ fontFamily: '"DFVN ED Drayton Local", "Charm", cursive' }}>{guestName}</h1>
+    <h1 className="mi-envelope-guest">{guestName}</h1>
     <button autoFocus type="button" className="mi-envelope" onClick={onOpen} aria-label="Mở thiệp mời">
       <span className="mi-envelope-letter">Save the date<br />21.10.2026</span>
       <span className="mi-envelope-fold" />
@@ -53,7 +53,7 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
     </section>
 
     <section className="mi-section mi-events" id="dia-diem">
-      <h2 className="mi-script mi-heading">Sự kiện cưới</h2>
+      <h2 className="mi-script mi-heading">Sự kiện Cưới</h2>
       <article className="mi-event-card"><img className="mi-event-photo" src={photos.weddingEvent} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><div className="mi-event-body"><h3>LỄ THÀNH HÔN</h3><p>11:00 · THỨ TƯ</p><div className="mi-event-date"><span>THÁNG 10</span><strong>21</strong><span>NĂM 2026</span></div><p className="mi-event-lunar">Ngày 12 tháng 9 năm Bính Ngọ</p><h4>{wedding.event.venueName}</h4><p>{wedding.event.hall}</p><p>{wedding.event.address}</p><a className="mi-pill" href={wedding.event.maps.directionsUrl} target="_blank" rel="noopener noreferrer">XEM CHỈ ĐƯỜNG</a><details className="mi-map"><summary>Xem bản đồ địa điểm</summary><iframe title="Bản đồ Trống Đồng Palace" src={wedding.event.maps.embedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></details></div></article>
     </section>
 
@@ -70,9 +70,9 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
             </li>;
           })}
         </ol>
-        <div className="mi-timeline-flourish" aria-hidden="true"><span className="mi-timeline-heart" /></div>
+        <div className="mi-timeline-flourish" aria-hidden="true"><img className="mi-timeline-heart" src="/images/timeline/heart.png" alt="" width="46" height="42" /></div>
       </div>
-      <div className="mi-rsvp"><button type="button" className="mi-pill" onClick={onRsvp}>XÁC NHẬN THAM DỰ</button><p>Vui lòng phản hồi trước hết ngày 15.10.2026</p></div>
+      <div className="mi-rsvp"><button type="button" className="mi-pill" onClick={onRsvp}>XÁC NHẬN THAM DỰ</button><p>Vui lòng phản hồi trước ngày 16.10.2026</p></div>
     </section>
 
     <section className="mi-section mi-album" id="album-anh"><WeddingGallery /></section>

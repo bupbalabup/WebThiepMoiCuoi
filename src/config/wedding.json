@@ -43,8 +43,8 @@
   "event": {
     "startsAt": "2026-10-21T11:00:00+07:00",
     "venueName": "Trống Đồng Palace",
-    "address": "Tòa nhà Hancorp Plaza, số 72 Trần Đăng Ninh, Nghĩa Đô, Hà Nội",
-    "hall": "Sảnh Sapphire 1, tầng 3",
+    "address": "Số 72 Trần Đăng Ninh, Nghĩa Đô, Hà Nội",
+    "hall": "Sảnh Sapphire 1, Tầng 3",
     "maps": {
       "query": "Trống Đồng Palace, Hancorp Plaza, 72 Trần Đăng Ninh, Hà Nội",
       "searchUrl": "https://www.google.com/maps/search/?api=1&query=Tr%E1%BB%91ng%20%C4%90%E1%BB%93ng%20Palace%2C%20Hancorp%20Plaza%2C%2072%20Tr%E1%BA%A7n%20%C4%90%C4%83ng%20Ninh%2C%20H%C3%A0%20N%E1%BB%99i",

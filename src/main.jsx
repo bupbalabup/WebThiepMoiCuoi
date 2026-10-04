@@ -30,6 +30,7 @@ import "@fontsource/be-vietnam-pro/700.css";
 
 // Rounded display font for the bride and groom names below their portraits
 import "@fontsource/kodchasan/400.css";
+import "@fontsource/pinyon-script/400.css";
 import "@fontsource/kodchasan/700.css";
 
 import "./styles/index.css";
@@ -39,6 +40,7 @@ import "./styles/luxury.css";
 import "./styles/rsvp.css";
 import "./styles/local-fonts.css";
 import "./styles/timeline.css";
+import "./styles/layout-refinements.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

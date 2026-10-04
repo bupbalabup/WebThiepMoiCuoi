@@ -5,7 +5,7 @@ import TurnstileWidget from "./TurnstileWidget.jsx";
 
 const ATTENDANCE = [
   { value: "attending", label: "Có, mình sẽ tham dự", sub: "Hẹn gặp bạn trong ngày vui" },
-  { value: "considering", label: "Đang cân nhắc sắp xếp", sub: "Sẽ xác nhận trước hết ngày 15.10" },
+  { value: "considering", label: "Đang cân nhắc sắp xếp", sub: "Sẽ xác nhận trước ngày 16.10" },
   { value: "declined", label: "Tiếc quá, mình không tham gia được", sub: "Gửi lời chúc phúc từ xa" },
 ];
 
@@ -145,7 +145,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
         <p className="rsvp-notice-text">
           Bạn dành chút thời gian để chúng tôi chuẩn bị đón tiếp thật chu đáo nhé.
         </p>
-        <span className="rsvp-deadline-badge">Phúc đáp trước hết ngày <strong>15.10.2026</strong></span>
+        <span className="rsvp-deadline-badge">Phúc đáp trước ngày <strong>16.10.2026</strong></span>
       </div>
 
       {/* Field 1: Name */}
