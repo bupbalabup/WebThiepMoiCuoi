@@ -46,7 +46,8 @@ export async function onRequest({ request, env }) {
       invitedName = String(matches[0][table.nameIndex] || "").trim().replace(/\s+/g, " ").slice(0, 120);
       if (!invitedName) return publicError(400, "INVALID_INVITATION", "Link thiệp cá nhân không hợp lệ.");
     }
-    await appendSheetRow(env, hasStt ? `'${tab}'!B:H` : `'${tab}'!A:G`, [vietnamSheetDate(), data.name, data.message, SIDE_LABELS[data.side], data.slug, invitedName, data.id]);
+    // Include the STT position without overwriting its array formula.
+    await appendSheetRow(env, hasStt ? `'${tab}'!A1:H1` : `'${tab}'!A1:G1`, [...(hasStt ? [null] : []), vietnamSheetDate(), data.name, data.message, SIDE_LABELS[data.side], data.slug, invitedName, data.id]);
     return json({ ok: true, message: "Cảm ơn bạn! Lời chúc đã được gửi đến Tuấn Anh và Ngọc Anh." }, { status: 201 });
   } catch (error) {
     console.error("Wish save failed", error instanceof Error ? error.message : "UNKNOWN");

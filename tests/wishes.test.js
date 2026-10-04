@@ -38,20 +38,21 @@ test("wishes verify action, preserve text safely and write Vietnamese data to th
     const target = String(url);
     if (target.includes("oauth2.googleapis.com")) return Response.json({ access_token: "test", expires_in: 3600 });
     if (target.includes("challenges.cloudflare.com")) return Response.json({ success: true, hostname: "wedding.example", action });
-    if (target.includes("A1%3AH1")) return Response.json({ values: [["STT", ...WISH_HEADERS]] });
+    if (init.method !== "POST" && target.includes("A1%3AH1")) return Response.json({ values: [["STT", ...WISH_HEADERS]] });
     if (target.includes("H2%3AH")) return Response.json({ values: duplicate ? [[payload.idempotencyKey]] : [] });
     if (target.includes("A1%3AC")) return Response.json({ values: validSlug ? [["STT", "Tên khách mời", "Đường dẫn khách mời"], ["1", "Nguyễn Văn A", "nguyen-van-a"]] : [["STT", "Tên khách mời", "Đường dẫn khách mời"]] });
     assert.match(target, /valueInputOption=RAW/);
     assert.match(target, /L%E1%BB%9Di%20ch%C3%BAc%20nh%C3%A0%20g%C3%A1i/);
-    assert.match(decodeURIComponent(target), /'Lời chúc nhà gái'!B:H/);
+    assert.match(decodeURIComponent(target), /'Lời chúc nhà gái'!A1:H1/);
     appended = JSON.parse(init.body).values[0];
     return Response.json({ updates: { updatedRows: 1 } });
   };
   try {
     const response = await onRequest({ request: makeRequest(), env });
     assert.equal(response.status, 201);
-    assert.equal(typeof appended[0], "number");
-    assert.deepEqual(appended.slice(1), ["Nguyễn Văn A", payload.message, "Nhà gái", "nguyen-van-a", "Nguyễn Văn A", payload.idempotencyKey]);
+    assert.equal(appended[0], null);
+    assert.equal(typeof appended[1], "number");
+    assert.deepEqual(appended.slice(2), ["Nguyễn Văn A", payload.message, "Nhà gái", "nguyen-van-a", "Nguyễn Văn A", payload.idempotencyKey]);
     appended = null; duplicate = true;
     assert.equal((await onRequest({ request: makeRequest(), env })).status, 200);
     assert.equal(appended, null);

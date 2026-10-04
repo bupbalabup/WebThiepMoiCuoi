@@ -80,7 +80,10 @@ async function handlePost({ request, env }) {
       if (!invitedName) return publicError(400, "INVITATION_NOT_FOUND", "Link thiệp cá nhân không hợp lệ.");
     }
 
-    await appendSheetRow(env, hasStt ? `'${tab}'!B:K` : `'${tab}'!A:J`, [
+    // Sheets appends from the first column of the detected table (A), even
+    // when the search range starts at B. A null preserves the STT formula.
+    await appendSheetRow(env, hasStt ? `'${tab}'!A1:K1` : `'${tab}'!A1:J1`, [
+      ...(hasStt ? [null] : []),
       vietnamSheetDate(),
       data.name,
       ATTENDANCE_LABELS[data.attendance],
