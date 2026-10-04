@@ -24,7 +24,11 @@ body { min-width: 0; }
   font-size: clamp(48px, 6vw, 82px);
   line-height: 1.25;
 }
-.mobile-envelope-screen .mi-open-hint { font-size: clamp(15px, 1.2vw, 18px); }
+.mobile-envelope-screen .mi-open-hint {
+  max-width: 100%;
+  font-size: clamp(10px, 3.2vw, 15px);
+  white-space: nowrap;
+}
 .mobile-envelope-screen .mi-envelope-signature > p:last-child { font-size: clamp(14px, 1vw, 16px); }
 .mobile-envelope-screen .mi-envelope-letter { font-size: clamp(22px, 1.8vw, 27px); }
 
