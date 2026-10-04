@@ -1,6 +1,6 @@
 # Vị trí ảnh cưới
 
-Ảnh nguồn nằm trong `public/images/anhcuoi`. Bản tối ưu dùng trên web nằm trong `public/images/optimized`, đường dẫn tập trung trong `src/config/photos.json`.
+Website dùng ảnh gốc trong `public/images/anhcuoi`, đường dẫn tập trung trong `src/config/photos.json`. Thư mục `public/images/optimized` chứa các bản cũ, không phải ảnh đang dùng trong cấu hình.
 
 | Ảnh nguồn | Vị trí |
 | --- | --- |
@@ -9,10 +9,15 @@
 | anhlich.jpg | Ảnh cạnh lịch và thẻ sự kiện |
 | chure.JPG / codau.JPG | Thẻ chú rể / cô dâu |
 | Toàn bộ ảnh trong `public/images/khoanhkhac` | Album xếp lớp 3D, tự sắp xếp theo tên và số |
-| demnguoc.JPG | Đếm ngược |
-| camon.JPG | Cảm ơn |
+| demnguoc.jpg | Đếm ngược |
+| homepage.JPG | Trang chủ |
+| camon.JPG | Ảnh dự phòng, phần lời cảm ơn hiện không hiển thị ảnh |
 
-Banner cố định Tuấn Anh bên trái, Ngọc Anh bên phải. Các phần gia đình, chân dung, phong bì và lời cảm ơn ưu tiên bên mời theo đường dẫn. Ảnh nguồn được giữ nguyên; khi thay ảnh nguồn cần cập nhật bản tối ưu tương ứng hoặc đổi đường dẫn trong cấu hình ảnh.
+Banner cố định Tuấn Anh bên trái, Ngọc Anh bên phải. Các phần gia đình, chân dung, phong bì và lời cảm ơn ưu tiên bên mời theo đường dẫn. Ảnh nguồn được giữ nguyên; khi thay ảnh cần đưa tệp vào Git và dùng tên đúng chữ hoa/thường trong cấu hình.
+
+## Tránh thiếu ảnh trên Cloudflare
+
+Thư mục `anhcuoi` phải được theo dõi bằng Git. Trước đây quy tắc bỏ qua `*.JPG` khiến ảnh chỉ có trên máy local, Cloudflare không nhận được ảnh khi build từ GitHub. `npm run build` hiện kiểm tra mọi đường dẫn ảnh trong cấu hình và dừng nếu thiếu tệp hoặc sai chữ hoa/thường. Không nén lại ảnh trong quá trình build.
 
 ## Thêm ảnh vào album
 

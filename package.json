@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "test": "node --test tests/*.test.js",
     "pages:dev": "npm run build && wrangler pages dev dist",
-    "prebuild": "node scripts/generate-calendar.mjs"
+    "prebuild": "node scripts/check-public-images.mjs && node scripts/generate-calendar.mjs"
   },
   "dependencies": {
     "@fontsource/be-vietnam-pro": "^5.3.0",
