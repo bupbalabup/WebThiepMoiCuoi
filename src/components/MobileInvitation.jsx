@@ -38,7 +38,7 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
     </section>
 
     <section className="mi-section mi-date" aria-label="Lịch ngày cưới">
-      <div className="mi-date-grid"><figure className="mi-polaroid"><img src={embrace} alt="Save the date" loading="lazy" /><figcaption className="mi-script">Save the date</figcaption></figure><SaveTheDateCalendar /></div>
+      <div className="mi-date-grid"><figure className="mi-polaroid"><img src={photos.calendar} alt="Save the date" loading="lazy" /><figcaption className="mi-script">Save the date</figcaption></figure><SaveTheDateCalendar /></div>
       <p className="mi-lunar-note">11:00 · Thứ Tư, ngày 21 tháng 10 năm 2026<br />Tức ngày 12 tháng 9 năm Bính Ngọ</p>
     </section>
 
@@ -54,7 +54,7 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
 
     <section className="mi-section mi-events" id="dia-diem">
       <h2 className="mi-script mi-heading">Sự kiện cưới</h2>
-      <article className="mi-event-card"><img className="mi-event-photo" src={embrace} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><div className="mi-event-body"><h3>LỄ THÀNH HÔN</h3><p>11:00 · THỨ TƯ</p><div className="mi-event-date"><span>THÁNG 10</span><strong>21</strong><span>NĂM 2026</span></div><p className="mi-event-lunar">Ngày 12 tháng 9 năm Bính Ngọ</p><h4>{wedding.event.venueName}</h4><p>{wedding.event.hall}</p><p>{wedding.event.address}</p><a className="mi-pill" href={wedding.event.maps.directionsUrl} target="_blank" rel="noopener noreferrer">XEM CHỈ ĐƯỜNG</a><details className="mi-map"><summary>Xem bản đồ địa điểm</summary><iframe title="Bản đồ Trống Đồng Palace" src={wedding.event.maps.embedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></details></div></article>
+      <article className="mi-event-card"><img className="mi-event-photo" src={photos.weddingEvent} alt="Tuấn Anh và Ngọc Anh" loading="lazy" /><div className="mi-event-body"><h3>LỄ THÀNH HÔN</h3><p>11:00 · THỨ TƯ</p><div className="mi-event-date"><span>THÁNG 10</span><strong>21</strong><span>NĂM 2026</span></div><p className="mi-event-lunar">Ngày 12 tháng 9 năm Bính Ngọ</p><h4>{wedding.event.venueName}</h4><p>{wedding.event.hall}</p><p>{wedding.event.address}</p><a className="mi-pill" href={wedding.event.maps.directionsUrl} target="_blank" rel="noopener noreferrer">XEM CHỈ ĐƯỜNG</a><details className="mi-map"><summary>Xem bản đồ địa điểm</summary><iframe title="Bản đồ Trống Đồng Palace" src={wedding.event.maps.embedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></details></div></article>
     </section>
 
     <section className="mi-section mi-schedule" id="lich-trinh">
