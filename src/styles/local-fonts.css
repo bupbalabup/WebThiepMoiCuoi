@@ -99,7 +99,10 @@
   }
 }
 
-.mobile-invitation .mi-guest,
+.mobile-invitation .mi-guest {
+  font-family: "Great Vibes Local", "Charm", cursive;
+}
+
 .mobile-invitation .mi-families > p:last-child {
   font-family: "Philosopher Local", Georgia, serif;
 }

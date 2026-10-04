@@ -73,14 +73,14 @@
 .mi-thanks{padding-bottom:100px}.mi-thanks>img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:center 40%;border:5px solid white;box-shadow:0 0 0 1px #e8bfce}
 .mi-thanks h2{font-size:46px;margin:20px 0 8px}.mi-thanks-names{font-family:var(--font-serif);font-size:23px;white-space:nowrap}.mi-thanks p{margin-bottom:18px;font-size:13px}.mi-thanks a{font-size:11px;color:#965571}
 .mobile-envelope-screen{width:100%;max-width:767px;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:36px 24px;text-align:center;background:radial-gradient(ellipse at 10% 10%,#fff 0,transparent 50%),linear-gradient(145deg,#f9e9f0,#fffafc 55%,#edd1dc);color:#85425b}
-.mobile-envelope-screen>h1{font-size:36px;margin:12px 0 50px;overflow-wrap:anywhere}
+.mobile-envelope-guest{font-family:"Motherland Signature Local","Charm",cursive!important;font-size:36px;margin:12px 0 50px;overflow-wrap:anywhere}
 .mi-envelope{width:min(100%,330px);aspect-ratio:1.55;position:relative;isolation:isolate;background:#f8e5ed;border:1px solid #e2b9c9;padding:0;box-shadow:0 20px 30px #7c3e5826;cursor:pointer;perspective:900px}
 .mi-envelope-letter{position:absolute;inset:10px;background:white;padding:25px 8px;color:#9e546e;font-family:Charm,serif;font-size:21px;transition:transform .7s}
 .mi-envelope-fold{position:absolute;inset:0;background:linear-gradient(32deg,#f4dce6 49%,transparent 50%),linear-gradient(-32deg,#f8e6ed 49%,transparent 50%);z-index:2}
 .mi-envelope-flap{position:absolute;inset:0;background:#faedf2;clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;z-index:3;transition:transform .65s}
 .mi-envelope-seal{position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);z-index:4;display:grid;place-items:center;width:57px;height:57px;border-radius:50%;background:#a85572;color:white;border:4px double #dca4b7;font-family:Charm,serif;font-size:17px;box-shadow:0 3px 8px #74344840;transition:opacity .25s}
 .is-opening .mi-envelope-flap{transform:rotateX(180deg)}.is-opening .mi-envelope-seal{opacity:0}.is-opening .mi-envelope-letter{transform:translateY(-35px)}
-.mi-open-hint{font-size:12px;margin-top:28px}.mi-envelope-signature{margin-top:52px}.mi-envelope-signature .mi-script{font-size:29px;margin:0 0 12px}.mi-envelope-signature>p:last-child{font-size:12px;letter-spacing:4px}
+.mi-open-hint{font-size:12px;margin-top:28px}.mi-envelope-signature{margin-top:52px}.mi-envelope-couple{font-family:"Great Vibes Local","Charm",cursive;font-size:29px;line-height:1.2;margin:0 0 12px}.mi-envelope-signature>p:last-child{font-size:12px;letter-spacing:4px}
 @media(max-width:767px){.lux-navbar{display:none}.lux-cover-overlay:has(.mobile-envelope-screen){padding:0;background:#fff5f9}.lux-mobile-bar{backdrop-filter:none;background:#fffcfdf2}.lux-wedding-suite:has(.mobile-invitation){padding-top:0}}
 @media(min-width:480px) and (max-width:767px){.mi-section{padding-left:40px;padding-right:40px}.mi-date-grid{gap:24px}.mobile-invitation .cal-day-cell{min-height:46px}.mobile-invitation .cal-solar-day{font-size:20px}.mi-person-crop{aspect-ratio:4/5}.mi-hero-copy{bottom:70px}}
 @media(prefers-reduced-motion:reduce){.mi-envelope-flap,.mi-envelope-letter,.mi-envelope-seal{transition:none}}

@@ -70,7 +70,7 @@ export default function AudioPlayer({ autoPlayTrigger = false }) {
     <div className="audio-player-wrapper" aria-label="Âm nhạc thiệp cưới">
       <audio
         ref={audioRef}
-        src="/music/thanhtan.mp3"
+        src="/music/doiloi.mp3"
         preload="auto"
         loop
         playsInline
