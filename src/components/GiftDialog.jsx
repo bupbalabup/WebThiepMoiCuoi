@@ -19,7 +19,7 @@ export default function GiftDialog({ side, open, onClose }) {
   return (
     <Modal title={`Gửi mừng cưới · ${account.label}`} open={open} onClose={onClose} className="gift-modal">
       <div className="gift-dialog-stationery">
-        <span className="script-title small">Cảm ơn bạn</span>
+        <span className="script-title small gift-thanks-title">Cảm ơn bạn</span>
         <p className="gift-quote">
           “Những lời chúc tốt đẹp nhất của Quý vị sẽ là món quà vô cùng quý giá đối với hai gia đình chúng tôi trong ngày trọng đại này.”
         </p>
@@ -105,7 +105,7 @@ export default function GiftDialog({ side, open, onClose }) {
         )}
 
         <div className="gift-signature-wrap">
-          <span className="signature-couple">Tuấn Anh & Ngọc Anh</span>
+          <span className="signature-couple gift-signature-couple">Tuấn Anh &amp; Ngọc Anh</span>
         </div>
       </div>
     </Modal>

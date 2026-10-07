@@ -27,7 +27,7 @@ export function MobileEnvelope({ first, second, guestName, onOpen }) {
   </div>;
 }
 
-export default function MobileInvitation({ side, guestName, invitedName, slug, onRsvp, onGift }) {
+export default function MobileInvitation({ side, guestName, slug, onRsvp, onGift }) {
   const first = side === "groom" ? wedding.couple.groom : wedding.couple.bride;
   const second = side === "groom" ? wedding.couple.bride : wedding.couple.groom;
   const sideOrder = side === "groom" ? ["groom", "bride"] : ["bride", "groom"];
@@ -77,7 +77,7 @@ export default function MobileInvitation({ side, guestName, invitedName, slug, o
 
     <section className="mi-section mi-album" id="album-anh"><WeddingGallery /></section>
 
-    <section className="mi-section mi-wishes" id="so-luu-but"><h2 className="mi-script mi-heading">Gửi Lời Chúc</h2><p>Những lời nhắn yêu thương và sự hiện diện của bạn là món quà quý giá với chúng tôi.</p><div className="mi-form-paper"><WishForm side={side} invitedName={invitedName} invitationSlug={slug} hideHeader /></div></section>
+    <section className="mi-section mi-wishes" id="so-luu-but"><h2 className="mi-script mi-heading">Gửi Lời Chúc</h2><p>Những lời nhắn yêu thương và sự hiện diện của bạn là món quà quý giá với chúng tôi.</p><div className="mi-form-paper"><WishForm side={side} invitationSlug={slug} hideHeader /></div></section>
 
     <section className="mi-section mi-gifts" id="mung-cuoi"><h2 className="mi-script mi-heading">Hộp Mừng Cưới</h2><p>Cảm ơn những yêu thương<br />bạn dành cho chúng tôi.</p><button type="button" className="mi-gift-envelope" onClick={onGift}><span className="mi-gift-monogram"><WeddingMonogram size={90} /></span><span className="mi-pill">Chạm để mở</span></button></section>
 

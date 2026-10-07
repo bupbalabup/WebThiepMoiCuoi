@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { submitWish } from "../lib/api.js";
 import TurnstileWidget from "./TurnstileWidget.jsx";
 
-export default function WishForm({ side, invitedName = "", invitationSlug = null, hideHeader = false }) {
-  const [name, setName] = useState(invitedName);
+export default function WishForm({ side, invitationSlug = null, hideHeader = false }) {
+  const [name, setName] = useState("");
   const [wish, setWish] = useState("");
   const [website, setWebsite] = useState("");
   const [token, setToken] = useState("");
@@ -11,12 +11,7 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
   const [status, setStatus] = useState("idle");
   const [notice, setNotice] = useState("");
   const id = useRef("");
-  const dirty = useRef(false);
   const onToken = useCallback((value) => setToken(value), []);
-
-  useEffect(() => {
-    if (!dirty.current) setName(invitedName);
-  }, [invitedName]);
 
   async function send(event) {
     event.preventDefault();
@@ -88,7 +83,6 @@ export default function WishForm({ side, invitedName = "", invitationSlug = null
               autoComplete="name"
               value={name}
               onChange={(e) => {
-                dirty.current = true;
                 setName(e.target.value);
               }}
               placeholder="Nhập họ và tên của bạn..."

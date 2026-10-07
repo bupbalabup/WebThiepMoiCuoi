@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { submitRsvp } from "../lib/api.js";
 import { isRsvpClosed } from "../lib/date.js";
 import TurnstileWidget from "./TurnstileWidget.jsx";
@@ -37,11 +37,10 @@ function createSubmissionId() {
   return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
 }
 
-export default function RsvpForm({ side, invitedName = "", invitationSlug = null, compact = false }) {
-  const dirtyNameRef = useRef(false);
+export default function RsvpForm({ side, invitationSlug = null, compact = false }) {
   const submissionIdRef = useRef("");
   const [values, setValues] = useState({
-    name: invitedName,
+    name: "",
     attendance: "",
     guestChoice: "1",
     guestOther: "",
@@ -57,12 +56,7 @@ export default function RsvpForm({ side, invitedName = "", invitationSlug = null
   const closed = useMemo(() => isRsvpClosed(), []);
   const onToken = useCallback((token) => setTurnstileToken(token), []);
 
-  useEffect(() => {
-    if (invitedName && !dirtyNameRef.current) setValues((current) => ({ ...current, name: invitedName }));
-  }, [invitedName]);
-
   function update(key, value) {
-    if (key === "name") dirtyNameRef.current = true;
     setValues((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined, ...(key === "attendance" ? { guestCount: undefined } : {}) }));
   }

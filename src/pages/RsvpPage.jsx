@@ -59,7 +59,6 @@ export default function RsvpPage({ side }) {
       <div className="rsvp-card-container">
         <RsvpForm
           side={side}
-          invitedName={invite.invitation?.name || ""}
           invitationSlug={safeSlug}
         />
       </div>

@@ -118,7 +118,7 @@ export default function InvitationPage({ side, slug }) {
 
         {/* Full-width Responsive Canvas */}
         <main ref={canvasRef}>
-          <MobileInvitation side={side} guestName={guestName} invitedName={invite.invitation?.name || ""} slug={slug} onRsvp={() => setRsvpOpen(true)} onGift={() => setGiftOpen(true)} />
+          <MobileInvitation side={side} guestName={guestName} slug={slug} onRsvp={() => setRsvpOpen(true)} onGift={() => setGiftOpen(true)} />
         </main>
 
         {/* Mobile Sticky Bottom Bar */}
@@ -152,7 +152,6 @@ export default function InvitationPage({ side, slug }) {
       >
         <RsvpForm
           side={side}
-          invitedName={invite.invitation?.name || ""}
           invitationSlug={slug}
           compact
         />

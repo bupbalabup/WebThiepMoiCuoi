@@ -114,6 +114,12 @@ a {
   font-size: clamp(2.2rem, 5.5vw, 3rem);
 }
 
+.gift-thanks-title {
+  font-family: "Great Vibes Local", "Charm", cursive;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .button {
   min-height: 46px;
   display: inline-flex;
@@ -1738,6 +1744,11 @@ a {
 
 .gift-signature-wrap {
   margin-top: 12px;
+}
+
+.gift-signature-couple {
+  font-family: "DFVN ED Drayton Local", "Motherland Signature Local", "Wedding Calligraphy", cursive;
+  font-weight: 400;
 }
 
 /* ==========================================================================
